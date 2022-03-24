@@ -10,68 +10,76 @@ function DayColumns({ currentDate }) {
 		color: "#626262",
 	};
 
-	const days = [
-		"Sunday",
-		"Monday",
-		"Tuesday",
-		"Wednesday",
-		"Thursday",
-		"Friday",
-		"Saturday",
-	];
+	const days = {
+		1: "Sun",
+		2: "Mon",
+		3: "Tue",
+		4: "Wed",
+		5: "Thu",
+		6: "Fri",
+		7: "Sat",
+	};
 
 	return (
 		<div className="day-columns" style={styles}>
 			<div style={{ gridColumnStart: "5" }}>
-				{days[currentDate.getDay()].slice(0, 3)}
+				{days[currentDate.getDay()]}
 				<br />
 				{currentDate.getDate()}
 			</div>
 
 			<div>
-				{days[
-					currentDate.getDay() - 1 < 0
-						? currentDate.getDay() - 1 + 7
-						: currentDate.getDay() - 1
-				].slice(0, 3)}
+				{
+					days[
+						currentDate.getDay() - 1 <= 0
+							? currentDate.getDay() - 1 + 7
+							: currentDate.getDay() - 1
+					]
+				}
 				<br />
-				{currentDate.getDate() - 1 < 0
+				{currentDate.getDate() - 1 <= 0
 					? currentDate.getDate() - 1 + 30
 					: currentDate.getDate() - 1}
 			</div>
 
 			<div>
-				{days[
-					currentDate.getDay() - 2 < 0
-						? currentDate.getDay() - 2 + 7
-						: currentDate.getDay() - 2
-				].slice(0, 3)}
+				{
+					days[
+						currentDate.getDay() - 2 <= 0
+							? currentDate.getDay() - 2 + 7
+							: currentDate.getDay() - 2
+					]
+				}
 				<br />
-				{currentDate.getDate() - 2 < 0
+				{currentDate.getDate() - 2 <= 0
 					? currentDate.getDate() - 2 + 30
 					: currentDate.getDate() - 2}
 			</div>
 
 			<div>
-				{days[
-					currentDate.getDay() - 3 < 0
-						? currentDate.getDay() - 3 + 7
-						: currentDate.getDay() - 3
-				].slice(0, 3)}
+				{
+					days[
+						currentDate.getDay() - 3 <= 0
+							? currentDate.getDay() - 3 + 7
+							: currentDate.getDay() - 3
+					]
+				}
 				<br />
-				{currentDate.getDate() - 3 < 0
+				{currentDate.getDate() - 3 <= 0
 					? currentDate.getDate() - 3 + 30
 					: currentDate.getDate() - 3}
 			</div>
 
 			<div>
-				{days[
-					currentDate.getDay() - 4 < 0
-						? currentDate.getDay() - 4 + 7
-						: currentDate.getDay() - 4
-				].slice(0, 3)}
+				{
+					days[
+						currentDate.getDay() - 4 <= 0
+							? currentDate.getDay() - 4 + 7
+							: currentDate.getDay() - 4
+					]
+				}
 				<br />
-				{currentDate.getDate() - 4 < 0
+				{currentDate.getDate() - 4 <= 0
 					? currentDate.getDate() - 4 + 30
 					: currentDate.getDate() - 4}
 			</div>
