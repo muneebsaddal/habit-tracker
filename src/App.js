@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./components/header/Header";
+import DayColumns from "./components/DayColumns";
+import Habit from "./components/habit/Habit";
+import AddNewHabit from "./components/addNewHabit/AddNewHabit";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [title, setTitle] = useState("Habits");
+
+	const current = new Date();
+
+	const [habit, setHabit] = useState(getHabit());
+
+	function getHabit() {
+		return {
+			habitName: "Type Habit Name",
+			habitCheck: [false, false, false, false, false],
+		};
+	}
+
+	const [addHabit, setAddHabit] = useState(false);
+	function onClickAdd() {
+		setAddHabit(true);
+	}
+	function
+
+	return (
+		<>
+			<Header pageTitle={title} handleOnClickAdd={onClickAdd} />
+			<DayColumns currentDate={current} />
+			<Habit habit={habit} />
+			{addHabit && <AddNewHabit />}
+		</>
+	);
 }
 
 export default App;
