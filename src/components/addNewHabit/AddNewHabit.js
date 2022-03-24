@@ -1,27 +1,32 @@
 import "./addNewHabit.css";
 
-function AddNewHabit() {
+function AddNewHabit(props) {
 	return (
 		<div className="new-habit">
-			<div className="new-habit-columns">
-				<div className="new-habit-progress">O</div>
-				<input className="new-habit-name"></input>
+			<form className="new-habit-columns" onSubmit={props.handleSubmit}>
+				<input type="submit" />
+				<input
+					type="text"
+					name="habitName"
+					placeholder="Enter habit"
+					className="new-habit-name"
+				/>
 				<div>
-					<input type="checkbox" name="checkbox" />
+					<input type="checkbox" name="habitCheckDay1" />
 				</div>
 				<div>
-					<input type="checkbox" name="checkbox" />
+					<input type="checkbox" name="habitCheckDay2" />
 				</div>
 				<div>
-					<input type="checkbox" name="checkbox" />
+					<input type="checkbox" name="habitCheckDay3" />
 				</div>
 				<div>
-					<input type="checkbox" name="checkbox" />
+					<input type="checkbox" name="habitCheckDay4" />
 				</div>
 				<div>
-					<input type="checkbox" name="checkbox" />
+					<input type="checkbox" name="habitCheckDay5" />
 				</div>
-			</div>
+			</form>
 		</div>
 	);
 }
