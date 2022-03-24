@@ -1,0 +1,26 @@
+.habit {
+	padding: 10px;
+	background: white;
+	margin: 0 10px 0 10px;
+	border-radius: 3px;
+}
+
+.habit-columns {
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	gap: 10px;
+	text-align: center;
+    align-items: center;
+    height: 40px;
+}
+
+.habit-progress {
+}
+
+.habit-name {
+	grid-column: span 3;
+	text-align: left;
+}
+
+.habit-checkboxes {
+}
