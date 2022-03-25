@@ -7,22 +7,13 @@ import AddNewHabit from "./components/addNewHabit/AddNewHabit";
 function App() {
 	const current = new Date();
 
-	const [habit, setHabit] = useState(getHabit());
+	const [habit, setHabit] = useState([
+		["", false, false, false, false, false],
+	]);
 	const [addHabit, setAddHabit] = useState(false);
 
 	function onClickAdd() {
 		setAddHabit(true);
-	}
-
-	function getHabit() {
-		return {
-			habitName: "",
-			habitCheckDay1: false,
-			habitCheckDay2: false,
-			habitCheckDay3: false,
-			habitCheckDay4: false,
-			habitCheckDay5: false,
-		};
 	}
 
 	const handleSubmit = (event) => {
@@ -30,23 +21,33 @@ function App() {
 
 		const data = new FormData(event.currentTarget);
 
-		setHabit({
-			habitName: data.get("habitName"),
-			habitCheckDay1: data.get("habitCheckDay1") === null ? false : true,
-			habitCheckDay2: data.get("habitCheckDay2") === null ? false : true,
-			habitCheckDay3: data.get("habitCheckDay3") === null ? false : true,
-			habitCheckDay4: data.get("habitCheckDay4") === null ? false : true,
-			habitCheckDay5: data.get("habitCheckDay5") === null ? false : true,
-		});
+		let habitElement = [
+			data.get("habitName"),
+			data.get("habitCheckDay1") === null ? false : true,
+			data.get("habitCheckDay2") === null ? false : true,
+			data.get("habitCheckDay3") === null ? false : true,
+			data.get("habitCheckDay4") === null ? false : true,
+			data.get("habitCheckDay5") === null ? false : true,
+		];
+
+		setHabit((prevstate) => [...prevstate, habitElement]);
 
 		setAddHabit(false);
 	};
+
+	let i = 0;
+	const habits = habit.map((h) => {
+		if (i !== 0) {
+			return <Habit key={h} habit={h} />;
+		}
+		i++;
+	});
 
 	return (
 		<>
 			<Header pageTitle={"Habit"} handleOnClickAdd={onClickAdd} />
 			<DayColumns currentDate={current} />
-			<Habit habit={habit} />
+			{habits}
 			{addHabit && <AddNewHabit handleSubmit={handleSubmit} />}
 		</>
 	);
