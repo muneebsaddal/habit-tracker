@@ -4,7 +4,9 @@ function AddNewHabit(props) {
 	return (
 		<div className="new-habit">
 			<form className="new-habit-columns" onSubmit={props.handleSubmit}>
-				<input type="submit" />
+				<span>
+					<input className="button-6" type="submit" value="Add" />
+				</span>
 				<input
 					type="text"
 					name="habitName"

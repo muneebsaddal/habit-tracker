@@ -1,7 +1,7 @@
 .habit {
 	padding: 10px;
 	background: white;
-	margin: 0 10px 0 10px;
+	margin: 0 10px 10px 10px;
 	border-radius: 3px;
 }
 
@@ -20,7 +20,14 @@
 .habit-name {
 	grid-column: span 3;
 	text-align: left;
+	padding-left: 10px;
+	font-weight: 500;
+	font-size: 16px;
 }
 
 .habit-checkboxes {
+}
+
+.bullet-logo {
+	width: 22px;
 }

@@ -1,9 +1,9 @@
 .new-habit {
 	padding: 10px;
 	background: rgb(233, 233, 233);
-	margin: 20px 20px 20px 20px;
-    border-radius: 3px;
-    border: 1px solid rgb(77, 77, 77);
+	margin: 20px 10px 20px 10px;
+	border-radius: 3px;
+	border: 1px solid rgb(185, 185, 185);
 }
 
 .new-habit-columns {
@@ -16,9 +16,45 @@
 }
 
 .new-habit-name {
-    height: 25px;
+	height: 25px;
 	grid-column: span 3;
 	text-align: left;
-    border-radius: 3px;
-    border: 1px solid rgb(66, 66, 66);
+	border-radius: 3px;
+	border: 1px solid rgb(185, 185, 185);
+	padding-left: 10px;
+}
+
+.button-6 {
+	background-color: #ffffff;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 0.25rem;
+	box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-family: system-ui, -apple-system, system-ui, "Helvetica Neue",
+		Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	min-height: 2rem;
+	width: 80%;
+	transition: all 250ms;
+}
+
+.button-6:hover,
+.button-6:focus {
+	border-color: rgba(0, 0, 0, 0.15);
+	box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+	color: rgba(0, 0, 0, 0.65);
+}
+
+.button-6:hover {
+	transform: translateY(-1px);
+}
+
+.button-6:active {
+	background-color: #f0f0f1;
+	border-color: rgba(0, 0, 0, 0.15);
+	box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+	color: rgba(0, 0, 0, 0.65);
+	transform: translateY(0);
 }
