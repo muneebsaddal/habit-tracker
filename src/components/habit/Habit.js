@@ -1,5 +1,4 @@
 import "./habit.css";
-import bullet from "../../images/Ellipse-1.png";
 import EdiText from "react-editext";
 
 function Habit(props) {
