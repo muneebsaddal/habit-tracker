@@ -5,7 +5,7 @@ function Header(props) {
 		<div className="header">
 			<div className="header-title">{props.pageTitle}</div>
 			<div className="header-buttons">
-				<button className="header-button-add" onClick={props.handleOnClickAdd}>add</button>
+				<button className="header-button-add" onClick={props.handleOpen}>add</button>
 				<button className="header-button-filter">filter</button>
 				<button className="header-button-more">setting</button>
 			</div>

@@ -1,5 +1,6 @@
 import "./habit.css";
-import bullet from '../../images/Ellipse-1.png';
+import bullet from "../../images/Ellipse-1.png";
+import EdiText from "react-editext";
 
 function Habit(props) {
 	console.log(props.habit[0]);
@@ -9,7 +10,17 @@ function Habit(props) {
 				<div className="habit-progress">
 					{/* <img src={bullet} alt="bullet" className="bullet-logo"/> */}
 				</div>
-				<div className="habit-name">{props.habit[0]}</div>
+				<div className="habit-name">
+					<EdiText
+						type="text"
+						showButtonsOnHover
+						buttonsAlign="before"
+						value={props.habit[0]}
+						// onSave={props.handleNameChange}
+						submitOnEnter="true"
+						submitOnUnfocus="true"
+					/>
+				</div>
 				<div>
 					<input
 						type="checkbox"

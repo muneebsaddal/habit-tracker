@@ -1,60 +1,38 @@
-.new-habit {
-	padding: 10px;
-	background: rgb(233, 233, 233);
-	margin: 20px 10px 20px 10px;
-	border-radius: 3px;
-	border: 1px solid rgb(185, 185, 185);
+.modal-container {
+	position: relative;
 }
 
-.new-habit-columns {
-	display: grid;
-	grid-template-columns: repeat(9, 1fr);
-	gap: 10px;
-	text-align: center;
-	align-items: center;
-	height: 40px;
+.modal-1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 300px;
+	width: 70%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
-.new-habit-name {
-	height: 25px;
-	grid-column: span 3;
+.modal-1 > button {
+	background-color: white;
+	box-shadow: 0px 3px 10px black;
+	border: none;
+	border-radius: 7px;
 	text-align: left;
-	border-radius: 3px;
-	border: 1px solid rgb(185, 185, 185);
-	padding-left: 10px;
-}
-
-.button-6 {
-	background-color: #ffffff;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	border-radius: 0.25rem;
-	box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-	box-sizing: border-box;
+	padding: 20px 20px 5px 20px;
 	cursor: pointer;
-	font-family: system-ui, -apple-system, system-ui, "Helvetica Neue",
-		Helvetica, Arial, sans-serif;
+}
+
+.modal-heading {
+	font-family: "Inter";
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.modal-content {
+	font-family: "Inter";
 	font-size: 16px;
-	font-weight: 600;
-	min-height: 2rem;
-	width: 80%;
-	transition: all 250ms;
-}
+	line-height: 50px;
 
-.button-6:hover,
-.button-6:focus {
-	border-color: rgba(0, 0, 0, 0.15);
-	box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-	color: rgba(0, 0, 0, 0.65);
-}
-
-.button-6:hover {
-	transform: translateY(-1px);
-}
-
-.button-6:active {
-	background-color: #f0f0f1;
-	border-color: rgba(0, 0, 0, 0.15);
-	box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-	color: rgba(0, 0, 0, 0.65);
-	transform: translateY(0);
 }
