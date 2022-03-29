@@ -3,8 +3,8 @@ import Header from "./components/header/Header";
 import DayColumns from "./components/DayColumns";
 import Habit from "./components/habit/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue/AddHabitDialogue";
-import HabitForm_A from "./components/habitForms/formA/HabitForm_A";
-import HabitForm_B from "./components/habitForms/formB/HabitForm_B";
+import HabitFormA from "./components/habitForms/formA/HabitFormA";
+import HabitFormB from "./components/habitForms/formB/HabitFormB";
 
 function App() {
 	const current = new Date();
@@ -66,6 +66,30 @@ function App() {
 		setAddFormOpen_B(false);
 	};
 
+	const [dialogsFormA, setDialogsFormA] = useState({
+		freqDialog: false,
+		reminderDialog: false,
+	});
+
+	const handleFreqDialogOpen = () => {
+		setDialogsFormA({ ...dialogsFormA, freqDialog: true });
+	};
+	const handleReminderDialogOpen = () => {
+		setDialogsFormA({...dialogsFormA, reminderDialog: true})
+	}
+	const handleFreqDialogClose = () => {
+		setDialogsFormA({ ...dialogsFormA, freqDialog: false });
+	};
+	const handleReminderDialogClose = () => {
+		setDialogsFormA({...dialogsFormA, reminderDialog: false})
+	}
+
+	const [time, setTime] = useState('8:59pm')
+
+	const handleTimeChange = (data) => {
+		setTime(data)
+	}
+	console.log(time)
 	return (
 		<>
 			<Header pageTitle={"Habit"} handleOpen={handleAddDialogueOpen} />
@@ -78,9 +102,23 @@ function App() {
 				openFormB={handleAddFormOpen_B}
 			/>
 			{addFormOpen_A ? (
-				<HabitForm_A handleFormClose={handleAddFormClose_A} />
+				<HabitFormA
+					openFormA={addFormOpen_A}
+					handleFormClose={handleAddFormClose_A}
+					handleOpenFreqDialog={handleFreqDialogOpen}
+					handleOpenReminderDialog={handleReminderDialogOpen}
+					openFreqDialog={dialogsFormA.freqDialog}
+					openReminderDialog={dialogsFormA.reminderDialog}
+					closeFreqDialog={handleFreqDialogClose}
+					closeReminderDialog={handleReminderDialogClose}
+					getTime={time}
+					changeTime={handleTimeChange}
+				/>
 			) : addFormOpen_B ? (
-				<HabitForm_B handleFormClose={handleAddFormClose_A} />
+				<HabitFormB
+					openFormB={addFormOpen_B}
+					handleFormClose={handleAddFormClose_A}
+				/>
 			) : (
 				<></>
 			)}
