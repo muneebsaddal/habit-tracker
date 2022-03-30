@@ -75,14 +75,14 @@ function App() {
 		setDialogsFormA({ ...dialogsFormA, freqDialog: true });
 	};
 	const handleReminderDialogOpenA = () => {
-		setDialogsFormA({...dialogsFormA, reminderDialog: true})
-	}
+		setDialogsFormA({ ...dialogsFormA, reminderDialog: true });
+	};
 	const handleFreqDialogCloseA = () => {
 		setDialogsFormA({ ...dialogsFormA, freqDialog: false });
 	};
 	const handleReminderDialogCloseA = () => {
-		setDialogsFormA({...dialogsFormA, reminderDialog: false})
-	}
+		setDialogsFormA({ ...dialogsFormA, reminderDialog: false });
+	};
 
 	const [dialogsFormB, setDialogsFormB] = useState({
 		freqDialog: false,
@@ -93,20 +93,54 @@ function App() {
 		setDialogsFormB({ ...dialogsFormB, freqDialog: true });
 	};
 	const handleReminderDialogOpenB = () => {
-		setDialogsFormB({...dialogsFormB, reminderDialog: true})
-	}
+		setDialogsFormB({ ...dialogsFormB, reminderDialog: true });
+	};
 	const handleFreqDialogCloseB = () => {
 		setDialogsFormB({ ...dialogsFormB, freqDialog: false });
 	};
 	const handleReminderDialogCloseB = () => {
-		setDialogsFormB({...dialogsFormB, reminderDialog: false})
-	}
+		setDialogsFormB({ ...dialogsFormB, reminderDialog: false });
+	};
 
-	const [time, setTime] = useState('8:59pm')
+	const [time, setTime] = useState("8:59pm");
 
 	const handleTimeChange = (data) => {
-		setTime(data)
-	}
+		setTime(data);
+	};
+
+	const [dataFormA, setDataFormA] = useState({
+		name: "",
+		color: "",
+		question: "",
+		frequency: "",
+		reminder: "",
+		notes: "",
+	});
+
+	const handleChangeFormA = (e) => {
+		const { name, value } = e.target;
+		setDataFormA((prevData) => {
+			return {
+				...prevData,
+				[name]: value,
+			};
+		});
+	};
+
+	const handleSubmitFormA = (e) => {
+		e.preventDefault();
+		console.log(dataFormA);
+	};
+	console.log(dataFormA.color);
+	const handleColorChanges = (color) => {
+		setDataFormA((prevData) => {
+			console.log(color);
+			return {
+				...prevData,
+				color: color,
+			};
+		});
+	};
 
 	return (
 		<>
@@ -131,6 +165,10 @@ function App() {
 					closeReminderDialog={handleReminderDialogCloseA}
 					getTime={time}
 					changeTime={handleTimeChange}
+					formData={dataFormA}
+					handleFormChange={handleChangeFormA}
+					handleFormSubmit={handleSubmitFormA}
+					colorChange={handleColorChanges}
 				/>
 			) : addFormOpen_B ? (
 				<HabitFormB
