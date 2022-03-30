@@ -31,6 +31,7 @@
 	border: 0px;
 	padding: 5px 20px 20px 48px;
 	font-size: 18px;
+	width: 270px;
 }
 
 .input-group > button {
@@ -51,10 +52,19 @@ input:focus {
 
 .input-group-name {
 	display: flex;
-	/* flex-direction: row; */
 }
 .input-group-name > input {
 	padding: 0px 0px 0px 0px;
+}
+
+.form-input-column {
+	display: flex;
+	justify-content:space-around;
+}
+
+.form-input-column > div {
+	width: 50%;
+	margin: 10px 20px;
 }
 
 .freq-dialog-container {

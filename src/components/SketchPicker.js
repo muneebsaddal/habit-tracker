@@ -6,9 +6,9 @@ class SketchExample extends React.Component {
 	state = {
 		displayColorPicker: false,
 		color: {
-			r: "241",
-			g: "112",
-			b: "19",
+			r: "0",
+			g: "100",
+			b: "200",
 			a: "1",
 		},
 	};
@@ -35,7 +35,7 @@ class SketchExample extends React.Component {
 					background: `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b}, ${this.state.color.a})`,
 				},
 				swatch: {
-					padding: "0px 7px",
+					padding: "0px 8px",
 					background: "#fff",
 					borderRadius: "1px",
 					boxShadow: "0 0 0 1px rgba(0,0,0,.1)",

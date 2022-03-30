@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./habitFormA.css";
+import "../habitForm.css";
 import Modal from "react-modal";
 import FormHeader from "../formHeader/FormHeader";
 import Timekeeper from "react-timekeeper";
@@ -21,9 +21,7 @@ function HabitForm_A(props) {
 					<div className="input-group input-group-name">
 						<label>Name</label>
 						<input type="text" placeholder="e.g. Exercise" />
-						<div
-							className="input-group input-group-color"
-						>
+						<div className="input-group input-group-color">
 							<label>Colour</label>
 							<SketchExample />
 						</div>

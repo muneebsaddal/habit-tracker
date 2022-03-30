@@ -71,17 +71,35 @@ function App() {
 		reminderDialog: false,
 	});
 
-	const handleFreqDialogOpen = () => {
+	const handleFreqDialogOpenA = () => {
 		setDialogsFormA({ ...dialogsFormA, freqDialog: true });
 	};
-	const handleReminderDialogOpen = () => {
+	const handleReminderDialogOpenA = () => {
 		setDialogsFormA({...dialogsFormA, reminderDialog: true})
 	}
-	const handleFreqDialogClose = () => {
+	const handleFreqDialogCloseA = () => {
 		setDialogsFormA({ ...dialogsFormA, freqDialog: false });
 	};
-	const handleReminderDialogClose = () => {
+	const handleReminderDialogCloseA = () => {
 		setDialogsFormA({...dialogsFormA, reminderDialog: false})
+	}
+
+	const [dialogsFormB, setDialogsFormB] = useState({
+		freqDialog: false,
+		reminderDialog: false,
+	});
+
+	const handleFreqDialogOpenB = () => {
+		setDialogsFormB({ ...dialogsFormB, freqDialog: true });
+	};
+	const handleReminderDialogOpenB = () => {
+		setDialogsFormB({...dialogsFormB, reminderDialog: true})
+	}
+	const handleFreqDialogCloseB = () => {
+		setDialogsFormB({ ...dialogsFormB, freqDialog: false });
+	};
+	const handleReminderDialogCloseB = () => {
+		setDialogsFormB({...dialogsFormB, reminderDialog: false})
 	}
 
 	const [time, setTime] = useState('8:59pm')
@@ -89,7 +107,7 @@ function App() {
 	const handleTimeChange = (data) => {
 		setTime(data)
 	}
-	console.log(time)
+
 	return (
 		<>
 			<Header pageTitle={"Habit"} handleOpen={handleAddDialogueOpen} />
@@ -105,19 +123,27 @@ function App() {
 				<HabitFormA
 					openFormA={addFormOpen_A}
 					handleFormClose={handleAddFormClose_A}
-					handleOpenFreqDialog={handleFreqDialogOpen}
-					handleOpenReminderDialog={handleReminderDialogOpen}
+					handleOpenFreqDialog={handleFreqDialogOpenA}
+					handleOpenReminderDialog={handleReminderDialogOpenA}
 					openFreqDialog={dialogsFormA.freqDialog}
 					openReminderDialog={dialogsFormA.reminderDialog}
-					closeFreqDialog={handleFreqDialogClose}
-					closeReminderDialog={handleReminderDialogClose}
+					closeFreqDialog={handleFreqDialogCloseA}
+					closeReminderDialog={handleReminderDialogCloseA}
 					getTime={time}
 					changeTime={handleTimeChange}
 				/>
 			) : addFormOpen_B ? (
 				<HabitFormB
 					openFormB={addFormOpen_B}
-					handleFormClose={handleAddFormClose_A}
+					handleFormClose={handleAddFormClose_B}
+					handleOpenFreqDialog={handleFreqDialogOpenB}
+					handleOpenReminderDialog={handleReminderDialogOpenB}
+					openFreqDialog={dialogsFormB.freqDialog}
+					openReminderDialog={dialogsFormB.reminderDialog}
+					closeFreqDialog={handleFreqDialogCloseB}
+					closeReminderDialog={handleReminderDialogCloseB}
+					getTime={time}
+					changeTime={handleTimeChange}
 				/>
 			) : (
 				<></>
