@@ -3,6 +3,7 @@ import "./habitFormA.css";
 import Modal from "react-modal";
 import FormHeader from "../formHeader/FormHeader";
 import Timekeeper from "react-timekeeper";
+import SketchExample from "../../SketchPicker";
 
 function HabitForm_A(props) {
 	const [time, setTime] = useState("8:59pm");
@@ -17,10 +18,17 @@ function HabitForm_A(props) {
 			>
 				<FormHeader handleFormClose={props.handleFormClose} />
 				<form>
-					<div className="input-group">
+					<div className="input-group input-group-name">
 						<label>Name</label>
 						<input type="text" placeholder="e.g. Exercise" />
+						<div
+							className="input-group input-group-color"
+						>
+							<label>Colour</label>
+							<SketchExample />
+						</div>
 					</div>
+
 					<div className="input-group">
 						<label>Question</label>
 						<input
