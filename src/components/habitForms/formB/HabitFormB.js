@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../habitForm.css";
 import Modal from "react-modal";
 import FormHeader from "../formHeader/FormHeader";
@@ -7,8 +7,6 @@ import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
 
 function HabitForm_B(props) {
-	const [time, setTime] = useState("8:59pm");
-
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -26,13 +24,44 @@ function HabitForm_B(props) {
 		props.colorChange(color.hex);
 	};
 
+	const numberOptionSelect = Array.from(Array(31).keys());
+
+	const [freq, setFreq] = useState({
+		repeatValue: "",
+		repeatCat: "",
+	});
+
+	let numberTest = /\d/;
+
+	const handleFrequencyChange = (f) => {
+		numberTest.test(f.target.value)
+			? setFreq((prevState) => {
+					return {
+						...prevState,
+						repeatValue: f.target.value,
+					};
+			  })
+			: setFreq((prevState) => {
+					return {
+						...prevState,
+						repeatCat: f.target.value,
+					};
+			  });
+	};
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			props.freqChange(freq.repeatValue + " time/s a " + freq.repeatCat);
+		}, 1000);
+		return () => clearTimeout(timer);
+	});
+
 	const styles = reactCSS({
 		default: {
 			color: {
 				width: "36px",
 				height: "22px",
 				borderRadius: "2px",
-				background: `${colorState.color}`,
+				background: `${props.formData.color}`,
 			},
 			swatch: {
 				padding: "0px 8px",
@@ -73,7 +102,13 @@ function HabitForm_B(props) {
 				<form>
 					<div className="input-group input-group-name">
 						<label>Name</label>
-						<input type="text" placeholder="e.g. Run" />
+						<input
+							type="text"
+							placeholder="e.g. Run"
+							onChange={props.handleFormChange}
+							name="name"
+							value={props.formData.name}
+						/>
 						<div className="input-group input-group-color">
 							<label>Color</label>
 							<div>
@@ -104,28 +139,54 @@ function HabitForm_B(props) {
 						<input
 							type="text"
 							placeholder="e.g. How many miles did you run?"
+							onChange={props.handleFormChange}
+							name="question"
+							value={props.formData.question}
 						/>
 					</div>
-
 					<div className="input-group">
 						<label>Unit</label>
-						<input type="text" placeholder="e.g. miles" />
+						<input
+							type="text"
+							placeholder="e.g. miles"
+							onChange={props.handleFormChange}
+							name="unit"
+							value={props.formData.unit}
+						/>
 					</div>
 
 					<div className="form-input-column">
 						<div className="input-group">
 							<label>Target</label>
-							<input type="text" placeholder="e.g. 15" />
+							<input
+								type="text"
+								placeholder="e.g. 15"
+								onChange={props.handleFormChange}
+								name="target"
+								value={props.formData.target}
+							/>
 						</div>
 						<div className="input-group">
 							<label>Frequency</label>
-							<button
-								type="button"
-								onClick={props.handleOpenFreqDialog}
-							>
-								Every day
-							</button>
-							<Modal
+							<div className="input-group-frequency">
+								<select
+									value={freq.repeatValue}
+									onChange={handleFrequencyChange}
+								>
+									{numberOptionSelect.map((x, y) => (
+										<option key={y}>{x}</option>
+									))}
+								</select>{" "}
+								time/s a{" "}
+								<select
+									value={freq.repeatCat}
+									onChange={handleFrequencyChange}
+								>
+									<option>week</option>
+									<option>month</option>
+								</select>
+							</div>
+							{/* <Modal
 								isOpen={props.openFreqDialog}
 								onRequestClose={props.closeFreqDialog}
 								className="form-frequency-dialog"
@@ -211,7 +272,7 @@ function HabitForm_B(props) {
 										SAVE
 									</button>
 								</form>
-							</Modal>
+							</Modal> */}
 						</div>
 					</div>
 
@@ -221,7 +282,9 @@ function HabitForm_B(props) {
 							type="button"
 							onClick={props.handleOpenReminderDialog}
 						>
-							off
+							{props.formData.reminder === ""
+								? "off"
+								: props.formData.reminder}
 						</button>
 						<Modal
 							isOpen={props.openReminderDialog}
@@ -233,14 +296,27 @@ function HabitForm_B(props) {
 								className="form-reminder-dialog"
 								onRequestClose={props.closeReminderDialog}
 								time={props.getTime}
-								onChange={(data) => setTime(data.formatted12)}
-								onDoneClick={props.changeTime(time)}
+								onChange={(data) =>
+									props.timeSubmit(data.formatted12)
+								}
+								onDoneClick={props.changeTime(props.getTime)}
 							/>
 						</Modal>
 					</div>
 					<div className="input-group">
 						<label>Notes</label>
-						<input type="text" placeholder="(Optional)" />
+						<input
+							type="text"
+							placeholder="(Optional)"
+							onChange={props.handleFormChange}
+							name="notes"
+							value={props.formData.notes}
+						/>
+					</div>
+					<div>
+						<button type="submit" onClick={props.handleFormSubmit}>
+							SAVE
+						</button>
 					</div>
 				</form>
 			</Modal>

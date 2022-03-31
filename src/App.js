@@ -109,25 +109,27 @@ function App() {
 	};
 
 	const handleTimeSubmit = (data) => {
-		setDataFormA((prevData) => {
+		setDataForm((prevData) => {
 			return {
 				...prevData,
 				reminder: data,
 			};
 		});
 	};
-	const [dataFormA, setDataFormA] = useState({
+	const [dataForm, setDataForm] = useState({
 		name: "",
 		color: "",
 		question: "",
+		unit: "",
+		target: "",
 		frequency: "",
 		reminder: "",
 		notes: "",
 	});
 
-	const handleChangeFormA = (e) => {
+	const handleChangeForm = (e) => {
 		const { name, value, type, checked } = e.target;
-		setDataFormA((prevData) => {
+		setDataForm((prevData) => {
 			return {
 				...prevData,
 				[name]: type === "checkbox" ? checked : value,
@@ -135,13 +137,13 @@ function App() {
 		});
 	};
 
-	const handleSubmitFormA = (event) => {
+	const handleSubmitForm = (event) => {
 		event.preventDefault();
-		console.log(dataFormA);
+		console.log(dataForm);
 	};
 
 	const handleColorChanges = (color) => {
-		setDataFormA((prevData) => {
+		setDataForm((prevData) => {
 			return {
 				...prevData,
 				color: color,
@@ -150,7 +152,7 @@ function App() {
 	};
 
 	const handleFrequencyChange = (freq) => {
-		setDataFormA((prevData) => {
+		setDataForm((prevData) => {
 			return {
 				...prevData,
 				frequency: freq,
@@ -181,11 +183,11 @@ function App() {
 					closeReminderDialog={handleReminderDialogCloseA}
 					getTime={time}
 					changeTime={handleTimeChange}
-					timeSubmit={handleTimeSubmit}
-					formData={dataFormA}
-					handleFormChange={handleChangeFormA}
-					handleFormSubmit={handleSubmitFormA}
 					colorChange={handleColorChanges}
+					timeSubmit={handleTimeSubmit}
+					formData={dataForm}
+					handleFormChange={handleChangeForm}
+					handleFormSubmit={handleSubmitForm}
 					freqChange={handleFrequencyChange}
 				/>
 			) : addFormOpen_B ? (
@@ -201,6 +203,11 @@ function App() {
 					getTime={time}
 					changeTime={handleTimeChange}
 					colorChange={handleColorChanges}
+					timeSubmit={handleTimeSubmit}
+					formData={dataForm}
+					handleFormChange={handleChangeForm}
+					handleFormSubmit={handleSubmitForm}
+					freqChange={handleFrequencyChange}
 				/>
 			) : (
 				<></>
