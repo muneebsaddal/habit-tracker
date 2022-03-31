@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../habitForm.css";
 import Modal from "react-modal";
 import FormHeader from "../formHeader/FormHeader";
@@ -7,8 +7,6 @@ import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
 
 function HabitForm_A(props) {
-	const [time, setTime] = useState("8:59pm");
-
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -26,13 +24,44 @@ function HabitForm_A(props) {
 		props.colorChange(color.hex);
 	};
 
+	const numberOptionSelect = Array.from(Array(31).keys());
+
+	const [freq, setFreq] = useState({
+		repeatValue: "",
+		repeatCat: "",
+	});
+
+	let numberTest = /\d/;
+
+	const handleFrequencyChange = (f) => {
+		numberTest.test(f.target.value)
+			? setFreq((prevState) => {
+					return {
+						...prevState,
+						repeatValue: f.target.value,
+					};
+			  })
+			: setFreq((prevState) => {
+					return {
+						...prevState,
+						repeatCat: f.target.value,
+					};
+			  });
+	};
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			props.freqChange(freq.repeatValue + " time/s a " + freq.repeatCat);
+		}, 1000);
+		return () => clearTimeout(timer);
+	});
+
 	const styles = reactCSS({
 		default: {
 			color: {
 				width: "36px",
 				height: "22px",
 				borderRadius: "2px",
-				background: `${colorState.color}`,
+				background: `${props.formData.color}`,
 			},
 			swatch: {
 				padding: "0px 8px",
@@ -117,97 +146,39 @@ function HabitForm_A(props) {
 					</div>
 					<div className="input-group">
 						<label>Frequency</label>
-						<button
+						<div className="input-group-frequency">
+							<select
+								value={freq.repeatValue}
+								onChange={handleFrequencyChange}
+							>
+								{numberOptionSelect.map((x, y) => (
+									<option key={y}>{x}</option>
+								))}
+							</select>{" "}
+							time/s a{" "}
+							<select
+								value={freq.repeatCat}
+								onChange={handleFrequencyChange}
+							>
+								<option>week</option>
+								<option>month</option>
+							</select>
+						</div>
+
+						{/* <button
 							type="button"
 							onClick={props.handleOpenFreqDialog}
 						>
 							Every day
-						</button>
-						<Modal
+						</button> */}
+						{/* <Modal
 							isOpen={props.openFreqDialog}
 							onRequestClose={props.closeFreqDialog}
 							className="form-frequency-dialog"
 							ariaHideApp={false}
 						>
-							<form className="freq-dialog-container">
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="everyday"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="everyday">Every day</label>
-								</div>
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="every_days"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="every_days">
-										Every{" "}
-										<input
-											className="freq-dialog-number-input"
-											type="number"
-											min="0"
-											max="99"
-										/>{" "}
-										days
-									</label>
-								</div>
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="times_per_week"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="times_per_week">
-										<input
-											className="freq-dialog-number-input"
-											type="number"
-											min="0"
-											max="99"
-										/>{" "}
-										times per week
-									</label>
-								</div>
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="times_per_month"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="times_per_month">
-										<input
-											className="freq-dialog-number-input"
-											type="number"
-											min="0"
-											max="99"
-										/>{" "}
-										times per month
-									</label>
-								</div>
-
-								<button
-									className="freq-dialog-submit"
-									type="submit"
-								>
-									SAVE
-								</button>
-							</form>
-						</Modal>
+							<FreqencyDialog formData={props.formData} handleFormChange={props.handleFormChange}/>
+						</Modal> */}
 					</div>
 					<div className="input-group">
 						<label>Reminder</label>
@@ -215,7 +186,9 @@ function HabitForm_A(props) {
 							type="button"
 							onClick={props.handleOpenReminderDialog}
 						>
-							off
+							{props.formData.reminder === ""
+								? "off"
+								: props.formData.reminder}
 						</button>
 						<Modal
 							isOpen={props.openReminderDialog}
@@ -227,8 +200,10 @@ function HabitForm_A(props) {
 								className="form-reminder-dialog"
 								onRequestClose={props.closeReminderDialog}
 								time={props.getTime}
-								onChange={(data) => setTime(data.formatted12)}
-								onDoneClick={props.changeTime(time)}
+								onChange={(data) =>
+									props.timeSubmit(data.formatted12)
+								}
+								onDoneClick={props.changeTime(props.getTime)}
 							/>
 						</Modal>
 					</div>

@@ -102,12 +102,20 @@ function App() {
 		setDialogsFormB({ ...dialogsFormB, reminderDialog: false });
 	};
 
-	const [time, setTime] = useState("8:59pm");
+	const [time, setTime] = useState("0:00am");
 
 	const handleTimeChange = (data) => {
 		setTime(data);
 	};
 
+	const handleTimeSubmit = (data) => {
+		setDataFormA((prevData) => {
+			return {
+				...prevData,
+				reminder: data,
+			};
+		});
+	};
 	const [dataFormA, setDataFormA] = useState({
 		name: "",
 		color: "",
@@ -118,26 +126,34 @@ function App() {
 	});
 
 	const handleChangeFormA = (e) => {
-		const { name, value } = e.target;
+		const { name, value, type, checked } = e.target;
 		setDataFormA((prevData) => {
 			return {
 				...prevData,
-				[name]: value,
+				[name]: type === "checkbox" ? checked : value,
 			};
 		});
 	};
 
-	const handleSubmitFormA = (e) => {
-		e.preventDefault();
+	const handleSubmitFormA = (event) => {
+		event.preventDefault();
 		console.log(dataFormA);
 	};
-	console.log(dataFormA.color);
+
 	const handleColorChanges = (color) => {
 		setDataFormA((prevData) => {
-			console.log(color);
 			return {
 				...prevData,
 				color: color,
+			};
+		});
+	};
+
+	const handleFrequencyChange = (freq) => {
+		setDataFormA((prevData) => {
+			return {
+				...prevData,
+				frequency: freq,
 			};
 		});
 	};
@@ -165,10 +181,12 @@ function App() {
 					closeReminderDialog={handleReminderDialogCloseA}
 					getTime={time}
 					changeTime={handleTimeChange}
+					timeSubmit={handleTimeSubmit}
 					formData={dataFormA}
 					handleFormChange={handleChangeFormA}
 					handleFormSubmit={handleSubmitFormA}
 					colorChange={handleColorChanges}
+					freqChange={handleFrequencyChange}
 				/>
 			) : addFormOpen_B ? (
 				<HabitFormB
@@ -182,6 +200,7 @@ function App() {
 					closeReminderDialog={handleReminderDialogCloseB}
 					getTime={time}
 					changeTime={handleTimeChange}
+					colorChange={handleColorChanges}
 				/>
 			) : (
 				<></>

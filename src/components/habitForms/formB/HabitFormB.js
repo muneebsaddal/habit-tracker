@@ -3,10 +3,63 @@ import "../habitForm.css";
 import Modal from "react-modal";
 import FormHeader from "../formHeader/FormHeader";
 import Timekeeper from "react-timekeeper";
-import SketchExample from "../../SketchPicker";
+import { CirclePicker } from "react-color";
+import reactCSS from "reactcss";
 
 function HabitForm_B(props) {
 	const [time, setTime] = useState("8:59pm");
+
+	const [colorState, setColorState] = useState({
+		displayColorPicker: false,
+		color: "#267E92",
+	});
+
+	const handleColorClick = () => {
+		setColorState({ displayColorPicker: !colorState.displayColorPicker });
+	};
+
+	const handleColorClose = () => {
+		setColorState({ displayColorPicker: false });
+	};
+
+	const handleColorChange = (color) => {
+		props.colorChange(color.hex);
+	};
+
+	const styles = reactCSS({
+		default: {
+			color: {
+				width: "36px",
+				height: "22px",
+				borderRadius: "2px",
+				background: `${colorState.color}`,
+			},
+			swatch: {
+				padding: "0px 8px",
+				background: "#fff",
+				borderRadius: "1px",
+				boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
+				display: "inline-block",
+				cursor: "pointer",
+			},
+			popover: {
+				position: "absolute",
+				transform: "scaleX(-1)",
+				transformOrigin: "22px 0px",
+				background: "white",
+				padding: "10px",
+				borderRadius: "15px",
+				border: "1px solid rgb(160, 160, 160)",
+			},
+			cover: {
+				position: "fixed",
+				top: "0px",
+				right: "0px",
+				bottom: "0px",
+				left: "0px",
+			},
+		},
+	});
 
 	return (
 		<div className="form-modal-container">
@@ -22,8 +75,27 @@ function HabitForm_B(props) {
 						<label>Name</label>
 						<input type="text" placeholder="e.g. Run" />
 						<div className="input-group input-group-color">
-							<label>Colour</label>
-							<SketchExample />
+							<label>Color</label>
+							<div>
+								<div
+									style={styles.swatch}
+									onClick={handleColorClick}
+								>
+									<div style={styles.color} />
+								</div>
+								{colorState.displayColorPicker ? (
+									<div style={styles.popover}>
+										<div
+											style={styles.cover}
+											onClick={handleColorClose}
+										/>
+										<CirclePicker
+											color={colorState.color}
+											onChange={handleColorChange}
+										/>
+									</div>
+								) : null}
+							</div>
 						</div>
 					</div>
 
@@ -37,117 +109,111 @@ function HabitForm_B(props) {
 
 					<div className="input-group">
 						<label>Unit</label>
-						<input
-							type="text"
-							placeholder="e.g. miles"
-						/>
+						<input type="text" placeholder="e.g. miles" />
 					</div>
 
 					<div className="form-input-column">
-					<div className="input-group">
-						<label>Target</label>
-						<input
-							type="text"
-							placeholder="e.g. 15"
-						/>
-					</div>
-					<div className="input-group">
-						<label>Frequency</label>
-						<button
-							type="button"
-							onClick={props.handleOpenFreqDialog}
-						>
-							Every day
-						</button>
-						<Modal
-							isOpen={props.openFreqDialog}
-							onRequestClose={props.closeFreqDialog}
-							className="form-frequency-dialog"
-							ariaHideApp={false}
-						>
-							<form className="freq-dialog-container">
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="everyday"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="everyday">Every day</label>
-								</div>
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="every_days"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="every_days">
-										Every{" "}
+						<div className="input-group">
+							<label>Target</label>
+							<input type="text" placeholder="e.g. 15" />
+						</div>
+						<div className="input-group">
+							<label>Frequency</label>
+							<button
+								type="button"
+								onClick={props.handleOpenFreqDialog}
+							>
+								Every day
+							</button>
+							<Modal
+								isOpen={props.openFreqDialog}
+								onRequestClose={props.closeFreqDialog}
+								className="form-frequency-dialog"
+								ariaHideApp={false}
+							>
+								<form className="freq-dialog-container">
+									<div className="dialog-input-container">
 										<input
-											className="freq-dialog-number-input"
-											type="number"
-											min="0"
-											max="99"
-										/>{" "}
-										days
-									</label>
-								</div>
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="times_per_week"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="times_per_week">
+											type="radio"
+											id="everyday"
+											name="radio"
+											value=""
+											className="freq-dialog-radio-input"
+										/>
+										<span className="radio-button"></span>
+										<label htmlFor="everyday">
+											Every day
+										</label>
+									</div>
+									<div className="dialog-input-container">
 										<input
-											className="freq-dialog-number-input"
-											type="number"
-											min="0"
-											max="99"
-										/>{" "}
-										times per week
-									</label>
-								</div>
-								<div className="dialog-input-container">
-									<input
-										type="radio"
-										id="times_per_month"
-										name="radio"
-										value=""
-										className="freq-dialog-radio-input"
-									/>
-									<span className="radio-button"></span>
-									<label htmlFor="times_per_month">
+											type="radio"
+											id="every_days"
+											name="radio"
+											value=""
+											className="freq-dialog-radio-input"
+										/>
+										<span className="radio-button"></span>
+										<label htmlFor="every_days">
+											Every{" "}
+											<input
+												className="freq-dialog-number-input"
+												type="number"
+												min="0"
+												max="99"
+											/>{" "}
+											days
+										</label>
+									</div>
+									<div className="dialog-input-container">
 										<input
-											className="freq-dialog-number-input"
-											type="number"
-											min="0"
-											max="99"
-										/>{" "}
-										times per month
-									</label>
-								</div>
+											type="radio"
+											id="times_per_week"
+											name="radio"
+											value=""
+											className="freq-dialog-radio-input"
+										/>
+										<span className="radio-button"></span>
+										<label htmlFor="times_per_week">
+											<input
+												className="freq-dialog-number-input"
+												type="number"
+												min="0"
+												max="99"
+											/>{" "}
+											times per week
+										</label>
+									</div>
+									<div className="dialog-input-container">
+										<input
+											type="radio"
+											id="times_per_month"
+											name="radio"
+											value=""
+											className="freq-dialog-radio-input"
+										/>
+										<span className="radio-button"></span>
+										<label htmlFor="times_per_month">
+											<input
+												className="freq-dialog-number-input"
+												type="number"
+												min="0"
+												max="99"
+											/>{" "}
+											times per month
+										</label>
+									</div>
 
-								<button
-									className="freq-dialog-submit"
-									type="submit"
-								>
-									SAVE
-								</button>
-							</form>
-						</Modal>
+									<button
+										className="freq-dialog-submit"
+										type="submit"
+									>
+										SAVE
+									</button>
+								</form>
+							</Modal>
+						</div>
 					</div>
-					</div>
-					
-
 
 					<div className="input-group">
 						<label>Reminder</label>
