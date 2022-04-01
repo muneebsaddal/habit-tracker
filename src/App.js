@@ -6,6 +6,8 @@ import AddHabitDialogue from "./components/AddHabitDialogue/AddHabitDialogue";
 import HabitFormA from "./components/habitForms/formA/HabitFormA";
 import HabitFormB from "./components/habitForms/formB/HabitFormB";
 
+let habitCounter = 0;
+
 function App() {
 	const [addDialogueOpen, setAddDialogueOpen] = useState(false);
 	const handleAddDialogueOpen = () => {
@@ -84,6 +86,10 @@ function App() {
 			};
 		});
 	};
+
+	const current = new Date();
+	const currentDate = current.getDate();
+
 	const [dataForm, setDataForm] = useState({
 		name: "",
 		color: "",
@@ -93,6 +99,7 @@ function App() {
 		frequency: "",
 		reminder: "",
 		notes: "",
+		date: currentDate,
 	});
 
 	const handleChangeForm = (e) => {
@@ -123,22 +130,25 @@ function App() {
 		});
 	};
 
-	const current = new Date();
-
 	useEffect(() => {
-		localStorage.setItem(`habitFormData`, JSON.stringify(dataForm));
+		localStorage.setItem(
+			`habitFormData_${habitCounter}`,
+			JSON.stringify(dataForm)
+		);
 	}, [dataForm]);
 
-	const savedDataElement = localStorage.getItem(`habitFormData`);
-
+	const savedDataElement = localStorage.getItem(
+		`habitFormData_${habitCounter}`
+	);
 
 	const [habit, setHabit] = useState([]);
 
 	const handleSubmitForm = (event) => {
 		event.preventDefault();
-		handleAddFormClose_B();
 		handleAddFormClose_A();
+		handleAddFormClose_B();
 
+		habitCounter++
 		setHabit((prevState) => [...prevState, savedDataElement]);
 	};
 

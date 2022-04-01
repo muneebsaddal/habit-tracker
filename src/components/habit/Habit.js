@@ -3,6 +3,17 @@ import EdiText from "react-editext";
 
 function Habit(props) {
 	const habitName = props.habit.slice(9,props.habit.indexOf("color") - 3)
+	let dateCheck = ""
+	const isNumber = /\d/
+
+	const indexOfDate = props.habit.indexOf("date")
+	if(isNumber.test(indexOfDate + 6)){
+		if(isNumber.test(indexOfDate + 7)){
+			dateCheck = props.habit.slice((indexOfDate + 6), indexOfDate + 7)
+		} else {
+			dateCheck = props.habit.slice(indexOfDate)
+		}
+	}
 
 	return (
 		<div className="habit">
@@ -23,35 +34,35 @@ function Habit(props) {
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={props.habit[1]}
+						defaultChecked={dateCheck}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={props.habit[2]}
+						// defaultChecked={}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={props.habit[3]}
+						// defaultChecked={}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={props.habit[4]}
+						// defaultChecked={}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={props.habit[5]}
+						// defaultChecked={}
 					/>
 				</div>
 			</div>
