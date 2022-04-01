@@ -2,20 +2,19 @@ import "./habit.css";
 import EdiText from "react-editext";
 
 function Habit(props) {
-	console.log(props.habit[0]);
+	const habitName = props.habit.slice(9,props.habit.indexOf("color") - 3)
+
 	return (
 		<div className="habit">
 			<div className="habit-columns">
 				<div className="habit-progress">
-					{/* <img src={bullet} alt="bullet" className="bullet-logo"/> */}
 				</div>
 				<div className="habit-name">
 					<EdiText
 						type="text"
 						showButtonsOnHover
 						buttonsAlign="before"
-						value={props.habit[0]}
-						// onSave={props.handleNameChange}
+						value={habitName}
 						submitOnEnter="true"
 						submitOnUnfocus="true"
 					/>

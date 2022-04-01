@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/header/Header";
 import DayColumns from "./components/DayColumns";
 import Habit from "./components/habit/Habit";
@@ -7,38 +7,6 @@ import HabitFormA from "./components/habitForms/formA/HabitFormA";
 import HabitFormB from "./components/habitForms/formB/HabitFormB";
 
 function App() {
-	const current = new Date();
-
-	const [habit, setHabit] = useState([
-		["", false, false, false, false, false],
-	]);
-	const [addHabit, setAddHabit] = useState(false);
-	const handleSubmit = (event) => {
-		event.preventDefault();
-
-		const data = new FormData(event.currentTarget);
-
-		let habitElement = [
-			data.get("habitName"),
-			data.get("habitCheckDay1") === null ? false : true,
-			data.get("habitCheckDay2") === null ? false : true,
-			data.get("habitCheckDay3") === null ? false : true,
-			data.get("habitCheckDay4") === null ? false : true,
-			data.get("habitCheckDay5") === null ? false : true,
-		];
-
-		setHabit((prevstate) => [...prevstate, habitElement]);
-
-		setAddHabit(false);
-	};
-	let i = 0;
-	const habits = habit.map((h) => {
-		if (i !== 0) {
-			return <Habit key={h} habit={h} />;
-		}
-		i++;
-	});
-
 	const [addDialogueOpen, setAddDialogueOpen] = useState(false);
 	const handleAddDialogueOpen = () => {
 		setAddDialogueOpen(true);
@@ -137,11 +105,6 @@ function App() {
 		});
 	};
 
-	const handleSubmitForm = (event) => {
-		event.preventDefault();
-		console.log(dataForm);
-	};
-
 	const handleColorChanges = (color) => {
 		setDataForm((prevData) => {
 			return {
@@ -159,6 +122,29 @@ function App() {
 			};
 		});
 	};
+
+	const current = new Date();
+
+	useEffect(() => {
+		localStorage.setItem(`habitFormData`, JSON.stringify(dataForm));
+	}, [dataForm]);
+
+	const savedDataElement = localStorage.getItem(`habitFormData`);
+
+
+	const [habit, setHabit] = useState([]);
+
+	const handleSubmitForm = (event) => {
+		event.preventDefault();
+		handleAddFormClose_B();
+		handleAddFormClose_A();
+
+		setHabit((prevState) => [...prevState, savedDataElement]);
+	};
+
+	const habits = habit.map((h) => {
+		return <Habit key={h} habit={h} />;
+	});
 
 	return (
 		<>
