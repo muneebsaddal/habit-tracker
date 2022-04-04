@@ -1,4 +1,5 @@
-function DayColumns({ currentDate }) {
+function DayColumns() {
+	
 	const styles = {
 		display: "grid",
 		margin: "15px 10px 15px 10px",
@@ -13,77 +14,49 @@ function DayColumns({ currentDate }) {
 	};
 
 	const days = {
-		1: "Sun",
-		2: "Mon",
-		3: "Tue",
-		4: "Wed",
-		5: "Thu",
-		6: "Fri",
-		7: "Sat",
+		0: "Sun",
+		1: "Mon",
+		2: "Tue",
+		3: "Wed",
+		4: "Thu",
+		5: "Fri",
+		6: "Sat",
+	};
+
+	const getPrevDate = (prevDays) => {
+		return ((d) => new Date(d.setDate(d.getDate() - prevDays)))(new Date());
 	};
 
 	return (
 		<div className="day-columns" style={styles}>
 			<div style={{ gridColumnStart: "5" }}>
-				{days[currentDate.getDay()]}
+				{days[getPrevDate(0).getDay()]}
 				<br />
-				{currentDate.getDate()}
+				{getPrevDate(0).getDate()}
 			</div>
 
 			<div>
-				{
-					days[
-						currentDate.getDay() - 1 <= 0
-							? currentDate.getDay() - 1 + 7
-							: currentDate.getDay() - 1
-					]
-				}
+				{days[getPrevDate(1).getDay()]}
 				<br />
-				{currentDate.getDate() - 1 <= 0
-					? currentDate.getDate() - 1 + 30
-					: currentDate.getDate() - 1}
+				{getPrevDate(1).getDate()}
 			</div>
 
 			<div>
-				{
-					days[
-						currentDate.getDay() - 2 <= 0
-							? currentDate.getDay() - 2 + 7
-							: currentDate.getDay() - 2
-					]
-				}
+				{days[getPrevDate(2).getDay()]}
 				<br />
-				{currentDate.getDate() - 2 <= 0
-					? currentDate.getDate() - 2 + 30
-					: currentDate.getDate() - 2}
+				{getPrevDate(2).getDate()}
 			</div>
 
 			<div>
-				{
-					days[
-						currentDate.getDay() - 3 <= 0
-							? currentDate.getDay() - 3 + 7
-							: currentDate.getDay() - 3
-					]
-				}
+				{days[getPrevDate(3).getDay()]}
 				<br />
-				{currentDate.getDate() - 3 <= 0
-					? currentDate.getDate() - 3 + 30
-					: currentDate.getDate() - 3}
+				{getPrevDate(3).getDate()}
 			</div>
 
 			<div>
-				{
-					days[
-						currentDate.getDay() - 4 <= 0
-							? currentDate.getDay() - 4 + 7
-							: currentDate.getDay() - 4
-					]
-				}
+				{days[getPrevDate(4).getDay()]}
 				<br />
-				{currentDate.getDate() - 4 <= 0
-					? currentDate.getDate() - 4 + 30
-					: currentDate.getDate() - 4}
+				{getPrevDate(4).getDate()}
 			</div>
 		</div>
 	);
