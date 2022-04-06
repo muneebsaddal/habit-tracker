@@ -6,7 +6,27 @@ import AddHabitDialogue from "./components/AddHabitDialogue/AddHabitDialogue";
 import HabitFormA from "./components/habitForms/formA/HabitFormA";
 import HabitFormB from "./components/habitForms/formB/HabitFormB";
 
-let habitCounter = 0;
+function getHabitFormData() {
+	const storedData = localStorage.getItem("habitFormData");
+	if (!storedData)
+		return {
+			name: "",
+			color: "",
+			question: "",
+			unit: "",
+			target: "",
+			frequency: "",
+			reminder: "",
+			notes: "",
+		};
+	return JSON.parse(storedData);
+}
+
+function getHabitArray() {
+	const storedData = localStorage.getItem("habitArrayData");
+	if (!storedData) return [];
+	return JSON.parse(storedData);
+}
 
 function App() {
 	const [addDialogueOpen, setAddDialogueOpen] = useState(false);
@@ -88,19 +108,8 @@ function App() {
 	};
 
 	const current = new Date();
-	const currentDate = current.getDate();
 
-	const [dataForm, setDataForm] = useState({
-		name: "",
-		color: "",
-		question: "",
-		unit: "",
-		target: "",
-		frequency: "",
-		reminder: "",
-		notes: "",
-		date: currentDate,
-	});
+	const [dataForm, setDataForm] = useState(getHabitFormData);
 
 	const handleChangeForm = (e) => {
 		const { name, value, type, checked } = e.target;
@@ -131,29 +140,28 @@ function App() {
 	};
 
 	useEffect(() => {
-		localStorage.setItem(
-			`habitFormData_${habitCounter}`,
-			JSON.stringify(dataForm)
-		);
+		localStorage.setItem("habitFormData", JSON.stringify(dataForm));
 	}, [dataForm]);
 
-	const savedDataElement = localStorage.getItem(
-		`habitFormData_${habitCounter}`
-	);
-
-	const [habit, setHabit] = useState([]);
+	const [habitArray, setHabitArray] = useState(getHabitArray);
 
 	const handleSubmitForm = (event) => {
 		event.preventDefault();
 		handleAddFormClose_A();
 		handleAddFormClose_B();
 
-		habitCounter++
-		setHabit((prevState) => [...prevState, savedDataElement]);
+		setHabitArray((prevState) => [
+			...prevState,
+			JSON.parse(localStorage.getItem("habitFormData")),
+		]);
 	};
 
-	const habits = habit.map((h) => {
-		return <Habit key={h} habit={h} />;
+	useEffect(() => {
+		localStorage.setItem("habitArrayData", JSON.stringify(habitArray));
+	}, [habitArray]);
+
+	const habits = habitArray.map((h) => {
+		return <Habit key={JSON.stringify(h)} habit={h} />;
 	});
 
 	return (
