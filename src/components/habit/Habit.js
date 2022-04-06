@@ -2,30 +2,16 @@ import "./habit.css";
 import EdiText from "react-editext";
 
 function Habit(props) {
-	const habitName = props.habit.slice(9,props.habit.indexOf("color") - 3)
-	let dateCheck = ""
-	const isNumber = /\d/
-
-	const indexOfDate = props.habit.indexOf("date")
-	if(isNumber.test(indexOfDate + 6)){
-		if(isNumber.test(indexOfDate + 7)){
-			dateCheck = props.habit.slice((indexOfDate + 6), indexOfDate + 7)
-		} else {
-			dateCheck = props.habit.slice(indexOfDate)
-		}
-	}
-
 	return (
 		<div className="habit">
 			<div className="habit-columns">
-				<div className="habit-progress">
-				</div>
+				<div className="habit-progress"></div>
 				<div className="habit-name">
 					<EdiText
 						type="text"
 						showButtonsOnHover
 						buttonsAlign="before"
-						value={habitName}
+						value={props.habit.name}
 						submitOnEnter="true"
 						submitOnUnfocus="true"
 					/>
@@ -34,35 +20,40 @@ function Habit(props) {
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={dateCheck}
+						defaultChecked={props.habit.dateChecked.checked}
+						onClick={props.habitCheckedChange}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						// defaultChecked={}
+						defaultChecked={props.habit.dateChecked.checked}
+						onClick={props.habitCheckedChange}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						// defaultChecked={}
+						defaultChecked={props.habit.dateChecked.checked}
+						onClick={props.habitCheckedChange}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						// defaultChecked={}
+						defaultChecked={props.habit.dateChecked.checked}
+						onClick={props.habitCheckedChange}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						// defaultChecked={}
+						defaultChecked={props.habit.dateChecked.checked}
+						onClick={props.habitCheckedChange}
 					/>
 				</div>
 			</div>

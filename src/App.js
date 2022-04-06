@@ -18,6 +18,10 @@ function getHabitFormData() {
 			frequency: "",
 			reminder: "",
 			notes: "",
+			dateChecked: {
+				date: "",
+				checked: false,
+			},
 		};
 	return JSON.parse(storedData);
 }
@@ -160,8 +164,27 @@ function App() {
 		localStorage.setItem("habitArrayData", JSON.stringify(habitArray));
 	}, [habitArray]);
 
+	const handleHabitCheckedChange = (e) => {
+		let tempState = [...habitArray]
+		let tempElement = {	...tempState[0] }
+		tempElement.dateChecked = {
+			date: current,
+			checked: e.target.checked
+		}
+		tempState[0] = tempElement
+		setHabitArray(tempState)
+	};
+
+	console.log(habitArray);
+
 	const habits = habitArray.map((h) => {
-		return <Habit key={JSON.stringify(h)} habit={h} />;
+		return (
+			<Habit
+				key={JSON.stringify(h)}
+				habit={h}
+				habitCheckedChange={handleHabitCheckedChange}
+			/>
+		);
 	});
 
 	return (
