@@ -5,6 +5,7 @@ import Habit from "./components/habit/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue/AddHabitDialogue";
 import HabitFormA from "./components/habitForms/formA/HabitFormA";
 import HabitFormB from "./components/habitForms/formB/HabitFormB";
+import uuid from 'react-uuid'
 
 function getHabitFormData() {
 	const storedData = localStorage.getItem("habitFormData");
@@ -18,10 +19,12 @@ function getHabitFormData() {
 			frequency: "",
 			reminder: "",
 			notes: "",
-			dateChecked: {
-				date: "",
-				checked: false,
-			},
+			dateChecked: [
+				{
+					date: "",
+					checked: false,
+				},
+			],
 		};
 	return JSON.parse(storedData);
 }
@@ -165,14 +168,16 @@ function App() {
 	}, [habitArray]);
 
 	const handleHabitCheckedChange = (e) => {
-		let tempState = [...habitArray]
-		let tempElement = {	...tempState[0] }
+		let tempState = [...habitArray];
+		let tempElement = { ...tempState[0] };
+		
 		tempElement.dateChecked = {
 			date: current,
-			checked: e.target.checked
-		}
-		tempState[0] = tempElement
-		setHabitArray(tempState)
+			checked: e.target.checked,
+		};
+		tempState[0] = tempElement;
+		console.log()
+		setHabitArray(tempState);
 	};
 
 	console.log(habitArray);
@@ -181,7 +186,9 @@ function App() {
 		return (
 			<Habit
 				key={JSON.stringify(h)}
+				// _id={uuid()}
 				habit={h}
+				date={current}
 				habitCheckedChange={handleHabitCheckedChange}
 			/>
 		);
