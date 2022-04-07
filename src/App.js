@@ -176,7 +176,6 @@ function App() {
 			checked: e.target.checked,
 		};
 		tempState[0] = tempElement;
-		console.log()
 		setHabitArray(tempState);
 	};
 

@@ -18,8 +18,11 @@ function Habit(props) {
 	const habitCheckedClick = (e) => {
 		if(e.target.checked === true) {
 			setCheckedList([...checkedList, {date: props.date, checked: true}])
-		} else {
+		} else if (e.target.checked === false) {
 			// remove from localStorage
+			let tempState = [...checkedList]
+			tempState.splice(0, 1)
+			setCheckedList(tempState)
 		}
 	};
 
