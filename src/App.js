@@ -5,14 +5,14 @@ import Habit from "./components/habit/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue/AddHabitDialogue";
 import HabitFormA from "./components/habitForms/formA/HabitFormA";
 import HabitFormB from "./components/habitForms/formB/HabitFormB";
-import uuid from 'react-uuid'
+import uuid from "react-uuid";
 
 function getHabitFormData() {
 	const storedData = localStorage.getItem("habitFormData");
 	if (!storedData)
 		return {
 			name: "",
-			color: "",
+			color: "#03a9f4",
 			question: "",
 			unit: "",
 			target: "",

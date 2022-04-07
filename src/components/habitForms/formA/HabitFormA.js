@@ -5,6 +5,7 @@ import FormHeader from "../formHeader/FormHeader";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
+import FreqencyDialog from "../FrequencyDialog";
 
 function HabitForm_A(props) {
 	const [colorState, setColorState] = useState({
@@ -67,7 +68,7 @@ function HabitForm_A(props) {
 				padding: "0px 8px",
 				background: "#fff",
 				borderRadius: "1px",
-				boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
+				boxShadow: "none",
 				display: "inline-block",
 				cursor: "pointer",
 			},
@@ -91,62 +92,61 @@ function HabitForm_A(props) {
 	});
 
 	return (
-		<div className="form-modal-container">
-			<Modal
-				isOpen={props.openFormA}
-				onRequestClose={props.handleFormClose}
-				className="form-modal"
-				ariaHideApp={false}
-			>
-				<FormHeader handleFormClose={props.handleFormClose} />
-				<form>
-					<div className="input-group input-group-name">
-						<label>Name</label>
-						<input
-							type="text"
-							placeholder="e.g. Exercise"
-							onChange={props.handleFormChange}
-							name="name"
-							value={props.formData.name}
-						/>
-						<div className="input-group input-group-color">
-							<label>Color</label>
-							<div>
-								<div
-									style={styles.swatch}
-									onClick={handleColorClick}
-								>
-									<div style={styles.color} />
-								</div>
-								{colorState.displayColorPicker ? (
-									<div style={styles.popover}>
-										<div
-											style={styles.cover}
-											onClick={handleColorClose}
-										/>
-										<CirclePicker
-											color={colorState.color}
-											onChange={handleColorChange}
-										/>
-									</div>
-								) : null}
+		<Modal
+			isOpen={props.openFormA}
+			onRequestClose={props.handleFormClose}
+			className="form-modal"
+			ariaHideApp={false}
+		>
+			<FormHeader handleFormClose={props.handleFormClose} />
+			<form>
+				<div className="input-group input-group-name">
+					<label>Name</label>
+					<input
+						type="text"
+						placeholder="e.g. Exercise"
+						onChange={props.handleFormChange}
+						name="name"
+						value={props.formData.name}
+					/>
+					<div className="input-group input-group-color">
+						<label>Color</label>
+						<div>
+							<div
+								style={styles.swatch}
+								onClick={handleColorClick}
+							>
+								<div style={styles.color} />
 							</div>
+							{colorState.displayColorPicker ? (
+								<div style={styles.popover}>
+									<div
+										style={styles.cover}
+										onClick={handleColorClose}
+									/>
+									<CirclePicker
+										color={colorState.color}
+										onChange={handleColorChange}
+									/>
+								</div>
+							) : null}
 						</div>
 					</div>
+				</div>
 
-					<div className="input-group">
-						<label>Question</label>
-						<input
-							type="text"
-							placeholder="e.g. Did you exercise today?"
-							onChange={props.handleFormChange}
-							name="question"
-							value={props.formData.question}
-						/>
-					</div>
-					<div className="input-group">
-						<label>Frequency</label>
-						<div className="input-group-frequency">
+				<div className="input-group">
+					<label>Question</label>
+					<input
+						type="text"
+						placeholder="e.g. Did you exercise today?"
+						onChange={props.handleFormChange}
+						name="question"
+						value={props.formData.question}
+					/>
+				</div>
+				<div className="input-group">
+					<label>Frequency</label>
+					{/* <div className="input-group-frequency">
 							<select
 								value={freq.repeatValue}
 								onChange={handleFrequencyChange}
@@ -163,68 +163,117 @@ function HabitForm_A(props) {
 								<option>week</option>
 								<option>month</option>
 							</select>
-						</div>
+						</div> */}
 
-						{/* <button
-							type="button"
-							onClick={props.handleOpenFreqDialog}
-						>
-							Every day
-						</button> */}
-						{/* <Modal
-							isOpen={props.openFreqDialog}
-							onRequestClose={props.closeFreqDialog}
-							className="form-frequency-dialog"
-							ariaHideApp={false}
-						>
-							<FreqencyDialog formData={props.formData} handleFormChange={props.handleFormChange}/>
-						</Modal> */}
-					</div>
-					<div className="input-group">
-						<label>Reminder</label>
-						<button
-							type="button"
-							onClick={props.handleOpenReminderDialog}
-						>
-							{props.formData.reminder === ""
-								? "off"
-								: props.formData.reminder}
-						</button>
-						<Modal
-							isOpen={props.openReminderDialog}
-							onRequestClose={props.closeReminderDialog}
-							className="form-reminder-dialog"
-							ariaHideApp={false}
-						>
-							<Timekeeper
-								className="form-reminder-dialog"
-								onRequestClose={props.closeReminderDialog}
-								time={props.getTime}
-								onChange={(data) =>
-									props.timeSubmit(data.formatted12)
-								}
-								onDoneClick={props.changeTime(props.getTime)}
-							/>
-						</Modal>
-					</div>
-					<div className="input-group">
-						<label>Notes</label>
+					<button type="button" onClick={props.handleOpenFreqDialog}>
+						Every day
+					</button>
+					<Modal
+						isOpen={props.openFreqDialog}
+						onRequestClose={props.closeFreqDialog}
+						className="form-frequency-dialog"
+						ariaHideApp={false}
+					>
+						{/* <FreqencyDialog
+								formData={props.formData}
+								handleFormChange={props.handleFormChange}
+							/> */}
 						<input
-							type="text"
-							placeholder="(Optional)"
-							onChange={props.handleFormChange}
-							name="notes"
-							value={props.formData.notes}
+							type="radio"
+							id="everyday"
+							name="frequency"
+							defaultValue="Everyday"
+							value="Everyday"
 						/>
-					</div>
-					<div>
-						<button type="submit" onClick={props.handleFormSubmit}>
-							SAVE
-						</button>
-					</div>
-				</form>
-			</Modal>
-		</div>
+						<label htmlFor="everyday">Everyday</label>
+						<input
+							type="radio"
+							id="everyday_no_days"
+							name="frequency"
+							defaultValue="Everyday 3 days"
+							value={
+								"Every" +
+								document.getElementById("abc") +
+								"days"
+							}
+						/>
+						<label htmlFor="everyday_no_days">
+							Every <input id="abc" defaultValue="3" /> days
+						</label>
+						<input
+							type="radio"
+							id="times_a_week"
+							name="frequency"
+							defaultValue="3 times a week"
+						/>
+						<label htmlFor="times_a_week">
+							<input defaultValue="3" /> times a week
+						</label>
+						<input
+							type="radio"
+							id="times_a_month"
+							name="frequency"
+							defaultValue="10 times a month"
+						/>
+						<label htmlFor="times_a_month">
+							<input defaultValue="10" /> times a month
+						</label>
+					</Modal>
+				</div>
+				<div className="input-group">
+					<label>Reminder</label>
+					<button
+						type="button"
+						onClick={props.handleOpenReminderDialog}
+					>
+						{props.formData.reminder === ""
+							? "off"
+							: props.formData.reminder}
+					</button>
+					<Modal
+						isOpen={props.openReminderDialog}
+						onRequestClose={props.closeReminderDialog}
+						className="form-reminder-dialog"
+						ariaHideApp={false}
+					>
+						<Timekeeper
+							className="form-reminder-dialog"
+							onRequestClose={props.closeReminderDialog}
+							time={props.getTime}
+							onChange={(data) =>
+								props.timeSubmit(data.formatted12)
+							}
+							onDoneClick={props.changeTime(props.getTime)}
+						/>
+					</Modal>
+				</div>
+				<div className="input-group">
+					<label>Notes</label>
+					<input
+						type="text"
+						placeholder="(Optional)"
+						onChange={props.handleFormChange}
+						name="notes"
+						value={props.formData.notes}
+					/>
+				</div>
+				<div className="form-button-group">
+					<button
+						className="form-buttons form-button-cancel"
+						onClick={props.handleFormClose}
+					>
+						CANCEL
+					</button>
+					<button
+						type="submit"
+						onClick={props.handleFormSubmit}
+						className="form-buttons form-button-submit"
+					>
+						SAVE
+					</button>
+				</div>
+			</form>
+		</Modal>
 	);
 }
 
