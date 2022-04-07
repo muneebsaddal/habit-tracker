@@ -2,6 +2,10 @@ import "./habit.css";
 import EdiText from "react-editext";
 import { useEffect, useState } from "react";
 
+const getPrevDate = (prevDays) => {
+	return ((d) => new Date(d.setDate(d.getDate() - prevDays)))(new Date());
+};
+
 const getCheckedList = (_id) => {
 	const listData = localStorage.getItem(`checkedList_${_id}`);
 	if (!listData) {
@@ -16,15 +20,21 @@ function Habit(props) {
 	);
 
 	const habitCheckedClick = (e) => {
-		console.log(e.target.id)
+		console.log(e.target.id);
 		if (e.target.checked === true) {
 			setCheckedList([
 				...checkedList,
-				{ id: e.target.id, date: props.date, checked: true },
+				{
+					id: e.target.id,
+					date: getPrevDate(e.target.id),
+					checked: true,
+				},
 			]);
 		} else if (e.target.checked === false) {
 			let tempState = [...checkedList];
-			let filteredCheckList = 	tempState.filter(arrayEle => arrayEle.id !== e.target.id)
+			let filteredCheckList = tempState.filter(
+				(arrayEle) => arrayEle.id !== e.target.id
+			);
 			setCheckedList(filteredCheckList);
 		}
 	};
