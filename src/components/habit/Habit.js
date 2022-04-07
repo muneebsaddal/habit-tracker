@@ -50,16 +50,7 @@ function Habit(props) {
 		<div className="habit">
 			<div className="habit-columns">
 				<div className="habit-progress"></div>
-				<div className="habit-name">
-					<EdiText
-						type="text"
-						showButtonsOnHover
-						buttonsAlign="before"
-						value={props.habit.name}
-						submitOnEnter="true"
-						submitOnUnfocus="true"
-					/>
-				</div>
+				<div className="habit-name">{props.habit.name}</div>
 				<div>
 					<input
 						type="checkbox"
