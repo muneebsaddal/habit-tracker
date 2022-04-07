@@ -11,23 +11,29 @@ const getCheckedList = (_id) => {
 };
 
 function Habit(props) {
-	// console.log(props._id);
-
-	const [checkedList, setCheckedList] = useState(getCheckedList(props.habit.name));
+	const [checkedList, setCheckedList] = useState(
+		getCheckedList(props.habit.name)
+	);
 
 	const habitCheckedClick = (e) => {
-		if(e.target.checked === true) {
-			setCheckedList([...checkedList, {date: props.date, checked: true}])
+		console.log(e.target.id)
+		if (e.target.checked === true) {
+			setCheckedList([
+				...checkedList,
+				{ id: e.target.id, date: props.date, checked: true },
+			]);
 		} else if (e.target.checked === false) {
-			// remove from localStorage
-			let tempState = [...checkedList]
-			tempState.splice(0, 1)
-			setCheckedList(tempState)
+			let tempState = [...checkedList];
+			let filteredCheckList = 	tempState.filter(arrayEle => arrayEle.id !== e.target.id)
+			setCheckedList(filteredCheckList);
 		}
 	};
 
 	useEffect(() => {
-		localStorage.setItem(`checkedList_${props.habit.name}`, JSON.stringify(checkedList));
+		localStorage.setItem(
+			`checkedList_${props.habit.name}`,
+			JSON.stringify(checkedList)
+		);
 	}, [checkedList]);
 
 	return (
@@ -48,7 +54,8 @@ function Habit(props) {
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={props.habit.dateChecked.checked}
+						id="0"
+						defaultChecked={false}
 						onClick={habitCheckedClick}
 					/>
 				</div>
@@ -56,7 +63,8 @@ function Habit(props) {
 					<input
 						type="checkbox"
 						name="checkbox"
-						defaultChecked={props.habit.dateChecked.checked}
+						id="1"
+						defaultChecked={false}
 						onClick={habitCheckedClick}
 					/>
 				</div>
@@ -64,21 +72,27 @@ function Habit(props) {
 					<input
 						type="checkbox"
 						name="checkbox"
-						// defaultChecked={}
+						id="2"
+						defaultChecked={false}
+						onClick={habitCheckedClick}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						// defaultChecked={}
+						id="3"
+						defaultChecked={false}
+						onClick={habitCheckedClick}
 					/>
 				</div>
 				<div>
 					<input
 						type="checkbox"
 						name="checkbox"
-						// defaultChecked={}
+						id="4"
+						defaultChecked={false}
+						onClick={habitCheckedClick}
 					/>
 				</div>
 			</div>
