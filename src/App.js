@@ -161,8 +161,6 @@ function App() {
 		localStorage.setItem("habitArrayData", JSON.stringify(habitArray));
 	}, [habitArray]);
 
-	console.log(habitArray);
-
 	const habits = habitArray.map((h) => {
 		return (
 			<Habit

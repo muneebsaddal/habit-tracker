@@ -146,79 +146,17 @@ function HabitForm_A(props) {
 				</div>
 				<div className="input-group">
 					<label>Frequency</label>
-					{/* <div className="input-group-frequency">
-							<select
-								value={freq.repeatValue}
-								onChange={handleFrequencyChange}
-							>
-								{numberOptionSelect.map((x, y) => (
-									<option key={y}>{x}</option>
-								))}
-							</select>{" "}
-							time/s a{" "}
-							<select
-								value={freq.repeatCat}
-								onChange={handleFrequencyChange}
-							>
-								<option>week</option>
-								<option>month</option>
-							</select>
-						</div> */}
-
 					<button type="button" onClick={props.handleOpenFreqDialog}>
 						Every day
 					</button>
-					<Modal
-						isOpen={props.openFreqDialog}
-						onRequestClose={props.closeFreqDialog}
-						className="form-frequency-dialog"
-						ariaHideApp={false}
-					>
-						{/* <FreqencyDialog
-								formData={props.formData}
-								handleFormChange={props.handleFormChange}
-							/> */}
-						<input
-							type="radio"
-							id="everyday"
-							name="frequency"
-							defaultValue="Everyday"
-							value="Everyday"
+					{props.openFreqDialog && (
+						<FreqencyDialog
+							formData={props.formData}
+							handleFormChange={props.handleFormChange}
+							isOpen={props.openFreqDialog}
+							requestClose={props.closeFreqDialog}
 						/>
-						<label htmlFor="everyday">Everyday</label>
-						<input
-							type="radio"
-							id="everyday_no_days"
-							name="frequency"
-							defaultValue="Everyday 3 days"
-							value={
-								"Every" +
-								document.getElementById("abc") +
-								"days"
-							}
-						/>
-						<label htmlFor="everyday_no_days">
-							Every <input id="abc" defaultValue="3" /> days
-						</label>
-						<input
-							type="radio"
-							id="times_a_week"
-							name="frequency"
-							defaultValue="3 times a week"
-						/>
-						<label htmlFor="times_a_week">
-							<input defaultValue="3" /> times a week
-						</label>
-						<input
-							type="radio"
-							id="times_a_month"
-							name="frequency"
-							defaultValue="10 times a month"
-						/>
-						<label htmlFor="times_a_month">
-							<input defaultValue="10" /> times a month
-						</label>
-					</Modal>
+					)}
 				</div>
 				<div className="input-group">
 					<label>Reminder</label>

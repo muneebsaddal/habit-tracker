@@ -1,5 +1,4 @@
 import "./habit.css";
-import EdiText from "react-editext";
 import { useEffect, useState } from "react";
 
 const getPrevDate = (prevDays) => {
@@ -20,7 +19,6 @@ function Habit(props) {
 	);
 
 	const habitCheckedClick = (e) => {
-		console.log(e.target.id);
 		if (e.target.checked === true) {
 			setCheckedList([
 				...checkedList,
@@ -56,6 +54,13 @@ function Habit(props) {
 						type="checkbox"
 						name="checkbox"
 						id="0"
+						// defaultChecked={
+						// 	checkedList.length > 0 &&
+						// 	checkedList.map((listElement) => {
+						// 		console.log(listElement.id)
+						// 		return listElement.id !== "0" ? false : true;
+						// 	})
+						// }
 						defaultChecked={false}
 						onClick={habitCheckedClick}
 					/>

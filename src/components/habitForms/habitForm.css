@@ -102,7 +102,9 @@ input:focus {
 	font-size: 20px;
 	padding: 10px 0px;
 	background: none;
-	border: none;
+	border: 2px solid #b4b4b4;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .freq-dialog-number-input {
@@ -111,39 +113,6 @@ input:focus {
 	width: 50px;
 	height: 30px;
 }
-
-/* .freq-dialog-radio-input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-}
-
-.dialog-input-container {
-	position: relative;
-} */
-
-/* .radio-button {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 25px;
-	width: 25px;
-	background-color: rgb(228, 228, 228);
-	border-radius: 50%;
-	cursor: pointer;
-}
-
-.radio-button:hover {
-	background:rgb(187, 187, 187);
-}
-
-.radio-button:checked {
-	background:rgb(0, 174, 255);
-}
-
-.dialog-input-container > label {
-	padding-left: 50px;
-} */
 
 .form-reminder-dialog {
 	position: absolute;
@@ -159,10 +128,6 @@ input:focus {
 }
 
 .form-buttons {
-	/* display: flex;
-	margin-left: auto;
-	align-items: center;
-	justify-content: center; */
 	width: 120px;
 	height: 45px;
 	background: none;
@@ -177,11 +142,11 @@ input:focus {
 
 .form-button-submit {
 	color: #4249ff;
-	border: 3px solid #4249ff;
+	border: 2px solid #4249ff;
 }
 
 .form-button-cancel {
 	color: #bebebe;
-	border: 3px solid #b4b4b4;
+	border: 2px solid #b4b4b4;
 	font-size: 18px;
 }
