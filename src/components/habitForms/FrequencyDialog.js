@@ -1,9 +1,126 @@
+import React, { useState } from "react";
 import styled from "styled-components";
+import {
+	FormControlLabel,
+	Radio,
+	TextField,
+	Typography,
+	RadioGroup,
+} from "@material-ui/core";
 
 const FreqencyDialog = (props) => {
 	return (
 		<FreqDialogContainer>
-			<InputContainer>
+			<RadioGroup>
+				<FormControlLabel
+					control={
+						<Radio
+							name="frequency"
+							value="everyday"
+							label="everyday"
+							onChange={props.freqChange}
+						/>
+					}
+					label="Everyday"
+				/>
+
+				<FormControlLabel
+					control={
+						<Radio
+							name="frequency"
+							value={"every _ days"}
+							label="everyday 3 days"
+							onChange={props.freqChange}
+						/>
+					}
+					label={
+						<div style={{ display: "flex" }}>
+							<Typography>Every&nbsp;&nbsp;&nbsp;</Typography>
+							<TextField
+							
+								id="everyday_3_days"
+								type="number"
+								size="small"
+								InputProps={{
+									style: {
+										width: "40px",
+									},
+									inputProps: {
+										max: 99,
+										min: 2,
+									},
+								}}
+								defaultValue="3"
+								onChange={props.tempFreqValue}
+							/>
+							<Typography>&nbsp;&nbsp;&nbsp;days</Typography>
+						</div>
+					}
+				/>
+				<FormControlLabel
+					control={
+						<Radio
+							name="frequency"
+							value="_ times per week"
+							label="3 times per week"
+							onChange={props.freqChange}
+						/>
+					}
+					label={
+						<div style={{ display: "flex" }}>
+							<TextField
+								type="number"
+								id="3_times_per_week"
+								size="small"
+								InputProps={{
+									style: {
+										width: "40px",
+									},
+									inputProps: {
+										max: 6,
+										min: 2,
+									},
+								}}
+								defaultValue="3"
+								onChange={props.tempFreqValue}
+							/>
+							<Typography> times per week</Typography>
+						</div>
+					}
+				/>
+				<FormControlLabel
+					control={
+						<Radio
+							name="frequency"
+							value="_ tmes per month"
+							label="10 imes per month"
+							onChange={props.freqChange}
+						/>
+					}
+					label={
+						<div style={{ display: "flex" }}>
+							<TextField
+								type="number"
+								id="10_times_per_month"
+								size="small"
+								InputProps={{
+									style: {
+										width: "40px",
+									},
+									inputProps: {
+										max: 30,
+										min: 2,
+									},
+								}}
+								defaultValue="10"
+								onChange={props.tempFreqValue}
+							/>
+							<Typography> times per month</Typography>
+						</div>
+					}
+				/>
+			</RadioGroup>
+			{/* <InputContainer>
 				<input
 					type="radio"
 					name="frequency"
@@ -11,7 +128,7 @@ const FreqencyDialog = (props) => {
 					onChange={props.freqChange}
 					defaultChecked
 				/>
-				<label htmlFor="everyday">Every day</label>
+			<label htmlFor="everyday">Every day</label>
 			</InputContainer>
 			<InputContainer>
 				<input
@@ -39,7 +156,7 @@ const FreqencyDialog = (props) => {
 					onChange={props.freqChange}
 				/>
 				<label htmlFor="times_per_month">10 times per month</label>
-			</InputContainer>
+			</InputContainer> */}
 			<SubmitButton onClick={props.requestClose} type="button">
 				SAVE
 			</SubmitButton>
@@ -66,8 +183,6 @@ const FreqDialogContainer = styled.div`
 	font-size: 20px;
 	padding: 40px 30px 30px 30px;
 `;
-
-const InputContainer = styled.div``;
 
 const SubmitButton = styled.button`
 	margin-left: auto;

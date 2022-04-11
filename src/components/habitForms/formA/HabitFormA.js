@@ -124,6 +124,7 @@ const HabitForm_A = (props) => {
 						<FreqencyDialog
 							formData={props.formData}
 							freqChange={props.freqChange}
+							tempFreqValue={props.tempFreqValue}
 							isOpen={props.openFreqDialog}
 							requestClose={props.closeFreqDialog}
 						/>

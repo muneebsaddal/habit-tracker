@@ -131,11 +131,17 @@ function App() {
 		});
 	};
 
+	const [tempFreqValue, setTempFreqValue] = useState("");
+
+	const handleTempFreqValue = (e) => {
+		setTempFreqValue(e.target.value);
+	};
+
 	const handleFrequencyChange = (freq) => {
 		setDataForm((prevData) => {
 			return {
 				...prevData,
-				frequency: freq.target.value,
+				frequency: freq.target.value.replace("_", tempFreqValue),
 			};
 		});
 	};
@@ -200,6 +206,7 @@ function App() {
 					handleFormChange={handleChangeForm}
 					handleFormSubmit={handleSubmitForm}
 					freqChange={handleFrequencyChange}
+					tempFreqValue={handleTempFreqValue}
 				/>
 			) : addFormOpen_B ? (
 				<HabitFormB
@@ -219,6 +226,7 @@ function App() {
 					handleFormChange={handleChangeForm}
 					handleFormSubmit={handleSubmitForm}
 					freqChange={handleFrequencyChange}
+					tempFreqValue={handleTempFreqValue}
 				/>
 			) : (
 				<></>
