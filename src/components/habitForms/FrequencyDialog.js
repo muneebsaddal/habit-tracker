@@ -1,101 +1,84 @@
-import "./habitForm.css";
+import styled from "styled-components";
 
-function FreqencyDialog(props) {
+const FreqencyDialog = (props) => {
 	return (
-		<div className="freq-dialog-container">
-			<div className="dialog-input-container">
+		<FreqDialogContainer>
+			<InputContainer>
 				<input
 					type="radio"
-					id="everyday"
 					name="frequency"
-					value="everyday"
-					checked={props.formData.frequency === "everyday"}
-					onChange={props.handleFormChange}
-					className="freq-dialog-radio-input"
+					value="Everyday"
+					onChange={props.freqChange}
+					defaultChecked
 				/>
-				<span className="radio-button"></span>
 				<label htmlFor="everyday">Every day</label>
-			</div>
-			<div className="dialog-input-container">
+			</InputContainer>
+			<InputContainer>
 				<input
 					type="radio"
-					id="every__days"
 					name="frequency"
-					value={
-						"every 2 days" ||
-						"every" +
-							document.getElementById("input2").value +
-							"day"
-					}
-					checked={
-						props.handleFormChange.frequency ===
-						"every" +
-							(document.getElementById("input2") || "2") +
-							"day"
-					}
-					onChange={props.handleFormChange}
-					className="freq-dialog-radio-input"
+					value="Every 3 days"
+					onChange={props.freqChange}
 				/>
-				<span className="radio-button"></span>
-				<label htmlFor="every_days">
-					Every{" "}
-					<input
-						className="freq-dialog-number-input"
-						type="number"
-						id="input2"
-						min="0"
-						max="99"
-					/>{" "}
-					days
-				</label>
-			</div>
-			<div className="dialog-input-container">
+				<label htmlFor="every_days">Every 3 days</label>
+			</InputContainer>
+			<InputContainer>
 				<input
 					type="radio"
-					id="times_per_week"
 					name="frequency"
-					value=""
-					className="freq-dialog-radio-input"
+					value="3 times per week"
+					onChange={props.freqChange}
 				/>
-				<span className="radio-button"></span>
-				<label htmlFor="times_per_week">
-					<input
-						className="freq-dialog-number-input"
-						type="number"
-						min="0"
-						max="99"
-					/>{" "}
-					times per week
-				</label>
-			</div>
-			<div className="dialog-input-container">
+				<label htmlFor="times_per_week">3 times per week</label>
+			</InputContainer>
+			<InputContainer>
 				<input
 					type="radio"
-					id="times_per_month"
 					name="frequency"
-					value=""
-					className="freq-dialog-radio-input"
+					value="10 times per month"
+					onChange={props.freqChange}
 				/>
-				<span className="radio-button"></span>
-				<label htmlFor="times_per_month">
-					<input
-						className="freq-dialog-number-input"
-						type="number"
-						min="0"
-						max="99"
-					/>{" "}
-					times per month
-				</label>
-			</div>
-			<button
-				className="freq-dialog-submit"
-				onClick={props.requestClose}
-				type="button"
-			>
+				<label htmlFor="times_per_month">10 times per month</label>
+			</InputContainer>
+			<SubmitButton onClick={props.requestClose} type="button">
 				SAVE
-			</button>
-		</div>
+			</SubmitButton>
+		</FreqDialogContainer>
 	);
-}
+};
+
+const FreqDialogContainer = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50%;
+	min-width: 350px;
+	max-width: 500px;
+	height: 250px;
+	background: white;
+	box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-family: "Inter";
+	font-size: 20px;
+	padding: 40px 30px 30px 30px;
+`;
+
+const InputContainer = styled.div``;
+
+const SubmitButton = styled.button`
+	margin-left: auto;
+	width: 100px;
+	font-family: "Inter";
+	font-size: 20px;
+	padding: 10px 0px;
+	background: none;
+	border: 2px solid #b4b4b4;
+	border-radius: 5px;
+	cursor: pointer;
+`;
 
 export default FreqencyDialog;

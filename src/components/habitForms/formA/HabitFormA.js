@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../habitForm.css";
 import Modal from "react-modal";
 import FormHeader from "../formHeader/FormHeader";
@@ -7,7 +7,7 @@ import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
 import FreqencyDialog from "../FrequencyDialog";
 
-function HabitForm_A(props) {
+const HabitForm_A = (props) => {
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -24,37 +24,6 @@ function HabitForm_A(props) {
 	const handleColorChange = (color) => {
 		props.colorChange(color.hex);
 	};
-
-	const numberOptionSelect = Array.from(Array(31).keys());
-
-	const [freq, setFreq] = useState({
-		repeatValue: "",
-		repeatCat: "",
-	});
-
-	let numberTest = /\d/;
-
-	const handleFrequencyChange = (f) => {
-		numberTest.test(f.target.value)
-			? setFreq((prevState) => {
-					return {
-						...prevState,
-						repeatValue: f.target.value,
-					};
-			  })
-			: setFreq((prevState) => {
-					return {
-						...prevState,
-						repeatCat: f.target.value,
-					};
-			  });
-	};
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			props.freqChange(freq.repeatValue + " time/s a " + freq.repeatCat);
-		}, 1000);
-		return () => clearTimeout(timer);
-	});
 
 	const styles = reactCSS({
 		default: {
@@ -147,12 +116,14 @@ function HabitForm_A(props) {
 				<div className="input-group">
 					<label>Frequency</label>
 					<button type="button" onClick={props.handleOpenFreqDialog}>
-						Every day
+						{props.formData.frequency
+							? props.formData.frequency
+							: "Everyday"}
 					</button>
 					{props.openFreqDialog && (
 						<FreqencyDialog
 							formData={props.formData}
-							handleFormChange={props.handleFormChange}
+							freqChange={props.freqChange}
 							isOpen={props.openFreqDialog}
 							requestClose={props.closeFreqDialog}
 						/>
@@ -213,6 +184,6 @@ function HabitForm_A(props) {
 			</form>
 		</Modal>
 	);
-}
+};
 
 export default HabitForm_A;

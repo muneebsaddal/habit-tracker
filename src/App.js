@@ -5,7 +5,7 @@ import Habit from "./components/habit/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue/AddHabitDialogue";
 import HabitFormA from "./components/habitForms/formA/HabitFormA";
 import HabitFormB from "./components/habitForms/formB/HabitFormB";
-import uuid from "react-uuid";
+// import uuid from "react-uuid";
 
 function getHabitFormData() {
 	const storedData = localStorage.getItem("habitFormData");
@@ -135,7 +135,7 @@ function App() {
 		setDataForm((prevData) => {
 			return {
 				...prevData,
-				frequency: freq,
+				frequency: freq.target.value,
 			};
 		});
 	};

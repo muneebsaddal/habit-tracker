@@ -1,18 +1,6 @@
-function DayColumns() {
-	
-	const styles = {
-		display: "grid",
-		margin: "15px 10px 15px 10px",
-		gridTemplateColumns: "repeat(9, 1fr)",
-		gap: "10px",
-		padding: "10px",
-		textAlign: "center",
-		fontFamily: "Karla",
-		fontSize: "16px",
-		fontWeight: "Bolder",
-		color: "#626262",
-	};
+import styled from "styled-components";
 
+const DayColumns = () => {
 	const days = {
 		0: "Sun",
 		1: "Mon",
@@ -28,12 +16,12 @@ function DayColumns() {
 	};
 
 	return (
-		<div className="day-columns" style={styles}>
-			<div style={{ gridColumnStart: "5" }}>
+		<Columns>
+			<StartingElement>
 				{days[getPrevDate(0).getDay()]}
 				<br />
 				{getPrevDate(0).getDate()}
-			</div>
+			</StartingElement>
 
 			<div>
 				{days[getPrevDate(1).getDay()]}
@@ -58,8 +46,25 @@ function DayColumns() {
 				<br />
 				{getPrevDate(4).getDate()}
 			</div>
-		</div>
+		</Columns>
 	);
-}
+};
+
+const Columns = styled.div`
+	display: grid;
+	margin: 15px 10px 15px 10px;
+	grid-template-columns: repeat(9, 1fr);
+	gap: 10px;
+	padding: 10px;
+	text-align: center;
+	font-family: "Karla";
+	font-size: 16px;
+	font-weight: Bolder;
+	color: #626262;
+`;
+
+const StartingElement = styled.div`
+	grid-column-start: 5;
+`;
 
 export default DayColumns;
