@@ -2,11 +2,13 @@ import "./habit.css";
 import { useEffect, useState } from "react";
 
 const getPrevDate = (prevDays) => {
-	return ((d) => new Date(d.setDate(d.getDate() - prevDays)))(new Date());
+	let date = new Date();
+	date.setDate(date.getDate() - prevDays);
+	return date.toLocaleDateString();
 };
 
-const getCheckedList = (_id) => {
-	const listData = localStorage.getItem(`checkedList_${_id}`);
+const getCheckedList = (_name) => {
+	const listData = localStorage.getItem(`checkedList_${_name}`);
 	if (!listData) {
 		return [];
 	}
@@ -19,19 +21,19 @@ function Habit(props) {
 	);
 
 	const habitCheckedClick = (e) => {
+		console.log(e);
 		if (e.target.checked === true) {
 			setCheckedList([
 				...checkedList,
 				{
-					id: e.target.id,
 					date: getPrevDate(e.target.id),
-					checked: true,
 				},
 			]);
 		} else if (e.target.checked === false) {
 			let tempState = [...checkedList];
+			let checkedDate = getPrevDate(e.target.id);
 			let filteredCheckList = tempState.filter(
-				(arrayEle) => arrayEle.id !== e.target.id
+				(arrayEle) => arrayEle.date !== checkedDate
 			);
 			setCheckedList(filteredCheckList);
 		}
@@ -54,13 +56,6 @@ function Habit(props) {
 						type="checkbox"
 						name="checkbox"
 						id="0"
-						// defaultChecked={
-						// 	checkedList.length > 0 &&
-						// 	checkedList.map((listElement) => {
-						// 		console.log(listElement.id)
-						// 		return listElement.id !== "0" ? false : true;
-						// 	})
-						// }
 						defaultChecked={false}
 						onClick={habitCheckedClick}
 					/>
