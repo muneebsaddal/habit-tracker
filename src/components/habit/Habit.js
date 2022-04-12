@@ -1,5 +1,5 @@
-import "./habit.css";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const getPrevDate = (prevDays) => {
 	let date = new Date();
@@ -15,13 +15,12 @@ const getCheckedList = (_name) => {
 	return JSON.parse(listData);
 };
 
-function Habit(props) {
+const Habit = (props) => {
 	const [checkedList, setCheckedList] = useState(
 		getCheckedList(props.habit.name)
 	);
 
 	const habitCheckedClick = (e) => {
-		console.log(e);
 		if (e.target.checked === true) {
 			setCheckedList([
 				...checkedList,
@@ -44,61 +43,101 @@ function Habit(props) {
 			`checkedList_${props.habit.name}`,
 			JSON.stringify(checkedList)
 		);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [checkedList]);
 
+	const checkboxIdList = [0, 1, 2, 3, 4];
+	const checkboxStateList = [];
+	for (var checkboxId of checkboxIdList) {
+		getCheckedList(props.habit.name).find(
+			({ date }) => date === getPrevDate(checkboxId)
+		)
+			? checkboxStateList.push(true)
+			: checkboxStateList.push(false);
+	}
+
 	return (
-		<div className="habit">
-			<div className="habit-columns">
-				<div className="habit-progress"></div>
-				<div className="habit-name">{props.habit.name}</div>
-				<div>
+		<HabitContainer>
+			<Columns>
+				<HabitProgress></HabitProgress>
+				<HabitName>{props.habit.name}</HabitName>
+				<CheckboxContainer>
 					<input
 						type="checkbox"
 						name="checkbox"
 						id="0"
-						defaultChecked={false}
+						defaultChecked={checkboxStateList[0]}
 						onClick={habitCheckedClick}
 					/>
-				</div>
-				<div>
+				</CheckboxContainer>
+				<CheckboxContainer>
 					<input
 						type="checkbox"
 						name="checkbox"
 						id="1"
-						defaultChecked={false}
+						defaultChecked={checkboxStateList[1]}
 						onClick={habitCheckedClick}
 					/>
-				</div>
-				<div>
+				</CheckboxContainer>
+				<CheckboxContainer>
 					<input
 						type="checkbox"
 						name="checkbox"
 						id="2"
-						defaultChecked={false}
+						defaultChecked={checkboxStateList[2]}
 						onClick={habitCheckedClick}
 					/>
-				</div>
-				<div>
+				</CheckboxContainer>
+				<CheckboxContainer>
 					<input
 						type="checkbox"
 						name="checkbox"
 						id="3"
-						defaultChecked={false}
+						defaultChecked={checkboxStateList[3]}
 						onClick={habitCheckedClick}
 					/>
-				</div>
-				<div>
+				</CheckboxContainer>
+				<CheckboxContainer>
 					<input
 						type="checkbox"
 						name="checkbox"
 						id="4"
-						defaultChecked={false}
+						defaultChecked={checkboxStateList[4]}
 						onClick={habitCheckedClick}
 					/>
-				</div>
-			</div>
-		</div>
+				</CheckboxContainer>
+			</Columns>
+		</HabitContainer>
 	);
-}
+};
+
+const HabitContainer = styled.div`
+	padding: 10px;
+	background: white;
+	margin: 0 10px 10px 10px;
+	border-radius: 3px;
+`;
+
+const Columns = styled.div`
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	gap: 10px;
+	text-align: center;
+	align-items: center;
+	height: 40px;
+`;
+
+const HabitProgress = styled.div``;
+
+const HabitName = styled.p`
+	margin: 0px;
+	grid-column: span 3;
+	text-align: left;
+	padding-left: 10px;
+	font-weight: 500;
+	font-size: 16px;
+`;
+
+const CheckboxContainer = styled.div``;
 
 export default Habit;
