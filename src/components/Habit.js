@@ -50,6 +50,7 @@ const Habit = (props) => {
 	const checkboxStateList = [];
 	for (var checkboxId of checkboxIdList) {
 		getCheckedList(props.habit.name).find(
+			// eslint-disable-next-line no-loop-func
 			({ date }) => date === getPrevDate(checkboxId)
 		)
 			? checkboxStateList.push(true)
@@ -134,8 +135,9 @@ const HabitName = styled.p`
 	grid-column: span 3;
 	text-align: left;
 	padding-left: 10px;
+	font: "Karla";
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 18px;
 `;
 
 const CheckboxContainer = styled.div``;

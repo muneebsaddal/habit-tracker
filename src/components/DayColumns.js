@@ -59,7 +59,7 @@ const Columns = styled.div`
 	text-align: center;
 	font-family: "Karla";
 	font-size: 16px;
-	font-weight: Bolder;
+	font-weight: 700;
 	color: #626262;
 `;
 

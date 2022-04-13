@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "../habitForm.css";
+import "./habitForm.css";
 import Modal from "react-modal";
-import FormHeader from "../formHeader/FormHeader";
+import FormHeader from "./FormHeader";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
-import FreqencyDialog from "../FrequencyDialog";
+import FreqencyDialog from "./FrequencyDialog";
 
 function HabitForm_B(props) {
 	const [colorState, setColorState] = useState({
