@@ -6,7 +6,7 @@ import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
 import FreqencyDialog from "../FrequencyDialog";
-
+// CODE REVIEW COMMENT: We should not mix Pascal case with snake case
 const HabitForm_A = (props) => {
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,

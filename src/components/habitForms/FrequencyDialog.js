@@ -7,7 +7,8 @@ import {
 	Typography,
 	RadioGroup,
 } from "@material-ui/core";
-
+// CODE REVIEW COMMENT: spelling wrong. Please install an extension that highlights wrong spellings e.g.
+// Code Spell Checker in vscode.
 const FreqencyDialog = (props) => {
 	return (
 		<FreqDialogContainer>

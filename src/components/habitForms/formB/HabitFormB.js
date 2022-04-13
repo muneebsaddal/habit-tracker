@@ -1,3 +1,6 @@
+
+// CODE REVIEW COMMENT: file names for form A and form B are confusing.
+// You can't know which one is which unless you open them. Please use better names
 import React, { useState, useEffect } from "react";
 import "../habitForm.css";
 import Modal from "react-modal";

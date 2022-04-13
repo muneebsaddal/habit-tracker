@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const DayColumns = () => {
+	//CODE REVIEW COMMENT: why not use array?
 	const days = {
 		0: "Sun",
 		1: "Mon",
@@ -10,7 +11,8 @@ const DayColumns = () => {
 		5: "Fri",
 		6: "Sat",
 	};
-
+	//CODE REVIEW COMMENT: This function will be redeclared at every re render.
+	// Better create a common utilities/date and move it there
 	const getPrevDate = (prevDays) => {
 		return ((d) => new Date(d.setDate(d.getDate() - prevDays)))(new Date());
 	};

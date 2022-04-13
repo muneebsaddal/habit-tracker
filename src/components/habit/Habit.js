@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
+// CODE REVIEW COMMENT: should reuse 1 getPrevDate in days columns
 const getPrevDate = (prevDays) => {
 	let date = new Date();
 	date.setDate(date.getDate() - prevDays);
 	return date.toLocaleDateString();
 };
-
+// CODE REVIEW COMMENT: why underscore with _name?
 const getCheckedList = (_name) => {
 	const listData = localStorage.getItem(`checkedList_${_name}`);
 	if (!listData) {
@@ -29,6 +29,8 @@ const Habit = (props) => {
 				},
 			]);
 		} else if (e.target.checked === false) {
+			// CODE REVIEW COMMENT: we can use consts here. Always better to use consts when
+			// we are not reassigning
 			let tempState = [...checkedList];
 			let checkedDate = getPrevDate(e.target.id);
 			let filteredCheckList = tempState.filter(
@@ -48,6 +50,7 @@ const Habit = (props) => {
 
 	const checkboxIdList = [0, 1, 2, 3, 4];
 	const checkboxStateList = [];
+	// CODE REVIEW COMMENT: use let instead of var
 	for (var checkboxId of checkboxIdList) {
 		getCheckedList(props.habit.name).find(
 			({ date }) => date === getPrevDate(checkboxId)
