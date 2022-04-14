@@ -112,11 +112,12 @@ const Habit = (props) => {
 	);
 };
 
-const HabitContainer = styled.div`
+const HabitContainer = styled.li`
 	padding: 10px;
 	background: white;
 	margin: 0 10px 10px 10px;
 	border-radius: 3px;
+	list-style-type: none;
 `;
 
 const Columns = styled.div`
