@@ -23,6 +23,7 @@ const HabitForm_A = (props) => {
 
 	const handleColorChange = (color) => {
 		props.colorChange(color.hex);
+		setColorState({ displayColorPicker: false });
 	};
 
 	const styles = reactCSS({
@@ -34,12 +35,14 @@ const HabitForm_A = (props) => {
 				background: `${props.formData.color}`,
 			},
 			swatch: {
-				padding: "0px 8px",
+				margin: "0px 8px",
+				padding: "0px",
 				background: "#fff",
 				borderRadius: "1px",
 				boxShadow: "none",
 				display: "inline-block",
 				cursor: "pointer",
+				border: "none",
 			},
 			popover: {
 				position: "absolute",
@@ -81,12 +84,13 @@ const HabitForm_A = (props) => {
 					<div className="input-group input-group-color">
 						<label>Color</label>
 						<div>
-							<div
+							<button
+								type="button"
 								style={styles.swatch}
 								onClick={handleColorClick}
 							>
 								<div style={styles.color} />
-							</div>
+							</button>
 							{colorState.displayColorPicker ? (
 								<div style={styles.popover}>
 									<div
