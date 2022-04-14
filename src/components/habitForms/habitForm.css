@@ -99,17 +99,19 @@ input:focus {
 	font-family: "Karla";
 	font-weight: 600;
 	font-size: 20px;
-	letter-spacing: 0.07em;
+	letter-spacing: 0.06em;
 	cursor: pointer;
 }
 
 .form-button-submit {
-	color: #4249ff;
-	border: 2px solid #4249ff;
+	background: #006eff;
+	color: rgb(242, 250, 255);
+	border: none;
+	font-weight: 700;
 }
 
 .form-button-cancel {
-	color: #bebebe;
-	border: 2px solid #b4b4b4;
+	color: #444;
+	border: 2px solid #888;
 	font-size: 18px;
 }
