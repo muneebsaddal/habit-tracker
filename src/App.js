@@ -5,6 +5,7 @@ import Habit from "./components/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue";
 import HabitFormYesNo from "./components/habitForms/HabitFormYesNo";
 import HabitFormMeasurable from "./components/habitForms/HabitFormMeasurable";
+import EditHabit from "./components/EditHabit";
 
 function getHabitArray() {
 	const storedData = localStorage.getItem("habitArrayData");
@@ -157,6 +158,14 @@ function App() {
 		return <Habit key={JSON.stringify(h)} habit={h} />;
 	});
 
+	const [editHabitOpen, setEditHabitOpen] = useState(false);
+	const handleEditHabitOpen = () => {
+		setEditHabitOpen(true);
+	};
+	const handleEditHabitClose = () => {
+		setEditHabitOpen(false);
+	};
+
 	return (
 		<>
 			<Header pageTitle={"Habit"} handleOpen={handleAddDialogueOpen} />
@@ -211,6 +220,7 @@ function App() {
 			) : (
 				<></>
 			)}
+			{editHabitOpen && <EditHabit />}
 		</>
 	);
 }
