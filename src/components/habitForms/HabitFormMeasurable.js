@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./habitForm.css";
 import Modal from "react-modal";
-import FormHeader from "./FormHeader";
+import FormHeader from "./formComponents/FormHeader";
+import FrequencyDialog from "./formComponents/FrequencyDialog";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
-import FrequencyDialog from "./FrequencyDialog";
 
 function HabitFormMeasurable(props) {
 	const [colorState, setColorState] = useState({
