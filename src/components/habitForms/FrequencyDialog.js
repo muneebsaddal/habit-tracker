@@ -16,7 +16,7 @@ const FreqencyDialog = (props) => {
 					control={
 						<Radio
 							name="frequency"
-							value="everyday"
+							value="Everyday"
 							label="everyday"
 							onChange={props.freqChange}
 						/>
@@ -28,7 +28,7 @@ const FreqencyDialog = (props) => {
 					control={
 						<Radio
 							name="frequency"
-							value={"every _ days"}
+							value={"Every _ days"}
 							label="everyday 3 days"
 							onChange={props.freqChange}
 						/>
