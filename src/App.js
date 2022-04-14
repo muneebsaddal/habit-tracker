@@ -93,7 +93,7 @@ function App() {
 
 	const current = new Date();
 
-	const [dataForm, setDataForm] = useState({
+	const formInitialState = {
 		name: "",
 		color: "#03a9f4",
 		question: "",
@@ -102,7 +102,9 @@ function App() {
 		frequency: "",
 		reminder: "",
 		notes: "",
-	});
+	}
+
+	const [dataForm, setDataForm] = useState(formInitialState);
 
 	const handleChangeForm = (e) => {
 		const { name, value, type, checked } = e.target;
@@ -149,6 +151,7 @@ function App() {
 			...prevState,
 			dataForm,
 		]);
+		setDataForm(formInitialState)
 	};
 
 	useEffect(() => {
