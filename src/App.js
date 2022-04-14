@@ -5,23 +5,6 @@ import Habit from "./components/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue";
 import HabitFormA from "./components/habitForms/HabitFormA";
 import HabitFormB from "./components/habitForms/HabitFormB";
-// import uuid from "react-uuid";
-
-function getHabitFormData() {
-	const storedData = localStorage.getItem("habitFormData");
-	if (!storedData)
-		return {
-			name: "",
-			color: "#03a9f4",
-			question: "",
-			unit: "",
-			target: "",
-			frequency: "",
-			reminder: "",
-			notes: "",
-		};
-	return JSON.parse(storedData);
-}
 
 function getHabitArray() {
 	const storedData = localStorage.getItem("habitArrayData");
@@ -110,7 +93,16 @@ function App() {
 
 	const current = new Date();
 
-	const [dataForm, setDataForm] = useState(getHabitFormData);
+	const [dataForm, setDataForm] = useState({
+		name: "",
+		color: "#03a9f4",
+		question: "",
+		unit: "",
+		target: "",
+		frequency: "",
+		reminder: "",
+		notes: "",
+	});
 
 	const handleChangeForm = (e) => {
 		const { name, value, type, checked } = e.target;
@@ -146,10 +138,6 @@ function App() {
 		});
 	};
 
-	useEffect(() => {
-		localStorage.setItem("habitFormData", JSON.stringify(dataForm));
-	}, [dataForm]);
-
 	const [habitArray, setHabitArray] = useState(getHabitArray);
 
 	const handleSubmitForm = (event) => {
@@ -159,7 +147,7 @@ function App() {
 
 		setHabitArray((prevState) => [
 			...prevState,
-			JSON.parse(localStorage.getItem("habitFormData")),
+			dataForm,
 		]);
 	};
 
@@ -171,7 +159,6 @@ function App() {
 		return (
 			<Habit
 				key={JSON.stringify(h)}
-				// _id={uuid()}
 				habit={h}
 			/>
 		);
