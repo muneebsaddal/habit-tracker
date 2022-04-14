@@ -30,9 +30,9 @@ form {
 	background: none;
 	border: none;
 	border: 0px;
-	padding: 5px 20px 20px 48px;
+	padding: 5px 0px 20px 48px;
 	font-size: 18px;
-	width: 270px;
+	width: 94%;
 }
 
 .input-group > button {
@@ -40,6 +40,8 @@ form {
 	border: none;
 	padding: 5px 20px 20px 48px;
 	font-size: 18px;
+	width: 100%;
+	text-align: left;
 }
 
 .input-group-frequency {
