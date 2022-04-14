@@ -5,9 +5,9 @@ import FormHeader from "./FormHeader";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
-import FreqencyDialog from "./FrequencyDialog";
+import FrequencyDialog from "./FrequencyDialog";
 
-const HabitForm_A = (props) => {
+const HabitFormYesNo = (props) => {
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -125,7 +125,7 @@ const HabitForm_A = (props) => {
 							: "Everyday"}
 					</button>
 					{props.openFreqDialog && (
-						<FreqencyDialog
+						<FrequencyDialog
 							formData={props.formData}
 							freqChange={props.freqChange}
 							tempFreqValue={props.tempFreqValue}
@@ -191,4 +191,4 @@ const HabitForm_A = (props) => {
 	);
 };
 
-export default HabitForm_A;
+export default HabitFormYesNo;

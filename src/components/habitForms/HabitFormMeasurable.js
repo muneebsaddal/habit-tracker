@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./habitForm.css";
 import Modal from "react-modal";
 import FormHeader from "./FormHeader";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
-import FreqencyDialog from "./FrequencyDialog";
+import FrequencyDialog from "./FrequencyDialog";
 
-function HabitForm_B(props) {
+function HabitFormMeasurable(props) {
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -145,7 +145,7 @@ function HabitForm_B(props) {
 								{props.formData.frequency}
 							</button>
 							{props.openFreqDialog && (
-								<FreqencyDialog
+								<FrequencyDialog
 									formData={props.formData}
 									freqChange={props.freqChange}
 									isOpen={props.openFreqDialog}
@@ -213,4 +213,4 @@ function HabitForm_B(props) {
 	);
 }
 
-export default HabitForm_B;
+export default HabitFormMeasurable;

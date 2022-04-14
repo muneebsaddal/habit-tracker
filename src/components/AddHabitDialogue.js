@@ -13,7 +13,7 @@ const modalStyles = {
 		flexDirection: "column",
 		gap: "20px",
 		background: "none",
-		border: "none"
+		border: "none",
 	},
 };
 
@@ -57,7 +57,7 @@ const Option = styled.button`
 	border: none;
 	border-radius: 5px;
 	text-align: left;
-	padding: 20px 20px 5px 20px;
+	padding: 20px 20px 20px 20px;
 	cursor: pointer;
 `;
 const Heading = styled.h1`
@@ -73,7 +73,6 @@ const Content = styled.p`
 	margin: 0px;
 	font-family: "Inter";
 	font-size: 16px;
-	line-height: 50px;
 `;
 
 export default AddHabitDialogue;

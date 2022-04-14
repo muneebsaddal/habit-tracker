@@ -7,8 +7,8 @@ const getPrevDate = (prevDays) => {
 	return date.toLocaleDateString();
 };
 
-const getCheckedList = (_name) => {
-	const listData = localStorage.getItem(`checkedList_${_name}`);
+const getCheckedList = (name) => {
+	const listData = localStorage.getItem(`checkedList_${name}`);
 	if (!listData) {
 		return [];
 	}
@@ -29,9 +29,9 @@ const Habit = (props) => {
 				},
 			]);
 		} else if (e.target.checked === false) {
-			let tempState = [...checkedList];
-			let checkedDate = getPrevDate(e.target.id);
-			let filteredCheckList = tempState.filter(
+			const tempState = [...checkedList];
+			const checkedDate = getPrevDate(e.target.id);
+			const filteredCheckList = tempState.filter(
 				(arrayEle) => arrayEle.date !== checkedDate
 			);
 			setCheckedList(filteredCheckList);
@@ -48,7 +48,7 @@ const Habit = (props) => {
 
 	const checkboxIdList = [0, 1, 2, 3, 4];
 	const checkboxStateList = [];
-	for (var checkboxId of checkboxIdList) {
+	for (let checkboxId of checkboxIdList) {
 		getCheckedList(props.habit.name).find(
 			// eslint-disable-next-line no-loop-func
 			({ date }) => date === getPrevDate(checkboxId)

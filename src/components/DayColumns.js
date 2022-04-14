@@ -1,19 +1,13 @@
 import styled from "styled-components";
 
-const DayColumns = () => {
-	const days = {
-		0: "Sun",
-		1: "Mon",
-		2: "Tue",
-		3: "Wed",
-		4: "Thu",
-		5: "Fri",
-		6: "Sat",
-	};
+const getPrevDate = (prevDays) => {
+	let date = new Date();
+	date.setDate(date.getDate() - prevDays);
+	return date;
+};
 
-	const getPrevDate = (prevDays) => {
-		return ((d) => new Date(d.setDate(d.getDate() - prevDays)))(new Date());
-	};
+const DayColumns = () => {
+	const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 	return (
 		<Columns>

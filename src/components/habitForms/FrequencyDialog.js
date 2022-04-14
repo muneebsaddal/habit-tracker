@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import {
 	FormControlLabel,
@@ -8,7 +8,7 @@ import {
 	RadioGroup,
 } from "@material-ui/core";
 
-const FreqencyDialog = (props) => {
+const FrequencyDialog = (props) => {
 	return (
 		<FreqDialogContainer>
 			<RadioGroup>
@@ -92,8 +92,8 @@ const FreqencyDialog = (props) => {
 					control={
 						<Radio
 							name="frequency"
-							value="_ tmes per month"
-							label="10 imes per month"
+							value="_ times per month"
+							label="10 times per month"
 							onChange={props.freqChange}
 						/>
 					}
@@ -196,4 +196,4 @@ const SubmitButton = styled.button`
 	cursor: pointer;
 `;
 
-export default FreqencyDialog;
+export default FrequencyDialog;

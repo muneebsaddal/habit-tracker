@@ -3,8 +3,8 @@ import Header from "./components/Header";
 import DayColumns from "./components/DayColumns";
 import Habit from "./components/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue";
-import HabitFormA from "./components/habitForms/HabitFormA";
-import HabitFormB from "./components/habitForms/HabitFormB";
+import HabitFormYesNo from "./components/habitForms/HabitFormYesNo";
+import HabitFormMeasurable from "./components/habitForms/HabitFormMeasurable";
 
 function getHabitArray() {
 	const storedData = localStorage.getItem("habitArrayData");
@@ -91,8 +91,6 @@ function App() {
 		});
 	};
 
-	const current = new Date();
-
 	const formInitialState = {
 		name: "",
 		color: "#03a9f4",
@@ -102,7 +100,7 @@ function App() {
 		frequency: "",
 		reminder: "",
 		notes: "",
-	}
+	};
 
 	const [dataForm, setDataForm] = useState(formInitialState);
 
@@ -147,11 +145,8 @@ function App() {
 		handleAddFormClose_A();
 		handleAddFormClose_B();
 
-		setHabitArray((prevState) => [
-			...prevState,
-			dataForm,
-		]);
-		setDataForm(formInitialState)
+		setHabitArray((prevState) => [...prevState, dataForm]);
+		setDataForm(formInitialState);
 	};
 
 	useEffect(() => {
@@ -159,18 +154,13 @@ function App() {
 	}, [habitArray]);
 
 	const habits = habitArray.map((h) => {
-		return (
-			<Habit
-				key={JSON.stringify(h)}
-				habit={h}
-			/>
-		);
+		return <Habit key={JSON.stringify(h)} habit={h} />;
 	});
 
 	return (
 		<>
 			<Header pageTitle={"Habit"} handleOpen={handleAddDialogueOpen} />
-			<DayColumns currentDate={current} />
+			<DayColumns />
 			{habits}
 			<AddHabitDialogue
 				open={addDialogueOpen}
@@ -179,7 +169,7 @@ function App() {
 				openFormB={handleAddFormOpen_B}
 			/>
 			{addFormOpen_A ? (
-				<HabitFormA
+				<HabitFormYesNo
 					openFormA={addFormOpen_A}
 					handleFormClose={handleAddFormClose_A}
 					handleOpenFreqDialog={handleFreqDialogOpenA}
@@ -199,7 +189,7 @@ function App() {
 					tempFreqValue={handleTempFreqValue}
 				/>
 			) : addFormOpen_B ? (
-				<HabitFormB
+				<HabitFormMeasurable
 					openFormB={addFormOpen_B}
 					handleFormClose={handleAddFormClose_B}
 					handleOpenFreqDialog={handleFreqDialogOpenB}
