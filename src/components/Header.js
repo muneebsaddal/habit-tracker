@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+const Header = (props) => {
+	return (
+		<HeaderContainer>
+			<HeaderTitle>{props.pageTitle}</HeaderTitle>
+			<HeaderButtonContainer>
+				<AddButton onClick={props.handleOpen}>add</AddButton>
+				<FilterButton>filter</FilterButton>
+				<SettingsButton>setting</SettingsButton>
+			</HeaderButtonContainer>
+		</HeaderContainer>
+	);
+};
+
 const HeaderContainer = styled.header`
 	background: #4249ff;
 	color: white;
@@ -37,17 +50,5 @@ const AddButton = styled(Button)``;
 const FilterButton = styled(Button)``;
 const SettingsButton = styled(Button)``;
 
-const Header = (props) => {
-	return (
-		<HeaderContainer>
-			<HeaderTitle>{props.pageTitle}</HeaderTitle>
-			<HeaderButtonContainer>
-				<AddButton onClick={props.handleOpen}>add</AddButton>
-				<FilterButton>filter</FilterButton>
-				<SettingsButton>setting</SettingsButton>
-			</HeaderButtonContainer>
-		</HeaderContainer>
-	);
-};
 
 export default Header;

@@ -16,6 +16,21 @@ const getCheckedList = (name) => {
 };
 
 const Habit = (props) => {
+	const HabitName = styled.button`
+		margin: 0px;
+		height: 100%;
+		width: 100%;
+		background: none;
+		border: none;
+		grid-column: span 3;
+		text-align: left;
+		padding: 0px;
+		font-family: "Karla";
+		font-weight: 600;
+		font-size: 18px;
+		color: ${props.habit.color};
+	`;
+
 	const [checkedList, setCheckedList] = useState(
 		getCheckedList(props.habit.name)
 	);
@@ -61,7 +76,9 @@ const Habit = (props) => {
 		<HabitContainer>
 			<Columns>
 				<HabitProgress></HabitProgress>
-				<HabitName>{props.habit.name}</HabitName>
+				<HabitName onDoubleClick={props.habitEditorOpen}>
+					{props.habit.name}
+				</HabitName>
 				<CheckboxContainer>
 					<input
 						type="checkbox"
@@ -113,7 +130,6 @@ const Habit = (props) => {
 };
 
 const HabitContainer = styled.li`
-	padding: 10px;
 	background: white;
 	margin: 0 10px 10px 10px;
 	border-radius: 3px;
@@ -123,23 +139,12 @@ const HabitContainer = styled.li`
 const Columns = styled.div`
 	display: grid;
 	grid-template-columns: repeat(9, 1fr);
-	gap: 10px;
 	text-align: center;
 	align-items: center;
-	height: 40px;
+	height: 60px;
 `;
 
 const HabitProgress = styled.div``;
-
-const HabitName = styled.p`
-	margin: 0px;
-	grid-column: span 3;
-	text-align: left;
-	padding-left: 10px;
-	font: "Karla";
-	font-weight: 500;
-	font-size: 18px;
-`;
 
 const CheckboxContainer = styled.div``;
 

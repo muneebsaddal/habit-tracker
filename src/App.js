@@ -5,7 +5,7 @@ import Habit from "./components/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue";
 import HabitFormYesNo from "./components/habitForms/HabitFormYesNo";
 import HabitFormMeasurable from "./components/habitForms/HabitFormMeasurable";
-import HabitEditor from "./components/HabitEditor";
+import HabitEditor from "./components/habitEditor/HabitEditor";
 
 function getHabitArray() {
 	const storedData = localStorage.getItem("habitArrayData");
@@ -16,22 +16,19 @@ function getHabitArray() {
 function App() {
 	const [addDialogueOpen, setAddDialogueOpen] = useState(false);
 	const handleAddDialogueOpen = () => {
-		setAddDialogueOpen(true);
-	};
-	const handleAddDialogueClose = () => {
-		setAddDialogueOpen(false);
+		setAddDialogueOpen((prevState) => !prevState);
 	};
 
 	const [addFormOpen_A, setAddFormOpen_A] = useState(false);
 	const [addFormOpen_B, setAddFormOpen_B] = useState(false);
 	const handleAddFormOpen_A = () => {
 		setAddFormOpen_A(true);
-		handleAddDialogueClose();
+		handleAddDialogueOpen();
 		handleAddFormClose_B();
 	};
 	const handleAddFormOpen_B = () => {
 		setAddFormOpen_B(true);
-		handleAddDialogueClose();
+		handleAddDialogueOpen();
 		handleAddFormClose_A();
 	};
 	const handleAddFormClose_A = () => {
@@ -154,17 +151,27 @@ function App() {
 		localStorage.setItem("habitArrayData", JSON.stringify(habitArray));
 	}, [habitArray]);
 
-	const habits = habitArray.map((h) => {
-		return <Habit key={JSON.stringify(h)} habit={h} />;
-	});
+	const [currentHabit, setCurrentHabit] = useState();
 
-	const [openHabitEditor, setOpenHabitEditor] = useState(false)
-	const handleHabitEditorOpen = () => {
-		setOpenHabitEditor(true);
+	const [openHabitEditor, setOpenHabitEditor] = useState(false);
+	const handleHabitEditorOpen = (e) => {
+		for (let i in habitArray) {
+			if (habitArray[i].name === e.target.textContent) {
+				setCurrentHabit(habitArray[i]);
+			}
+		}
+		setOpenHabitEditor((prevState) => !prevState);
 	};
-	const handleHabitEditorClose = () => {
-		setOpenHabitEditor(false);
-	};
+
+	const habits = habitArray.map((h) => {
+		return (
+			<Habit
+				key={JSON.stringify(h)}
+				habit={h}
+				habitEditorOpen={handleHabitEditorOpen}
+			/>
+		);
+	});
 
 	return (
 		<>
@@ -173,7 +180,7 @@ function App() {
 			{habits}
 			<AddHabitDialogue
 				open={addDialogueOpen}
-				handleClose={handleAddDialogueClose}
+				handleClose={handleAddDialogueOpen}
 				openFormA={handleAddFormOpen_A}
 				openFormB={handleAddFormOpen_B}
 			/>
@@ -220,7 +227,13 @@ function App() {
 			) : (
 				<></>
 			)}
-			{openHabitEditor && <HabitEditor />}
+			{openHabitEditor && (
+				<HabitEditor
+					habit={currentHabit}
+					habitEditorState={openHabitEditor}
+					habitEditorClose={handleHabitEditorOpen}
+				/>
+			)}
 		</>
 	);
 }
