@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Modal from "react-modal";
 import HabitEditorHeader from "./habitEditorComponents/HabitEditorHeader";
 import HabitEditorReminder from "./habitEditorComponents/HabitEditorReminder";
+import HabitEditorNotes from "./habitEditorComponents/HabitEditorNotes";
 
 const HabitEditor = (props) => {
 	return (
@@ -20,6 +21,9 @@ const HabitEditor = (props) => {
 				frequency={props.habit.frequency}
 				reminder={props.habit.reminder}
 			/>
+			{props.habit.notes && (
+				<HabitEditorNotes notes={props.habit.notes} />
+			)}
 		</Modal>
 	);
 };
