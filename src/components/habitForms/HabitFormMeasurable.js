@@ -142,12 +142,15 @@ function HabitFormMeasurable(props) {
 								type="button"
 								onClick={props.handleOpenFreqDialog}
 							>
-								{props.formData.frequency}
+								{props.formData.frequency
+									? props.formData.frequency
+									: "Everyday"}
 							</button>
 							{props.openFreqDialog && (
 								<FrequencyDialog
 									formData={props.formData}
 									freqChange={props.freqChange}
+									tempFreqValue={props.tempFreqValue}
 									isOpen={props.openFreqDialog}
 									requestClose={props.closeFreqDialog}
 								/>
