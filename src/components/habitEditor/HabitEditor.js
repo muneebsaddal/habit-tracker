@@ -10,6 +10,10 @@ import HabitEditorStreaks from "./habitEditorComponents/HabitEditorStreaks";
 import HabitEditorFrequency from "./habitEditorComponents/HabitEditorFrequency";
 
 const HabitEditor = (props) => {
+	const daysInMonth = (month, year) => {
+		return new Date(year, month, 0).getDate();
+	};
+
 	return (
 		<Modal
 			isOpen={props.habitEditorState}
@@ -32,6 +36,7 @@ const HabitEditor = (props) => {
 				name={props.habit.name}
 				color={props.habit.color}
 				getCheckedList={props.getCheckedList}
+				getDaysInMonth={daysInMonth}
 			/>
 			<HabitEditorScore
 				name={props.habit.name}
