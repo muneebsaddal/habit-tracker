@@ -37,17 +37,13 @@ const Habit = (props) => {
 
 	const habitCheckedClick = (e) => {
 		if (e.target.checked === true) {
-			setCheckedList([
-				...checkedList,
-				{
-					date: getPrevDate(e.target.id),
-				},
-			]);
+			setCheckedList([...checkedList, getPrevDate(e.target.id)]);
 		} else if (e.target.checked === false) {
 			const tempState = [...checkedList];
 			const checkedDate = getPrevDate(e.target.id);
+			console.log(checkedDate);
 			const filteredCheckList = tempState.filter(
-				(arrayEle) => arrayEle.date !== checkedDate
+				(arrayEle) => arrayEle !== checkedDate
 			);
 			setCheckedList(filteredCheckList);
 		}
@@ -66,7 +62,7 @@ const Habit = (props) => {
 	for (let checkboxId of checkboxIdList) {
 		getCheckedList(props.habit.name).find(
 			// eslint-disable-next-line no-loop-func
-			({ date }) => date === getPrevDate(checkboxId)
+			(date) => date === getPrevDate(checkboxId)
 		)
 			? checkboxStateList.push(true)
 			: checkboxStateList.push(false);
