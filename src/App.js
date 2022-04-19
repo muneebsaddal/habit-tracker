@@ -74,6 +74,12 @@ function App() {
 		setDialogsFormB({ ...dialogsFormB, reminderDialog: false });
 	};
 
+	const getPrevDate = (prevDays) => {
+		let date = new Date();
+		date.setDate(date.getDate() - prevDays);
+		return date.toLocaleDateString();
+	};
+
 	const [time, setTime] = useState("0:00am");
 
 	const handleTimeChange = (data) => {
@@ -232,6 +238,7 @@ function App() {
 					habit={currentHabit}
 					habitEditorState={openHabitEditor}
 					habitEditorClose={handleHabitEditorOpen}
+					prevDate={getPrevDate}
 				/>
 			)}
 		</>
