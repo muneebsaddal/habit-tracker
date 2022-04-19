@@ -5,15 +5,7 @@ const daysInMonth = (month, year) => {
 	return new Date(year, month, 0).getDate();
 };
 
-const getCheckedList = (name) => {
-	const listData = localStorage.getItem(`checkedList_${name}`);
-	if (!listData) {
-		return [];
-	}
-	return JSON.parse(listData);
-};
-
-const HabitEditorOverview = ({ name, color }) => {
+const HabitEditorOverview = ({ name, color, getCheckedList }) => {
 	const habitCheckList = getCheckedList(name);
 	const totalChecked = habitCheckList.length;
 	const latestDate = habitCheckList[0];

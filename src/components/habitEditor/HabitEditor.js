@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import Modal from "react-modal";
 import HabitEditorHeader from "./habitEditorComponents/HabitEditorHeader";
 import HabitEditorReminder from "./habitEditorComponents/HabitEditorReminder";
@@ -14,7 +13,6 @@ const HabitEditor = (props) => {
 	return (
 		<Modal
 			isOpen={props.habitEditorState}
-			// onRequestClose={props.habitEditorClose}
 			style={modalStyles}
 			ariaHideApp={false}
 		>
@@ -33,8 +31,13 @@ const HabitEditor = (props) => {
 			<HabitEditorOverview
 				name={props.habit.name}
 				color={props.habit.color}
+				getCheckedList={props.getCheckedList}
 			/>
-		<HabitEditorScore name={props.habit.name} prevDate={props.prevDate}/>
+			<HabitEditorScore
+				name={props.habit.name}
+				getPrevDate={props.getPrevDate}
+				getCheckedList={props.getCheckedList}
+			/>
 			<HabitEditorHistory />
 			<HabitEditorCalender />
 			<HabitEditorStreaks />

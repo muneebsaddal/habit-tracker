@@ -169,11 +169,21 @@ function App() {
 		setOpenHabitEditor((prevState) => !prevState);
 	};
 
+	const getCheckedList = (name) => {
+		const listData = localStorage.getItem(`checkedList_${name}`);
+		if (!listData) {
+			return [];
+		}
+		return JSON.parse(listData);
+	};
+
 	const habits = habitArray.map((h) => {
 		return (
 			<Habit
 				key={JSON.stringify(h)}
 				habit={h}
+				getPrevDate={getPrevDate}
+				getCheckedList={getCheckedList}
 				habitEditorOpen={handleHabitEditorOpen}
 			/>
 		);
@@ -238,7 +248,8 @@ function App() {
 					habit={currentHabit}
 					habitEditorState={openHabitEditor}
 					habitEditorClose={handleHabitEditorOpen}
-					prevDate={getPrevDate}
+					getCheckedList={getCheckedList}
+					getPrevDate={getPrevDate}
 				/>
 			)}
 		</>

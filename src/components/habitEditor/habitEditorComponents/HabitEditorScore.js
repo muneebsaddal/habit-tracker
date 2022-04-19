@@ -3,25 +3,17 @@ import CanvasJSReact from "../../../canvasjs.react";
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const getCheckedList = (name) => {
-	const listData = localStorage.getItem(`checkedList_${name}`);
-	if (!listData) {
-		return [];
-	}
-	return JSON.parse(listData);
-};
-
-const HabitEditorScore = ({ name, prevDate }) => {
+const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
 	const habitCheckList = getCheckedList(name);
 
 	const dataPoints = [];
 	let sum = 0;
 	for (let i = 10; i >= 0; i--) {
-		sum = habitCheckList.find((element) => element === prevDate(i))
+		sum = habitCheckList.find((element) => element === getPrevDate(i))
 			? sum + 1
 			: sum;
 		dataPoints.push({
-			label: prevDate(i),
+			label: getPrevDate(i),
 			y: Math.round((sum / 40) * 100),
 		});
 	}

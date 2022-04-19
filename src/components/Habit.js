@@ -1,20 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const getPrevDate = (prevDays) => {
-	let date = new Date();
-	date.setDate(date.getDate() - prevDays);
-	return date.toLocaleDateString();
-};
-
-const getCheckedList = (name) => {
-	const listData = localStorage.getItem(`checkedList_${name}`);
-	if (!listData) {
-		return [];
-	}
-	return JSON.parse(listData);
-};
-
 const Habit = (props) => {
 	const HabitName = styled.button`
 		margin: 0px;
@@ -32,16 +18,15 @@ const Habit = (props) => {
 	`;
 
 	const [checkedList, setCheckedList] = useState(
-		getCheckedList(props.habit.name)
+		props.getCheckedList(props.habit.name)
 	);
 
 	const habitCheckedClick = (e) => {
 		if (e.target.checked === true) {
-			setCheckedList([...checkedList, getPrevDate(e.target.id)]);
+			setCheckedList([...checkedList, props.getPrevDate(e.target.id)]);
 		} else if (e.target.checked === false) {
 			const tempState = [...checkedList];
-			const checkedDate = getPrevDate(e.target.id);
-			console.log(checkedDate);
+			const checkedDate = props.getPrevDate(e.target.id);
 			const filteredCheckList = tempState.filter(
 				(arrayEle) => arrayEle !== checkedDate
 			);
@@ -60,9 +45,9 @@ const Habit = (props) => {
 	const checkboxIdList = [0, 1, 2, 3, 4];
 	const checkboxStateList = [];
 	for (let checkboxId of checkboxIdList) {
-		getCheckedList(props.habit.name).find(
+		props.getCheckedList(props.habit.name).find(
 			// eslint-disable-next-line no-loop-func
-			(date) => date === getPrevDate(checkboxId)
+			(date) => date === props.getPrevDate(checkboxId)
 		)
 			? checkboxStateList.push(true)
 			: checkboxStateList.push(false);
