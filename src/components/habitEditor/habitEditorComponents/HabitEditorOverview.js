@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import Pie from "../../Pie";
 
-const daysInMonth = (month, year) => {
-	return new Date(year, month, 0).getDate();
-};
-
-const HabitEditorOverview = ({ name, color, getCheckedList }) => {
+const HabitEditorOverview = ({ name, color, getCheckedList, getDaysInMonth }) => {
 	const habitCheckList = getCheckedList(name);
 	const totalChecked = habitCheckList.length;
 	const latestDate = habitCheckList[0];
@@ -18,28 +14,28 @@ const HabitEditorOverview = ({ name, color, getCheckedList }) => {
 			<Details>
 				<Pie percentage={(totalChecked / 40) * 100} color={color} />
 				<container>
-					<p>{Math.round((totalChecked / 40) * 100)}%</p>
-					<h4>Score</h4>
+					<h4>{Math.round((totalChecked / 40) * 100)}%</h4>
+					<p>Score</p>
 				</container>
 				<container>
-					<p>
+					<h4>
 						+
 						{Math.round(
 							(totalChecked /
-								daysInMonth(latestMonth, latestYear)) *
+								getDaysInMonth(latestMonth, latestYear)) *
 								100
 						)}
 						%
-					</p>
-					<h4>Month</h4>
+					</h4>
+					<p>Month</p>
 				</container>
 				<container>
-					<p>+{Math.round((totalChecked / 365) * 100)}%</p>
-					<h4>Year</h4>
+					<h4>+{Math.round((totalChecked / 365) * 100)}%</h4>
+					<p>Year</p>
 				</container>
 				<container>
-					<p>{totalChecked}</p>
-					<h4>Total</h4>
+					<h4>{totalChecked}</h4>
+					<p>Total</p>
 				</container>
 			</Details>
 		</Overview>
@@ -67,10 +63,10 @@ const Details = styled.div`
 	}
 	p {
 		margin: 0px;
+		color: #aaa;
 	}
 	h4 {
 		margin: 0px;
-		color: #aaa;
 	}
 	display: flex;
 	justify-content: space-between;
