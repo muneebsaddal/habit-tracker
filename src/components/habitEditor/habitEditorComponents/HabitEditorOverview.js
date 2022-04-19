@@ -16,7 +16,7 @@ const getCheckedList = (name) => {
 const HabitEditorOverview = ({ name, color }) => {
 	const habitCheckList = getCheckedList(name);
 	const totalChecked = habitCheckList.length;
-	const latestDate = habitCheckList[0].date;
+	const latestDate = habitCheckList[0];
 	const latestMonth = latestDate.substring(0, latestDate.indexOf("/"));
 	const latestYear = latestDate.substring(latestDate.lastIndexOf("/") + 1);
 

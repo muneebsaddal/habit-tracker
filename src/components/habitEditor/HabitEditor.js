@@ -3,6 +3,12 @@ import Modal from "react-modal";
 import HabitEditorHeader from "./habitEditorComponents/HabitEditorHeader";
 import HabitEditorReminder from "./habitEditorComponents/HabitEditorReminder";
 import HabitEditorNotes from "./habitEditorComponents/HabitEditorNotes";
+import HabitEditorOverview from "./habitEditorComponents/HabitEditorOverview";
+import HabitEditorScore from "./habitEditorComponents/HabitEditorScore";
+import HabitEditorHistory from "./habitEditorComponents/HabitEditorHistory";
+import HabitEditorCalender from "./habitEditorComponents/HabitEditorCalender";
+import HabitEditorStreaks from "./habitEditorComponents/HabitEditorStreaks";
+import HabitEditorFrequency from "./habitEditorComponents/HabitEditorFrequency";
 
 const HabitEditor = (props) => {
 	return (
@@ -24,6 +30,15 @@ const HabitEditor = (props) => {
 			{props.habit.notes && (
 				<HabitEditorNotes notes={props.habit.notes} />
 			)}
+			<HabitEditorOverview
+				name={props.habit.name}
+				color={props.habit.color}
+			/>
+		<HabitEditorScore name={props.habit.name} prevDate={props.prevDate}/>
+			<HabitEditorHistory />
+			<HabitEditorCalender />
+			<HabitEditorStreaks />
+			<HabitEditorFrequency />
 		</Modal>
 	);
 };
