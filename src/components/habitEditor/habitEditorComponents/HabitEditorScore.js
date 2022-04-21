@@ -1,8 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import CanvasJSReact from "../../../canvasjs.react";
-
-const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import ScoreLineChart from "./charts/ScoreLineChart";
 
 const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
 	const [graphState, setGraphState] = useState("day");
@@ -41,36 +39,12 @@ const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
 			: sum;
 		if (interval === graphInterval) {
 			dataPoints.push({
-				label: getPrevDate(i),
-				y: Math.round((sum / 40) * 100),
+				name: getPrevDate(i),
+				score: Math.round((sum / 40) * 100),
 			});
 			interval = 0;
 		}
 	}
-
-	const canvasOptions = {
-		animatedEnabled: false,
-		exportEnabled: false,
-		theme: "light2",
-		title: {
-			text: "",
-		},
-		axisY: {
-			suffix: "%",
-			interval: 1,
-		},
-		axisX: {
-			labelFontSize: 12,
-			interval: 1,
-		},
-		data: [
-			{
-				type: "line",
-				dataPoints: dataPoints,
-			},
-		],
-	};
-
 	return (
 		<Score>
 			<div>
@@ -83,18 +57,17 @@ const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
 					<Option value="year">Year</Option>
 				</Select>
 			</div>
-			<CanvasJSChart options={canvasOptions} />
+			<ScoreLineChart data={dataPoints} />
 		</Score>
 	);
 };
 
 const Score = styled.div`
-	display: flex;
-	flex-direction: column;
 	border: 1px solid #ccc;
 	margin: 0px 5px;
 	padding: 20px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	gap: 20px;
 	align-items: left;
