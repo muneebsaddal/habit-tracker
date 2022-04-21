@@ -10,7 +10,7 @@ const HabitEditorHeader = (props) => {
 				<Title>{props.habitName}</Title>
 			</HeaderLeftSideContainer>
 			<HeaderRightSideContainer>
-				<EditButton type="button">Edit</EditButton>
+				<EditButton onClick={props.handleEditHabitForm} type="button">Edit</EditButton>
 				<MoreSettingsButton type="button">Settings</MoreSettingsButton>
 			</HeaderRightSideContainer>
 		</Header>

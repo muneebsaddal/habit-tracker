@@ -1,12 +1,21 @@
 import styled from "styled-components";
 import Pie from "../../Pie";
 
-const HabitEditorOverview = ({ name, color, getCheckedList, getDaysInMonth }) => {
+const HabitEditorOverview = ({
+	name,
+	color,
+	getCheckedList,
+	getDaysInMonth,
+}) => {
 	const habitCheckList = getCheckedList(name);
 	const totalChecked = habitCheckList.length;
 	const latestDate = habitCheckList[0];
-	const latestMonth = latestDate.substring(0, latestDate.indexOf("/"));
-	const latestYear = latestDate.substring(latestDate.lastIndexOf("/") + 1);
+	const latestMonth = latestDate
+		? latestDate.substring(0, latestDate.indexOf("/"))
+		: 1;
+	const latestYear = latestDate
+		? latestDate.substring(latestDate.lastIndexOf("/") + 1)
+		: 1;
 
 	return (
 		<Overview>

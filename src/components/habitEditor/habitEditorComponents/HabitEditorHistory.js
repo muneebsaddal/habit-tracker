@@ -1,17 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
-import ScoreLineChart from "./charts/ScoreLineChart";
+import HistoryBarChart from "./charts/HistoryBarChart";
 
-const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
-	const [graphState, setGraphState] = useState("day");
+const HabitEditorHistory = ({ name, getPrevDate, getCheckedList }) => {
+	const [graphState, setGraphState] = useState("week");
 	const handleGraphChange = (e) => {
 		setGraphState(e.target.value);
 	};
-	let graphInterval = 1;
+	let graphInterval = 7;
 	switch (graphState) {
-		case "day":
-			graphInterval = 1;
-			break;
 		case "week":
 			graphInterval = 7;
 			break;
@@ -25,7 +22,7 @@ const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
 			graphInterval = 365;
 			break;
 		default:
-			graphInterval = 1;
+			graphInterval = 7;
 	}
 	const habitCheckList = getCheckedList(name);
 	const dataPoints = [];
@@ -39,29 +36,29 @@ const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
 		if (interval === graphInterval) {
 			dataPoints.push({
 				name: getPrevDate(i),
-				score: Math.round((sum / 40) * 100),
+				score: sum,
 			});
+			sum = 0;
 			interval = 0;
 		}
 	}
 	return (
-		<Score>
+		<History>
 			<div>
-				<Heading>Score</Heading>
+				<Heading>History</Heading>
 				<Select defaultValue="day" onChange={handleGraphChange}>
-					<Option value="day">Day</Option>
 					<Option value="week">Week</Option>
 					<Option value="month">Month</Option>
 					<Option value="quarter">Quarter</Option>
 					<Option value="year">Year</Option>
 				</Select>
 			</div>
-			<ScoreLineChart data={dataPoints} />
-		</Score>
+			<HistoryBarChart data={dataPoints} />
+		</History>
 	);
 };
 
-const Score = styled.div`
+const History = styled.p`
 	border: 1px solid #ccc;
 	margin: 0px 5px;
 	padding: 20px;
@@ -70,7 +67,6 @@ const Score = styled.div`
 	justify-content: center;
 	gap: 20px;
 	align-items: left;
-
 	div {
 		display: flex;
 		justify-content: space-between;
@@ -91,4 +87,4 @@ const Select = styled.select`
 
 const Option = styled.option``;
 
-export default HabitEditorScore;
+export default HabitEditorHistory;
