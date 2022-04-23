@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-const daysIntoYear = (date) => {
-	return (
-		(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-			Date.UTC(date.getFullYear(), 0, 0)) /
-		24 /
-		60 /
-		60 /
-		1000
-	);
-};
-
 const findLongestConseqSubseq = (arr) => {
 	let n = arr.length;
 	let S = new Set();
@@ -28,8 +17,7 @@ const findLongestConseqSubseq = (arr) => {
 	return [ans, lastValueOfStreak];
 };
 
-const HabitEditorStreaks = ({ name, getPrevDate, getCheckedList }) => {
-	const habitCheckList = getCheckedList(name);
+const HabitEditorStreaks = ({ habitCheckList, daysIntoYear }) => {
 	habitCheckList.sort(function (a, b) {
 		return a.localeCompare(b);
 	});

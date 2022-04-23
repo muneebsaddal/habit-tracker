@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import ScoreLineChart from "./charts/ScoreLineChart";
 
-const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
+const HabitEditorScore = ({ habitCheckList, getPrevDate }) => {
 	const [graphState, setGraphState] = useState("day");
 	const handleGraphChange = (e) => {
 		setGraphState(e.target.value);
@@ -27,7 +27,6 @@ const HabitEditorScore = ({ name, getPrevDate, getCheckedList }) => {
 		default:
 			graphInterval = 1;
 	}
-	const habitCheckList = getCheckedList(name);
 	const dataPoints = [];
 	let sum = 0;
 	let interval = 0;

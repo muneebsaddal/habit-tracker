@@ -80,6 +80,12 @@ function App() {
 		return date.toLocaleDateString();
 	};
 
+	const getPrevMonth = (value) => {
+		let date = new Date();
+		date.setMonth(date.getMonth() - value);
+		return date.toLocaleString("default", { month: "long" });
+	};
+
 	const [time, setTime] = useState("0:00am");
 
 	const handleTimeChange = (data) => {
@@ -109,6 +115,7 @@ function App() {
 	const [dataForm, setDataForm] = useState(formInitialState);
 
 	const handleChangeForm = (e) => {
+		console.log("clicked");
 		const { name, value, type, checked } = e.target;
 		setDataForm((prevData) => {
 			return {
@@ -141,11 +148,32 @@ function App() {
 			};
 		});
 	};
+	const [updateFlag, setUpdateFlag] = useState(false);
+	const [updatedFormData, updateFormData] = useState(formInitialState);
+	const handleUpdateForm = (e) => {
+		console.log("clicked");
+		console.log(updatedFormData);
+		setUpdateFlag(true);
+		const { name, value, type, checked } = e.target;
+		updateFormData((prevData) => {
+			return {
+				...prevData,
+				[name]: type === "checkbox" ? checked : value,
+			};
+		});
+	};
+	const handleUpdatedSubmitForm = (e) => {
+		e.preventDefault();
+		//close form here
+
+		// setHabitArray((prevState) => [...prevState, dataForm]);
+		// setDataForm(formInitialState);
+	};
 
 	const [habitArray, setHabitArray] = useState(getHabitArray);
 
-	const handleSubmitForm = (event) => {
-		event.preventDefault();
+	const handleSubmitForm = (e) => {
+		e.preventDefault();
 		handleAddFormClose_A();
 		handleAddFormClose_B();
 
@@ -245,11 +273,21 @@ function App() {
 			)}
 			{openHabitEditor && (
 				<HabitEditor
-					habit={currentHabit}
+					habit={!updateFlag ? currentHabit : updatedFormData}
+					getTime={time}
+					changeTime={handleTimeChange}
 					habitEditorState={openHabitEditor}
+					colorChange={handleColorChanges}
 					habitEditorClose={handleHabitEditorOpen}
 					getCheckedList={getCheckedList}
 					getPrevDate={getPrevDate}
+					getPrevMonth={getPrevMonth}
+					// handleFormChange={handleChangeForm}
+					handleUpdateForm={handleUpdateForm}
+					// handleFormSubmit={handleSubmitForm}
+					handleUpdatedSubmitForm={handleUpdatedSubmitForm}
+					freqChange={handleFrequencyChange}
+					tempFreqValue={handleTempFreqValue}
 				/>
 			)}
 		</>

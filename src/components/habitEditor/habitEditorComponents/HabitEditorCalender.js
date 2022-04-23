@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-const HabitEditorCalender = ({ habitCheckList, getPrevDate, daysIntoYear }) => {
-	// const calenderLength = daysIntoYear(
-	// 	new Date(habitCheckList[habitCheckList.length - 1])
-	// );
+const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 	const dateArr1D = [];
 	const arrayLen = 210;
 	const rowLength = arrayLen / 7;
@@ -15,12 +12,7 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate, daysIntoYear }) => {
 			? (colorFlag = "b")
 			: (colorFlag = "g");
 
-		dateArr1D.push(
-			getPrevDate(i).slice(
-				getPrevDate(i).indexOf("/") + 1,
-				getPrevDate(i).lastIndexOf("/")
-			) + colorFlag
-		);
+		dateArr1D.push(getPrevDate(i) + colorFlag);
 	}
 
 	const dateArr2D = [];
@@ -36,7 +28,12 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate, daysIntoYear }) => {
 					: (color = "#ddd");
 				children.push(
 					<Td theme={{ main: color }}>
-						{dateArr2D[i][j].replace(/[^0-9]/g, "")}
+						{dateArr2D[i][j]
+							.slice(
+								dateArr2D[i][j].indexOf("/") + 1,
+								dateArr2D[i][j].lastIndexOf("/")
+							)
+							.replace(/[^0-9]/g, "")}
 					</Td>
 				);
 			}

@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import HistoryBarChart from "./charts/HistoryBarChart";
 
-const HabitEditorHistory = ({ name, getPrevDate, getCheckedList }) => {
+const HabitEditorHistory = ({ getPrevDate, habitCheckList }) => {
 	const [graphState, setGraphState] = useState("week");
 	const handleGraphChange = (e) => {
 		setGraphState(e.target.value);
@@ -24,7 +24,6 @@ const HabitEditorHistory = ({ name, getPrevDate, getCheckedList }) => {
 		default:
 			graphInterval = 7;
 	}
-	const habitCheckList = getCheckedList(name);
 	const dataPoints = [];
 	let sum = 0;
 	let interval = 0;

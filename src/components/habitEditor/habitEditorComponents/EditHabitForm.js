@@ -1,13 +1,13 @@
+// import styled from "styled-components";
 import React, { useState } from "react";
-import "./habitForm.css";
 import Modal from "react-modal";
-import FormHeader from "./formComponents/FormHeader";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
-import FrequencyDialog from "./formComponents/FrequencyDialog";
+import FrequencyDialog from "../../habitForms/formComponents/FrequencyDialog";
+import FormHeader from "../../habitForms/formComponents/FormHeader";
 
-const HabitFormYesNo = (props) => {
+const EditHabitForm = (props) => {
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -32,7 +32,7 @@ const HabitFormYesNo = (props) => {
 				width: "36px",
 				height: "22px",
 				borderRadius: "2px",
-				background: `${props.formData.color}`,
+				background: `${props.currentHabit.color}`,
 			},
 			swatch: {
 				margin: "0px 8px",
@@ -62,24 +62,18 @@ const HabitFormYesNo = (props) => {
 			},
 		},
 	});
-	console.log(props.formData);
 	return (
-		<Modal
-			isOpen={props.openFormA}
-			onRequestClose={props.handleFormClose}
-			className="form-modal"
-			ariaHideApp={false}
-		>
-			<FormHeader title="Create Habit" />
+		<Modal isOpen={props.isOpen} style={modalStyles} ariaHideApp={false}>
+			<FormHeader title="Edit Habit" />
 			<form>
 				<div className="input-group input-group-name">
 					<label>Name</label>
 					<input
 						type="text"
 						placeholder="e.g. Exercise"
-						onChange={props.handleFormChange}
+						onChange={props.handleUpdateForm}
 						name="name"
-						value={props.formData.name}
+						value={props.currentHabit.name}
 					/>
 					<div className="input-group input-group-color">
 						<label>Color</label>
@@ -112,21 +106,21 @@ const HabitFormYesNo = (props) => {
 					<input
 						type="text"
 						placeholder="e.g. Did you exercise today?"
-						onChange={props.handleFormChange}
+						onChange={props.handleUpdateForm}
 						name="question"
-						value={props.formData.question}
+						value={props.currentHabit.question}
 					/>
 				</div>
 				<div className="input-group">
 					<label>Frequency</label>
 					<button type="button" onClick={props.handleOpenFreqDialog}>
-						{props.formData.frequency
-							? props.formData.frequency
+						{props.currentHabit.frequency
+							? props.currentHabit.frequency
 							: "Everyday"}
 					</button>
 					{props.openFreqDialog && (
 						<FrequencyDialog
-							formData={props.formData}
+							formData={props.currentHabit}
 							freqChange={props.freqChange}
 							tempFreqValue={props.tempFreqValue}
 							isOpen={props.openFreqDialog}
@@ -140,9 +134,9 @@ const HabitFormYesNo = (props) => {
 						type="button"
 						onClick={props.handleOpenReminderDialog}
 					>
-						{props.formData.reminder === ""
+						{props.currentHabit.reminder === ""
 							? "off"
-							: props.formData.reminder}
+							: props.currentHabit.reminder}
 					</button>
 					<Modal
 						isOpen={props.openReminderDialog}
@@ -166,15 +160,16 @@ const HabitFormYesNo = (props) => {
 					<input
 						type="text"
 						placeholder="(Optional)"
-						onChange={props.handleFormChange}
+						onChange={props.handleUpdateForm}
 						name="notes"
-						value={props.formData.notes}
+						value={props.currentHabit.notes}
 					/>
 				</div>
 				<div className="form-button-group">
 					<button
 						className="form-buttons form-button-cancel"
-						onClick={props.handleFormClose}
+						onClick={props.closeEditForm}
+						type="button"
 					>
 						CANCEL
 					</button>
@@ -191,4 +186,19 @@ const HabitFormYesNo = (props) => {
 	);
 };
 
-export default HabitFormYesNo;
+const modalStyles = {
+	content: {
+		background: "white",
+		height: "100%",
+		inset: "0px",
+		border: "none",
+		width: "100%",
+		padding: "0px",
+		borderRadius: "0px",
+		margin: "0px",
+		display: "flex",
+		flexDirection: "column",
+	},
+};
+
+export default EditHabitForm;
