@@ -74,17 +74,35 @@ function App() {
 		setDialogsFormB({ ...dialogsFormB, reminderDialog: false });
 	};
 
+	const [dialogsFormUpdate, setDialogsFormUpdate] = useState({
+		freqDialog: false,
+		reminderDialog: false,
+	});
+
+	const handleFreqDialogOpenUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, freqDialog: true });
+	};
+	const handleReminderDialogOpenUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, reminderDialog: true });
+	};
+	const handleFreqDialogCloseUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, freqDialog: false });
+	};
+	const handleReminderDialogCloseUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, reminderDialog: false });
+	};
+
 	const getPrevDate = (prevDays) => {
 		let date = new Date();
 		date.setDate(date.getDate() - prevDays);
 		return date.toLocaleDateString();
 	};
 
-	const getPrevMonth = (value) => {
-		let date = new Date();
-		date.setMonth(date.getMonth() - value);
-		return date.toLocaleString("default", { month: "long" });
-	};
+	// const getPrevMonth = (value) => {
+	// 	let date = new Date();
+	// 	date.setMonth(date.getMonth() - value);
+	// 	return date.toLocaleString("default", { month: "long" });
+	// };
 
 	const [time, setTime] = useState("0:00am");
 
@@ -148,27 +166,6 @@ function App() {
 			};
 		});
 	};
-	const [updateFlag, setUpdateFlag] = useState(false);
-	const [updatedFormData, updateFormData] = useState(formInitialState);
-	const handleUpdateForm = (e) => {
-		console.log("clicked");
-		console.log(updatedFormData);
-		setUpdateFlag(true);
-		const { name, value, type, checked } = e.target;
-		updateFormData((prevData) => {
-			return {
-				...prevData,
-				[name]: type === "checkbox" ? checked : value,
-			};
-		});
-	};
-	const handleUpdatedSubmitForm = (e) => {
-		e.preventDefault();
-		//close form here
-
-		// setHabitArray((prevState) => [...prevState, dataForm]);
-		// setDataForm(formInitialState);
-	};
 
 	const [habitArray, setHabitArray] = useState(getHabitArray);
 
@@ -203,6 +200,35 @@ function App() {
 			return [];
 		}
 		return JSON.parse(listData);
+	};
+
+	const [updateFlag, setUpdateFlag] = useState(false);
+	const [updatedFormData, updateFormData] = useState(formInitialState);
+
+	const [editHabitFormOpen, setEditHabit] = useState(false);
+	const handleEditHabitForm = () => {
+		setEditHabit((prevState) => !prevState);
+	};
+
+	const handleUpdateForm = (e) => {
+		setUpdateFlag(true);
+		const { name, value, type, checked } = e.target;
+		updateFormData((prevData) => {
+			return {
+				...prevData,
+				[name]: type === "checkbox" ? checked : value,
+			};
+		});
+	};
+
+	const handleUpdateFormSubmit = (record) => {
+		console.log(record.name);
+		const filteredArray = habitArray.filter(
+			(element) => element.name !== record.name
+		);
+		filteredArray.push(record);
+		setHabitArray(filteredArray);
+		handleEditHabitForm();
 	};
 
 	const habits = habitArray.map((h) => {
@@ -274,20 +300,19 @@ function App() {
 			{openHabitEditor && (
 				<HabitEditor
 					habit={!updateFlag ? currentHabit : updatedFormData}
-					getTime={time}
-					changeTime={handleTimeChange}
-					habitEditorState={openHabitEditor}
-					colorChange={handleColorChanges}
-					habitEditorClose={handleHabitEditorOpen}
 					getCheckedList={getCheckedList}
+					habitEditorState={openHabitEditor}
+					habitEditorClose={handleHabitEditorOpen}
+					handleEditHabitForm={handleEditHabitForm}
 					getPrevDate={getPrevDate}
-					getPrevMonth={getPrevMonth}
-					// handleFormChange={handleChangeForm}
-					handleUpdateForm={handleUpdateForm}
-					// handleFormSubmit={handleSubmitForm}
-					handleUpdatedSubmitForm={handleUpdatedSubmitForm}
-					freqChange={handleFrequencyChange}
-					tempFreqValue={handleTempFreqValue}
+					editHabitFormOpen={editHabitFormOpen}
+					handleOpenFreqDialog={handleFreqDialogOpenUpdate}
+					handleOpenReminderDialog={handleReminderDialogOpenUpdate}
+					openFreqDialog={dialogsFormUpdate.freqDialog}
+					openReminderDialog={dialogsFormUpdate.reminderDialog}
+					closeFreqDialog={handleFreqDialogCloseUpdate}
+					closeReminderDialog={handleReminderDialogCloseUpdate}
+					handleUpdateFormSubmit={handleUpdateFormSubmit}
 				/>
 			)}
 		</>

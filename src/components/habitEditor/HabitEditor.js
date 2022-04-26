@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import HabitEditorHeader from "./habitEditorComponents/HabitEditorHeader";
-import EditHabitForm from "./habitEditorComponents/EditHabitForm";
+import EditHabitForm from "./editHabitForm/EditHabitForm";
 import HabitEditorReminder from "./habitEditorComponents/HabitEditorReminder";
 import HabitEditorNotes from "./habitEditorComponents/HabitEditorNotes";
 import HabitEditorOverview from "./habitEditorComponents/HabitEditorOverview";
@@ -8,7 +8,6 @@ import HabitEditorScore from "./habitEditorComponents/HabitEditorScore";
 import HabitEditorHistory from "./habitEditorComponents/HabitEditorHistory";
 import HabitEditorCalender from "./habitEditorComponents/HabitEditorCalender";
 import HabitEditorStreaks from "./habitEditorComponents/HabitEditorStreaks";
-import { useState } from "react";
 
 const HabitEditor = (props) => {
 	const daysInMonth = (month, year) => {
@@ -28,11 +27,6 @@ const HabitEditor = (props) => {
 
 	const habitCheckList = props.getCheckedList(props.habit.name);
 
-	const [editHabit, setEditHabit] = useState(false);
-	const handleEditHabitForm = (e) => {
-		setEditHabit((prevState) => !prevState);
-	};
-
 	return (
 		<>
 			<Modal
@@ -43,7 +37,7 @@ const HabitEditor = (props) => {
 				<HabitEditorHeader
 					habitName={props.habit.name}
 					habitEditorClose={props.habitEditorClose}
-					handleEditHabitForm={handleEditHabitForm}
+					handleEditHabitForm={props.handleEditHabitForm}
 				/>
 				<HabitEditorReminder
 					question={props.habit.question}
@@ -77,25 +71,16 @@ const HabitEditor = (props) => {
 				/>
 			</Modal>
 			<EditHabitForm
-				isOpen={editHabit}
-				currentHabit={props.habit}
-				closeEditForm={handleEditHabitForm}
-				colorChange={props.colorChange}
-				getTime={props.getTime}
-				changeTime={props.changeTime}
-				handleFormChange={props.handleFormChange}
-				handleFormSubmit={props.handleFormSubmit}
-				freqChange={props.freqChange}
-				tempFreqValue={props.tempFreqValue}
+				habit={props.habit}
+				isOpen={props.editHabitFormOpen}
+				closeEditForm={props.handleEditHabitForm}
+				handleUpdateFormSubmit={props.handleUpdateFormSubmit}
 				handleOpenFreqDialog={props.handleOpenFreqDialog}
-				handleOpenReminderDialog={props.handleOpenReminderDialog}
 				openFreqDialog={props.openFreqDialog}
-				openReminderDialog={props.openReminderDialog}
 				closeFreqDialog={props.closeFreqDialog}
+				handleOpenReminderDialog={props.handleOpenReminderDialog}
+				openReminderDialog={props.openReminderDialog}
 				closeReminderDialog={props.closeReminderDialog}
-				timeSubmit={props.timeSubmit}
-				handleUpdateForm={props.handleUpdateForm}
-				handleUpdatedSubmitForm={props.handleUpdatedSubmitForm}
 			/>
 		</>
 	);
