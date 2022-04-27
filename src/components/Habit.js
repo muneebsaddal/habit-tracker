@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import Pie from "./Pie";
 
 const Habit = (props) => {
+	const totalChecked = props.getCheckedList(props.habit.name).length;
+
 	const HabitName = styled.button`
 		margin: 0px;
 		height: 100%;
@@ -56,7 +59,12 @@ const Habit = (props) => {
 	return (
 		<HabitContainer>
 			<Columns>
-				<HabitProgress></HabitProgress>
+				<HabitProgress>
+					<Pie
+						percentage={(totalChecked / 40) * 100}
+						color={props.habit.color}
+					/>
+				</HabitProgress>
 				<HabitName onDoubleClick={props.habitEditorOpen}>
 					{props.habit.name}
 				</HabitName>
