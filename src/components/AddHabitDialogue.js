@@ -6,7 +6,7 @@ const modalStyles = {
 		position: "absolute",
 		top: "50%",
 		left: "50%",
-		height: "300px",
+		height: "330px",
 		width: "70%",
 		transform: "translate(-50%, -50%)",
 		display: "flex",

@@ -1,13 +1,22 @@
 import styled from "styled-components";
+import { IoMdAdd } from "react-icons/io";
+import { BiFilterAlt } from "react-icons/bi";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const Header = (props) => {
 	return (
 		<HeaderContainer>
 			<HeaderTitle>{props.pageTitle}</HeaderTitle>
 			<HeaderButtonContainer>
-				<AddButton onClick={props.handleOpen}>add</AddButton>
-				<FilterButton>filter</FilterButton>
-				<SettingsButton>setting</SettingsButton>
+				<AddButton onClick={props.handleOpen}>
+					<IoMdAdd size={26} />
+				</AddButton>
+				<FilterButton>
+					<BiFilterAlt size={25} />
+				</FilterButton>
+				<SettingsButton>
+					<IoSettingsOutline size={24} />
+				</SettingsButton>
 			</HeaderButtonContainer>
 		</HeaderContainer>
 	);
@@ -25,12 +34,13 @@ const HeaderContainer = styled.header`
 const HeaderTitle = styled.h1`
 	font-family: "Karla";
 	font-weight: 500;
-	font-size: 32px;
+	font-size: px;
 	margin: 0px;
 `;
 
 const HeaderButtonContainer = styled.div`
 	display: flex;
+	gap: 10px;
 `;
 
 const Button = styled.button`
@@ -49,6 +59,5 @@ const Button = styled.button`
 const AddButton = styled(Button)``;
 const FilterButton = styled(Button)``;
 const SettingsButton = styled(Button)``;
-
 
 export default Header;

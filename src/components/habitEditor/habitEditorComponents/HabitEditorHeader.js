@@ -1,17 +1,23 @@
 import styled from "styled-components";
-
+import { BiArrowBack } from "react-icons/bi";
+import { IoSettingsOutline } from "react-icons/io5";
+import { FiEdit3 } from "react-icons/fi";
 const HabitEditorHeader = (props) => {
 	return (
 		<Header>
 			<HeaderLeftSideContainer>
-				<BackButton onClick={props.habitEditorClose} type="button">
-					back
+				<BackButton FaBeer={props.habitEditorClose} type="button">
+					<BiArrowBack size={24} />
 				</BackButton>
 				<Title>{props.habitName}</Title>
 			</HeaderLeftSideContainer>
 			<HeaderRightSideContainer>
-				<EditButton onClick={props.handleEditHabitForm} type="button">Edit</EditButton>
-				<MoreSettingsButton type="button">Settings</MoreSettingsButton>
+				<EditButton onClick={props.handleEditHabitForm} type="button">
+					<FiEdit3 size={24} />
+				</EditButton>
+				<MoreSettingsButton type="button">
+					<IoSettingsOutline size={24} />
+				</MoreSettingsButton>
 			</HeaderRightSideContainer>
 		</Header>
 	);
@@ -31,9 +37,8 @@ const Button = styled.button`
 	background: none;
 	border: none;
 	color: white;
-	font-family: "Karla";
-	font-size: 18px;
 	padding: 0px;
+	margin: 0px;
 	cursor: pointer;
 `;
 
@@ -42,17 +47,15 @@ const HeaderLeftSideContainer = styled.div`
 	gap: 30px;
 `;
 
-const BackButton = styled(Button)`
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	width: 60px;
-`;
+const BackButton = styled(Button)``;
 
 const Title = styled.h1`
 	font-family: "Karla";
 	font-weight: 500;
-	font-size: 32px;
+	font-size: 28px;
 	margin: 0px;
+	padding-left: 10px;
+	padding-bottom: 5px;
 `;
 
 const HeaderRightSideContainer = styled.div`

@@ -55,7 +55,9 @@ const HabitEditorScore = ({ habitCheckList, getPrevDate }) => {
 					<Option value="year">Year</Option>
 				</Select>
 			</div>
-			<ScoreLineChart data={dataPoints} />
+			<span>
+				<ScoreLineChart data={dataPoints} />
+			</span>
 		</Score>
 	);
 };
@@ -73,6 +75,11 @@ const Score = styled.div`
 	div {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	span {
+		display: flex;
+		justify-content: center;
 	}
 `;
 

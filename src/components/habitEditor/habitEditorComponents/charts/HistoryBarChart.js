@@ -11,7 +11,7 @@ import {
 
 const ScoreLineChart = ({ data }) => {
 	return (
-		<ResponsiveContainer width="100%" aspect={4.0 / 2.0}>
+		<ResponsiveContainer width="80%" aspect={4.0 / 2.0}>
 			<BarChart
 				data={data}
 				margin={{

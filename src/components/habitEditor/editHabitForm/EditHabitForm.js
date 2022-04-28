@@ -304,7 +304,7 @@ const EditHabitForm = (props) => {
 								onClick={props.closeEditForm}
 								disabled={submitting}
 							>
-								Reset
+								Cancel
 							</button>
 						</div>
 					</form>

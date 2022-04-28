@@ -52,7 +52,9 @@ const HabitEditorHistory = ({ getPrevDate, habitCheckList }) => {
 					<Option value="year">Year</Option>
 				</Select>
 			</div>
-			<HistoryBarChart data={dataPoints} />
+			<span>
+				<HistoryBarChart data={dataPoints} />
+			</span>
 		</History>
 	);
 };
@@ -69,6 +71,11 @@ const History = styled.p`
 	div {
 		display: flex;
 		justify-content: space-between;
+	}
+
+	span {
+		display: flex;
+		justify-content: center;
 	}
 `;
 
