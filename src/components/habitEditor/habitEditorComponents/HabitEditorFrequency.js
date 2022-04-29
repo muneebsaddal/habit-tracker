@@ -7,15 +7,17 @@ const HabitEditorFrequency = ({
 }) => {
 	const dateArr1D = [];
 	const arrayLen = 210;
-	const rowLength = arrayLen / 7;
+	const columnLength = 7;
+	const rowLength = arrayLen / columnLength;
 	let color = "#ddd";
-	let colorFlag = "g";
+	let colorFlag = "";
 
 	for (let i = 0; i < arrayLen; i++) {
-		habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
-			? (colorFlag = "b")
-			: (colorFlag = "g");
-
+		if (
+			habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
+		) {
+			colorFlag = "b";
+		}
 		dateArr1D.push(
 			getPrevDate(i).slice(
 				getPrevDate(i).indexOf("/") + 1,
@@ -29,33 +31,16 @@ const HabitEditorFrequency = ({
 
 	const createTable = () => {
 		let table = [];
-		for (let i = 0; i < 7; i++) {
+		for (let i = 0; i < columnLength; i++) {
 			let children = [];
 			for (let j = 0; j < rowLength; j++) {
-				dateArr2D[i][j][dateArr2D[i][j].length - 1] === "b"
-					? (color = "#585FFF")
-					: (color = "#ddd");
+				color = dateArr2D[i][j].at(-1) === "b" ? "#585FFF" : "#ddd";
 				children.push(<Td theme={{ main: color }}>{}</Td>);
 			}
 			table.push(<Tr>{children}</Tr>);
 		}
 		return table;
 	};
-
-	const monthsArray = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
-	];
 
 	const xAxisLabel = () => {
 		let xLabel = [];

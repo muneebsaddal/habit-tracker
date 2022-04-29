@@ -2,31 +2,23 @@ import { useState } from "react";
 import styled from "styled-components";
 import ScoreLineChart from "./charts/ScoreLineChart";
 
+const getGraphInterval = (type) => {
+	return {
+		day: 1,
+		week: 7,
+		month: 31,
+		quarter: 90,
+		year: 365,
+		default: 1,
+	}[type];
+};
+
 const HabitEditorScore = ({ habitCheckList, getPrevDate }) => {
-	const [graphState, setGraphState] = useState("day");
+	const [graphState, setGraphState] = useState(1);
 	const handleGraphChange = (e) => {
-		setGraphState(e.target.value);
+		setGraphState(getGraphInterval(e.target.value));
 	};
-	let graphInterval = 1;
-	switch (graphState) {
-		case "day":
-			graphInterval = 1;
-			break;
-		case "week":
-			graphInterval = 7;
-			break;
-		case "month":
-			graphInterval = 31;
-			break;
-		case "quarter":
-			graphInterval = 90;
-			break;
-		case "year":
-			graphInterval = 365;
-			break;
-		default:
-			graphInterval = 1;
-	}
+
 	const dataPoints = [];
 	let sum = 0;
 	let interval = 0;
@@ -35,7 +27,7 @@ const HabitEditorScore = ({ habitCheckList, getPrevDate }) => {
 		sum = habitCheckList.find((element) => element === getPrevDate(i))
 			? sum + 1
 			: sum;
-		if (interval === graphInterval) {
+		if (interval === graphState) {
 			dataPoints.push({
 				name: getPrevDate(i),
 				score: Math.round((sum / 40) * 100),

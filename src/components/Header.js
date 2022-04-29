@@ -34,7 +34,6 @@ const HeaderContainer = styled.header`
 const HeaderTitle = styled.h1`
 	font-family: "Karla";
 	font-weight: 500;
-	font-size: px;
 	margin: 0px;
 `;
 
