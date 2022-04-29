@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
-import { IoSettingsOutline } from "react-icons/io5";
+import { MdOutlineMoreVert } from "react-icons/md";
 import { FiEdit3 } from "react-icons/fi";
 const HabitEditorHeader = (props) => {
 	return (
 		<Header>
 			<HeaderLeftSideContainer>
-				<BackButton FaBeer={props.habitEditorClose} type="button">
+				<BackButton
+					onClick={props.handleHabitEditorClose}
+					type="button"
+				>
 					<BiArrowBack size={24} />
 				</BackButton>
 				<Title>{props.habitName}</Title>
@@ -16,7 +19,7 @@ const HabitEditorHeader = (props) => {
 					<FiEdit3 size={24} />
 				</EditButton>
 				<MoreSettingsButton type="button">
-					<IoSettingsOutline size={24} />
+					<MdOutlineMoreVert size={30} />
 				</MoreSettingsButton>
 			</HeaderRightSideContainer>
 		</Header>
@@ -47,14 +50,16 @@ const HeaderLeftSideContainer = styled.div`
 	gap: 30px;
 `;
 
-const BackButton = styled(Button)``;
+const BackButton = styled(Button)`
+	margin-left: 20px;
+`;
 
 const Title = styled.h1`
 	font-family: "Karla";
 	font-weight: 500;
 	font-size: 28px;
 	margin: 0px;
-	padding-left: 10px;
+	padding-left: 40px;
 	padding-bottom: 5px;
 `;
 

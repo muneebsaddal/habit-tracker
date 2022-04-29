@@ -8,6 +8,7 @@ const modalStyles = {
 		left: "50%",
 		height: "330px",
 		width: "70%",
+		maxWidth: "750px",
 		transform: "translate(-50%, -50%)",
 		display: "flex",
 		flexDirection: "column",

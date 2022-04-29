@@ -19,6 +19,8 @@ const HabitEditorReminder = ({ question, frequency, reminder }) => {
 const ReminderContainer = styled.div`
 	padding: 20px 100px;
 	display: flex;
+	margin: auto;
+	width: 70%;
 	flex-direction: column;
 	align-items: left;
 	justify-content: center;
@@ -28,12 +30,12 @@ const ReminderContainer = styled.div`
 const Question = styled.h1`
 	margin: 0px;
 	font-size: 18px;
-    padding-bottom: 10px;
+	padding-bottom: 10px;
 `;
 
 const Reminder = styled.div`
-    display: flex;
-    gap: 30px;
+	display: flex;
+	gap: 30px;
 `;
 
 const ReminderFrequency = styled.p`

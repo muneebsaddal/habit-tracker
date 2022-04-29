@@ -120,8 +120,9 @@ const Habit = (props) => {
 
 const HabitContainer = styled.li`
 	background: white;
-	margin: 0 10px 10px 10px;
-	border-radius: 3px;
+	width: 70%;
+	margin: 15px auto;
+	border-radius: 5px;
 	list-style-type: none;
 `;
 

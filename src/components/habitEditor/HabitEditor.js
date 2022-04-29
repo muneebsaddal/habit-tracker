@@ -37,6 +37,9 @@ const HabitEditor = (props) => {
 				<HabitEditorHeader
 					habitName={props.habit.name}
 					habitEditorClose={props.habitEditorClose}
+
+					handleHabitEditorClose={props.handleHabitEditorClose}
+					
 					handleEditHabitForm={props.handleEditHabitForm}
 				/>
 				<HabitEditorReminder
@@ -88,7 +91,7 @@ const HabitEditor = (props) => {
 
 const modalStyles = {
 	content: {
-		background: "white",
+		background: "#f1f1f1",
 		height: "100%",
 		inset: "0px",
 		border: "none",

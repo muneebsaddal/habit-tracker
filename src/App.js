@@ -191,7 +191,10 @@ function App() {
 				setCurrentHabit(habitArray[i]);
 			}
 		}
-		setOpenHabitEditor((prevState) => !prevState);
+		setOpenHabitEditor(true);
+	};
+	const handleHabitEditorClose = () => {
+		setOpenHabitEditor(false);
 	};
 
 	const getCheckedList = (name) => {
@@ -303,6 +306,9 @@ function App() {
 					getCheckedList={getCheckedList}
 					habitEditorState={openHabitEditor}
 					habitEditorClose={handleHabitEditorOpen}
+
+					handleHabitEditorClose={handleHabitEditorClose}
+
 					handleEditHabitForm={handleEditHabitForm}
 					getPrevDate={getPrevDate}
 					editHabitFormOpen={editHabitFormOpen}

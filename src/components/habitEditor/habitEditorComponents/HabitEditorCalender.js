@@ -54,7 +54,9 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 
 const Calender = styled.div`
 	border: 1px solid #ccc;
-	margin: 0px 5px;
+	margin: auto;
+	background: white;
+	width: 70%;
 	padding: 20px;
 `;
 

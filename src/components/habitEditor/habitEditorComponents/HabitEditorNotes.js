@@ -6,7 +6,9 @@ const HabitEditorNotes = ({ notes }) => {
 
 const Notes = styled.p`
 	border: 1px solid #ccc;
-	margin: 0px 5px;
+	margin: auto;
+	background: white;
+	width: 70%;
 	padding: 20px;
 	display: flex;
 	justify-content: center;

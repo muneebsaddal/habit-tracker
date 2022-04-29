@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoMdAdd } from "react-icons/io";
 import { BiFilterAlt } from "react-icons/bi";
-import { IoSettingsOutline } from "react-icons/io5";
+import { MdOutlineMoreVert } from "react-icons/md";
 
 const Header = (props) => {
 	return (
@@ -15,7 +15,7 @@ const Header = (props) => {
 					<BiFilterAlt size={25} />
 				</FilterButton>
 				<SettingsButton>
-					<IoSettingsOutline size={24} />
+					<MdOutlineMoreVert size={30} />
 				</SettingsButton>
 			</HeaderButtonContainer>
 		</HeaderContainer>
@@ -28,7 +28,7 @@ const HeaderContainer = styled.header`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 30px 20px 30px;
+	padding: 20px 60px 20px 60px;
 `;
 
 const HeaderTitle = styled.h1`

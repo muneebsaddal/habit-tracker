@@ -173,17 +173,17 @@ const HabitFormYesNo = (props) => {
 				</div>
 				<div className="form-button-group">
 					<button
-						className="form-buttons form-button-cancel"
-						onClick={props.handleFormClose}
-					>
-						CANCEL
-					</button>
-					<button
 						type="submit"
 						onClick={props.handleFormSubmit}
 						className="form-buttons form-button-submit"
 					>
 						SAVE
+					</button>
+					<button
+						className="form-buttons form-button-cancel"
+						onClick={props.handleFormClose}
+					>
+						CANCEL
 					</button>
 				</div>
 			</form>
