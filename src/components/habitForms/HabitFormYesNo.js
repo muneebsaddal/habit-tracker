@@ -62,7 +62,7 @@ const HabitFormYesNo = (props) => {
 			},
 		},
 	});
-
+	console.log(props.formData);
 	return (
 		<Modal
 			isOpen={props.openFormA}
@@ -70,7 +70,7 @@ const HabitFormYesNo = (props) => {
 			className="form-modal"
 			ariaHideApp={false}
 		>
-			<FormHeader handleFormClose={props.handleFormClose} />
+			<FormHeader title="Create Habit" />
 			<form>
 				<div className="input-group input-group-name">
 					<label>Name</label>
@@ -173,17 +173,17 @@ const HabitFormYesNo = (props) => {
 				</div>
 				<div className="form-button-group">
 					<button
-						className="form-buttons form-button-cancel"
-						onClick={props.handleFormClose}
-					>
-						CANCEL
-					</button>
-					<button
 						type="submit"
 						onClick={props.handleFormSubmit}
 						className="form-buttons form-button-submit"
 					>
 						SAVE
+					</button>
+					<button
+						className="form-buttons form-button-cancel"
+						onClick={props.handleFormClose}
+					>
+						CANCEL
 					</button>
 				</div>
 			</form>

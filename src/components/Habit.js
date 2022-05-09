@@ -1,38 +1,37 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
-const getPrevDate = (prevDays) => {
-	let date = new Date();
-	date.setDate(date.getDate() - prevDays);
-	return date.toLocaleDateString();
-};
-
-const getCheckedList = (name) => {
-	const listData = localStorage.getItem(`checkedList_${name}`);
-	if (!listData) {
-		return [];
-	}
-	return JSON.parse(listData);
-};
+import Pie from "./Pie";
 
 const Habit = (props) => {
+	const totalChecked = props.getCheckedList(props.habit.name).length;
+
+	const HabitName = styled.button`
+		margin: 0px;
+		height: 100%;
+		width: 100%;
+		background: none;
+		border: none;
+		grid-column: span 3;
+		text-align: left;
+		padding: 0px;
+		font-family: "Karla";
+		font-weight: 600;
+		font-size: 18px;
+		color: ${props.habit.color};
+	`;
+
 	const [checkedList, setCheckedList] = useState(
-		getCheckedList(props.habit.name)
+		props.getCheckedList(props.habit.name)
 	);
 
 	const habitCheckedClick = (e) => {
 		if (e.target.checked === true) {
-			setCheckedList([
-				...checkedList,
-				{
-					date: getPrevDate(e.target.id),
-				},
-			]);
+			setCheckedList([...checkedList, props.getPrevDate(e.target.id)]);
 		} else if (e.target.checked === false) {
 			const tempState = [...checkedList];
-			const checkedDate = getPrevDate(e.target.id);
+			const checkedDate = props.getPrevDate(e.target.id);
 			const filteredCheckList = tempState.filter(
-				(arrayEle) => arrayEle.date !== checkedDate
+				(arrayEle) => arrayEle !== checkedDate
 			);
 			setCheckedList(filteredCheckList);
 		}
@@ -49,9 +48,9 @@ const Habit = (props) => {
 	const checkboxIdList = [0, 1, 2, 3, 4];
 	const checkboxStateList = [];
 	for (let checkboxId of checkboxIdList) {
-		getCheckedList(props.habit.name).find(
+		props.getCheckedList(props.habit.name).find(
 			// eslint-disable-next-line no-loop-func
-			({ date }) => date === getPrevDate(checkboxId)
+			(date) => date === props.getPrevDate(checkboxId)
 		)
 			? checkboxStateList.push(true)
 			: checkboxStateList.push(false);
@@ -60,8 +59,15 @@ const Habit = (props) => {
 	return (
 		<HabitContainer>
 			<Columns>
-				<HabitProgress></HabitProgress>
-				<HabitName>{props.habit.name}</HabitName>
+				<HabitProgress>
+					<Pie
+						percentage={(totalChecked / 40) * 100}
+						color={props.habit.color}
+					/>
+				</HabitProgress>
+				<HabitName onDoubleClick={props.habitEditorOpen}>
+					{props.habit.name}
+				</HabitName>
 				<CheckboxContainer>
 					<input
 						type="checkbox"
@@ -113,33 +119,22 @@ const Habit = (props) => {
 };
 
 const HabitContainer = styled.li`
-	padding: 10px;
 	background: white;
-	margin: 0 10px 10px 10px;
-	border-radius: 3px;
+	width: 70%;
+	margin: 15px auto;
+	border-radius: 5px;
 	list-style-type: none;
 `;
 
 const Columns = styled.div`
 	display: grid;
 	grid-template-columns: repeat(9, 1fr);
-	gap: 10px;
 	text-align: center;
 	align-items: center;
-	height: 40px;
+	height: 60px;
 `;
 
 const HabitProgress = styled.div``;
-
-const HabitName = styled.p`
-	margin: 0px;
-	grid-column: span 3;
-	text-align: left;
-	padding-left: 10px;
-	font: "Karla";
-	font-weight: 500;
-	font-size: 18px;
-`;
 
 const CheckboxContainer = styled.div``;
 

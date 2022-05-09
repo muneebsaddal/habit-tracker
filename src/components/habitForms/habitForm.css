@@ -1,5 +1,10 @@
 form {
-	padding: 20px;
+	width: 70%;
+	margin: 0px auto;
+}
+
+.loading {
+	margin: auto;
 }
 
 .form-modal {
@@ -8,8 +13,8 @@ form {
 }
 
 .input-group {
-	border: 1px solid black;
-	margin-bottom: 20px;
+	border: 1px solid rgb(185, 185, 185);
+	margin: 40px 0px;
 	border-radius: 5px;
 }
 
@@ -20,13 +25,23 @@ form {
 	left: 10px;
 	max-width: fit-content;
 	background-color: white;
-	color: black;
+	color: rgb(94, 94, 94);
 	padding: 0 5px;
 	font-size: 14px;
 	height: max-content;
 }
 
 .input-group > input {
+	background: none;
+	border: none;
+	border: 0px;
+	padding: 5px 0px 20px 48px;
+	font-family: "Karla";
+	font-size: 18px;
+	width: 94%;
+}
+
+.input-group > Field {
 	background: none;
 	border: none;
 	border: 0px;
@@ -77,9 +92,8 @@ input:focus {
 
 .form-input-column > div {
 	width: 50%;
-	margin-bottom: 20px;
+	margin: 0px;
 }
-
 
 .form-reminder-dialog {
 	position: absolute;

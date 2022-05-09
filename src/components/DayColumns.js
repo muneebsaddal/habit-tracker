@@ -46,10 +46,11 @@ const DayColumns = () => {
 
 const Columns = styled.div`
 	display: grid;
-	margin: 15px 10px 15px 10px;
+	margin: auto;
+	width: 70%;
 	grid-template-columns: repeat(9, 1fr);
 	gap: 10px;
-	padding: 10px;
+	padding: 30px 0px 10px 0px;
 	text-align: center;
 	font-family: "Karla";
 	font-size: 16px;

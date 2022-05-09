@@ -37,7 +37,6 @@ const FrequencyDialog = (props) => {
 						<div style={{ display: "flex" }}>
 							<Typography>Every&nbsp;&nbsp;&nbsp;</Typography>
 							<TextField
-							
 								id="everyday_3_days"
 								type="number"
 								size="small"
@@ -187,8 +186,9 @@ const FreqDialogContainer = styled.div`
 const SubmitButton = styled.button`
 	margin-left: auto;
 	width: 100px;
-	font-family: "Inter";
+	font-family: "Karla";
 	font-size: 20px;
+	color: black;
 	padding: 10px 0px;
 	background: none;
 	border: 2px solid #b4b4b4;
