@@ -5,7 +5,8 @@ import Pie from "./Pie";
 const Habit = (props) => {
 	const totalChecked = props.getCheckedList(props.habit.name).length;
 
-	const HabitName = styled.button`
+	// eslint-disable-next-line no-const-assign
+	HabitName = styled.button`
 		margin: 0px;
 		height: 100%;
 		width: 100%;
@@ -134,8 +135,12 @@ const Columns = styled.div`
 	height: 60px;
 `;
 
+let HabitName = styled.button``;
+
 const HabitProgress = styled.div``;
 
 const CheckboxContainer = styled.div``;
 
 export default Habit;
+
+export { HabitName };

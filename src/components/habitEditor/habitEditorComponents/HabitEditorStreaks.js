@@ -19,7 +19,7 @@ const findLongestConseqSubseq = (arr) => {
 
 const HabitEditorStreaks = ({ habitCheckList, daysIntoYear }) => {
 	habitCheckList.sort(function (a, b) {
-		return a.localeCompare(b);
+		return a.toString().localeCompare(b);
 	});
 	let streakTestArray = [];
 	streakTestArray = habitCheckList.map((x) => {
