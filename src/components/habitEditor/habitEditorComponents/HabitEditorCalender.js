@@ -3,15 +3,17 @@ import styled from "styled-components";
 const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 	const dateArr1D = [];
 	const arrayLen = 210;
-	const rowLength = arrayLen / 7;
+	const columnLength = 7;
+	const rowLength = arrayLen / columnLength;
 	let color = "#ddd";
-	let colorFlag = "g";
+	let colorFlag = "";
 
 	for (let i = 0; i < arrayLen; i++) {
-		habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
-			? (colorFlag = "b")
-			: (colorFlag = "g");
-
+		if (
+			habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
+		) {
+			colorFlag = "b";
+		}
 		dateArr1D.push(getPrevDate(i) + colorFlag);
 	}
 
@@ -20,7 +22,7 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 
 	const createTable = () => {
 		let table = [];
-		for (let i = 0; i < 7; i++) {
+		for (let i = 0; i < columnLength; i++) {
 			let children = [];
 			for (let j = 0; j < rowLength; j++) {
 				dateArr2D[i][j][dateArr2D[i][j].length - 1] === "b"
