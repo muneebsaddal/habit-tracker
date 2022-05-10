@@ -3,7 +3,8 @@ import styled from "styled-components";
 const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 	const dateArr1D = [];
 	const arrayLen = 210;
-	const rowLength = arrayLen / 7;
+	const columnLength = 7;
+	const rowLength = arrayLen / columnLength;
 	let color = "#ddd";
 	let colorFlag = "g";
 
@@ -20,7 +21,7 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 
 	const createTable = () => {
 		let table = [];
-		for (let i = 0; i < 7; i++) {
+		for (let i = 0; i < columnLength; i++) {
 			let children = [];
 			for (let j = 0; j < rowLength; j++) {
 				dateArr2D[i][j][dateArr2D[i][j].length - 1] === "b"
