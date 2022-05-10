@@ -186,9 +186,9 @@ function App() {
 
 	const [openHabitEditor, setOpenHabitEditor] = useState(false);
 	const handleHabitEditorOpen = (e) => {
-		for (let i in habitArray) {
-			if (habitArray[i].name === e.target.textContent) {
-				setCurrentHabit(habitArray[i]);
+		for (let habit of habitArray) {
+			if (habit.name === e.target.textContent) {
+				setCurrentHabit(habit);
 			}
 		}
 		setOpenHabitEditor(true);
@@ -306,9 +306,7 @@ function App() {
 					getCheckedList={getCheckedList}
 					habitEditorState={openHabitEditor}
 					habitEditorClose={handleHabitEditorOpen}
-
 					handleHabitEditorClose={handleHabitEditorClose}
-
 					handleEditHabitForm={handleEditHabitForm}
 					getPrevDate={getPrevDate}
 					editHabitFormOpen={editHabitFormOpen}

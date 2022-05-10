@@ -6,13 +6,14 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 	const columnLength = 7;
 	const rowLength = arrayLen / columnLength;
 	let color = "#ddd";
-	let colorFlag = "g";
+	let colorFlag = "";
 
 	for (let i = 0; i < arrayLen; i++) {
-		habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
-			? (colorFlag = "b")
-			: (colorFlag = "g");
-
+		if (
+			habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
+		) {
+			colorFlag = "b";
+		}
 		dateArr1D.push(getPrevDate(i) + colorFlag);
 	}
 
