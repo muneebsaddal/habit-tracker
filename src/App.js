@@ -5,6 +5,7 @@ import Habit from "./components/Habit";
 import AddHabitDialogue from "./components/AddHabitDialogue";
 import HabitFormYesNo from "./components/habitForms/HabitFormYesNo";
 import HabitFormMeasurable from "./components/habitForms/HabitFormMeasurable";
+import HabitEditor from "./components/habitEditor/HabitEditor";
 
 function getHabitArray() {
 	const storedData = localStorage.getItem("habitArrayData");
@@ -15,22 +16,19 @@ function getHabitArray() {
 function App() {
 	const [addDialogueOpen, setAddDialogueOpen] = useState(false);
 	const handleAddDialogueOpen = () => {
-		setAddDialogueOpen(true);
-	};
-	const handleAddDialogueClose = () => {
-		setAddDialogueOpen(false);
+		setAddDialogueOpen((prevState) => !prevState);
 	};
 
 	const [addFormOpen_A, setAddFormOpen_A] = useState(false);
 	const [addFormOpen_B, setAddFormOpen_B] = useState(false);
 	const handleAddFormOpen_A = () => {
 		setAddFormOpen_A(true);
-		handleAddDialogueClose();
+		handleAddDialogueOpen();
 		handleAddFormClose_B();
 	};
 	const handleAddFormOpen_B = () => {
 		setAddFormOpen_B(true);
-		handleAddDialogueClose();
+		handleAddDialogueOpen();
 		handleAddFormClose_A();
 	};
 	const handleAddFormClose_A = () => {
@@ -76,6 +74,36 @@ function App() {
 		setDialogsFormB({ ...dialogsFormB, reminderDialog: false });
 	};
 
+	const [dialogsFormUpdate, setDialogsFormUpdate] = useState({
+		freqDialog: false,
+		reminderDialog: false,
+	});
+
+	const handleFreqDialogOpenUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, freqDialog: true });
+	};
+	const handleReminderDialogOpenUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, reminderDialog: true });
+	};
+	const handleFreqDialogCloseUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, freqDialog: false });
+	};
+	const handleReminderDialogCloseUpdate = () => {
+		setDialogsFormUpdate({ ...dialogsFormUpdate, reminderDialog: false });
+	};
+
+	const getPrevDate = (prevDays) => {
+		let date = new Date();
+		date.setDate(date.getDate() - prevDays);
+		return date.toLocaleDateString();
+	};
+
+	// const getPrevMonth = (value) => {
+	// 	let date = new Date();
+	// 	date.setMonth(date.getMonth() - value);
+	// 	return date.toLocaleString("default", { month: "long" });
+	// };
+
 	const [time, setTime] = useState("0:00am");
 
 	const handleTimeChange = (data) => {
@@ -105,6 +133,7 @@ function App() {
 	const [dataForm, setDataForm] = useState(formInitialState);
 
 	const handleChangeForm = (e) => {
+		console.log("clicked");
 		const { name, value, type, checked } = e.target;
 		setDataForm((prevData) => {
 			return {
@@ -140,8 +169,8 @@ function App() {
 
 	const [habitArray, setHabitArray] = useState(getHabitArray);
 
-	const handleSubmitForm = (event) => {
-		event.preventDefault();
+	const handleSubmitForm = (e) => {
+		e.preventDefault();
 		handleAddFormClose_A();
 		handleAddFormClose_B();
 
@@ -153,8 +182,68 @@ function App() {
 		localStorage.setItem("habitArrayData", JSON.stringify(habitArray));
 	}, [habitArray]);
 
+	const [currentHabit, setCurrentHabit] = useState();
+
+	const [openHabitEditor, setOpenHabitEditor] = useState(false);
+	const handleHabitEditorOpen = (e) => {
+		for (let habit of habitArray) {
+			if (habit.name === e.target.textContent) {
+				setCurrentHabit(habit);
+			}
+		}
+		setOpenHabitEditor(true);
+	};
+	const handleHabitEditorClose = () => {
+		setOpenHabitEditor(false);
+	};
+
+	const getCheckedList = (name) => {
+		const listData = localStorage.getItem(`checkedList_${name}`);
+		if (!listData) {
+			return [];
+		}
+		return JSON.parse(listData);
+	};
+
+	const [updateFlag, setUpdateFlag] = useState(false);
+	const [updatedFormData, updateFormData] = useState(formInitialState);
+
+	const [editHabitFormOpen, setEditHabit] = useState(false);
+	const handleEditHabitForm = () => {
+		setEditHabit((prevState) => !prevState);
+	};
+
+	const handleUpdateForm = (e) => {
+		setUpdateFlag(true);
+		const { name, value, type, checked } = e.target;
+		updateFormData((prevData) => {
+			return {
+				...prevData,
+				[name]: type === "checkbox" ? checked : value,
+			};
+		});
+	};
+
+	const handleUpdateFormSubmit = (record) => {
+		console.log(record.name);
+		const filteredArray = habitArray.filter(
+			(element) => element.name !== record.name
+		);
+		filteredArray.push(record);
+		setHabitArray(filteredArray);
+		handleEditHabitForm();
+	};
+
 	const habits = habitArray.map((h) => {
-		return <Habit key={JSON.stringify(h)} habit={h} />;
+		return (
+			<Habit
+				key={JSON.stringify(h)}
+				habit={h}
+				getPrevDate={getPrevDate}
+				getCheckedList={getCheckedList}
+				habitEditorOpen={handleHabitEditorOpen}
+			/>
+		);
 	});
 
 	return (
@@ -164,7 +253,7 @@ function App() {
 			{habits}
 			<AddHabitDialogue
 				open={addDialogueOpen}
-				handleClose={handleAddDialogueClose}
+				handleClose={handleAddDialogueOpen}
 				openFormA={handleAddFormOpen_A}
 				openFormB={handleAddFormOpen_B}
 			/>
@@ -210,6 +299,25 @@ function App() {
 				/>
 			) : (
 				<></>
+			)}
+			{openHabitEditor && (
+				<HabitEditor
+					habit={!updateFlag ? currentHabit : updatedFormData}
+					getCheckedList={getCheckedList}
+					habitEditorState={openHabitEditor}
+					habitEditorClose={handleHabitEditorOpen}
+					handleHabitEditorClose={handleHabitEditorClose}
+					handleEditHabitForm={handleEditHabitForm}
+					getPrevDate={getPrevDate}
+					editHabitFormOpen={editHabitFormOpen}
+					handleOpenFreqDialog={handleFreqDialogOpenUpdate}
+					handleOpenReminderDialog={handleReminderDialogOpenUpdate}
+					openFreqDialog={dialogsFormUpdate.freqDialog}
+					openReminderDialog={dialogsFormUpdate.reminderDialog}
+					closeFreqDialog={handleFreqDialogCloseUpdate}
+					closeReminderDialog={handleReminderDialogCloseUpdate}
+					handleUpdateFormSubmit={handleUpdateFormSubmit}
+				/>
 			)}
 		</>
 	);

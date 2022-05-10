@@ -23,6 +23,7 @@ function HabitFormMeasurable(props) {
 
 	const handleColorChange = (color) => {
 		props.colorChange(color.hex);
+		setColorState({ displayColorPicker: false });
 	};
 
 	const styles = reactCSS({
@@ -34,12 +35,14 @@ function HabitFormMeasurable(props) {
 				background: `${props.formData.color}`,
 			},
 			swatch: {
-				padding: "0px 8px",
+				margin: "0px 8px",
+				padding: "0px",
 				background: "#fff",
 				borderRadius: "1px",
-				boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
+				boxShadow: "none",
 				display: "inline-block",
 				cursor: "pointer",
+				border: "none",
 			},
 			popover: {
 				position: "absolute",
@@ -68,7 +71,7 @@ function HabitFormMeasurable(props) {
 				className="form-modal"
 				ariaHideApp={false}
 			>
-				<FormHeader handleFormClose={props.handleFormClose} />
+				<FormHeader title="Create Habit" />
 				<form>
 					<div className="input-group input-group-name">
 						<label>Name</label>
@@ -82,12 +85,13 @@ function HabitFormMeasurable(props) {
 						<div className="input-group input-group-color">
 							<label>Color</label>
 							<div>
-								<div
+								<button
+									type="button"
 									style={styles.swatch}
 									onClick={handleColorClick}
 								>
 									<div style={styles.color} />
-								</div>
+								</button>
 								{colorState.displayColorPicker ? (
 									<div style={styles.popover}>
 										<div
@@ -142,12 +146,15 @@ function HabitFormMeasurable(props) {
 								type="button"
 								onClick={props.handleOpenFreqDialog}
 							>
-								{props.formData.frequency}
+								{props.formData.frequency
+									? props.formData.frequency
+									: "Everyday"}
 							</button>
 							{props.openFreqDialog && (
 								<FrequencyDialog
 									formData={props.formData}
 									freqChange={props.freqChange}
+									tempFreqValue={props.tempFreqValue}
 									isOpen={props.openFreqDialog}
 									requestClose={props.closeFreqDialog}
 								/>
@@ -194,17 +201,17 @@ function HabitFormMeasurable(props) {
 					</div>
 					<div className="form-button-group">
 						<button
-							className="form-buttons form-button-cancel"
-							onClick={props.handleFormClose}
-						>
-							CANCEL
-						</button>
-						<button
 							type="submit"
 							onClick={props.handleFormSubmit}
 							className="form-buttons form-button-submit"
 						>
 							SAVE
+						</button>
+						<button
+							className="form-buttons form-button-cancel"
+							onClick={props.handleFormClose}
+						>
+							CANCEL
 						</button>
 					</div>
 				</form>

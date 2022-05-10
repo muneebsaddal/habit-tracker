@@ -15,10 +15,10 @@ const Title = styled.h1`
 	margin: 0px;
 `;
 
-function FormHeader() {
+function FormHeader({ title }) {
 	return (
 		<Header>
-			<Title>Create habit</Title>
+			<Title>{title}</Title>
 		</Header>
 	);
 }
