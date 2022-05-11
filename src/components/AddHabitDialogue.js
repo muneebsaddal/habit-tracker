@@ -27,7 +27,7 @@ function AddHabitDialogue(props) {
 				style={modalStyles}
 				ariaHideApp={false}
 			>
-				<Option onClick={props.openFormA}>
+				<Option onClick={props.openFormA} name="YesOrNo">
 					<Heading>Yes or No</Heading>
 					<br />
 					<Content>
@@ -35,7 +35,7 @@ function AddHabitDialogue(props) {
 						you play chess?
 					</Content>
 				</Option>
-				<Option onClick={props.openFormB}>
+				<Option onClick={props.openFormB} name="measurable">
 					<Heading>Measurable</Heading>
 					<br />
 					<Content>

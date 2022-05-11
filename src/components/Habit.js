@@ -3,9 +3,6 @@ import styled from "styled-components";
 import Pie from "./Pie";
 
 const Habit = (props) => {
-	const totalChecked = props.getCheckedList(props.habit.name).length;
-
-	// eslint-disable-next-line no-const-assign
 	HabitName = styled.button`
 		margin: 0px;
 		height: 100%;
@@ -24,6 +21,8 @@ const Habit = (props) => {
 	const [checkedList, setCheckedList] = useState(
 		props.getCheckedList(props.habit.name)
 	);
+
+	const totalChecked = checkedList.length;
 
 	const habitCheckedClick = (e) => {
 		if (e.target.checked === true) {

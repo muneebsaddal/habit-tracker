@@ -292,6 +292,7 @@ const EditHabitForm = (props) => {
 						</div>
 						<div className="form-button-group">
 							<button
+								name="submit"
 								className="form-buttons form-button-submit"
 								type="submit"
 								disabled={submitting}
