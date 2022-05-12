@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import HabitEditorHeader from "./habitEditorComponents/HabitEditorHeader";
-import EditHabitForm from "./editHabitForm/EditHabitForm";
+import EditHabitForm from "../../forms/editHabitForm/EditHabitForm"
 import HabitEditorReminder from "./habitEditorComponents/HabitEditorReminder";
 import HabitEditorNotes from "./habitEditorComponents/HabitEditorNotes";
 import HabitEditorOverview from "./habitEditorComponents/HabitEditorOverview";

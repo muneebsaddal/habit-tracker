@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import "./habitForm.css";
+import "../../habitForm.css";
 import Modal from "react-modal";
-import FormHeader from "./formComponents/FormHeader";
+import FormHeader from "../../formComponents/formHeader/FormHeader";
+import FrequencyDialog from "../../formComponents/frequencyDialog/FrequencyDialog";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
-import FrequencyDialog from "./formComponents/FrequencyDialog";
 
-const HabitFormYesNo = (props) => {
+function FormMeasurable(props) {
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -62,21 +62,16 @@ const HabitFormYesNo = (props) => {
 			},
 		},
 	});
-	console.log(props.formData);
+
 	return (
-		<Modal
-			isOpen={props.openFormA}
-			onRequestClose={props.handleFormClose}
-			className="form-modal"
-			ariaHideApp={false}
-		>
+		<>
 			<FormHeader title="Create Habit" />
 			<form>
 				<div className="input-group input-group-name">
 					<label>Name</label>
 					<input
 						type="text"
-						placeholder="e.g. Exercise"
+						placeholder="e.g. Run"
 						onChange={props.handleFormChange}
 						name="name"
 						value={props.formData.name}
@@ -111,33 +106,62 @@ const HabitFormYesNo = (props) => {
 					<label>Question</label>
 					<input
 						type="text"
-						placeholder="e.g. Did you exercise today?"
+						placeholder="e.g. How many miles did you run?"
 						onChange={props.handleFormChange}
 						name="question"
 						value={props.formData.question}
 					/>
 				</div>
 				<div className="input-group">
-					<label>Frequency</label>
-					<button type="button" onClick={props.handleOpenFreqDialog}>
-						{props.formData.frequency
-							? props.formData.frequency
-							: "Everyday"}
-					</button>
-					{props.openFreqDialog && (
-						<FrequencyDialog
-							formData={props.formData}
-							freqChange={props.freqChange}
-							tempFreqValue={props.tempFreqValue}
-							isOpen={props.openFreqDialog}
-							requestClose={props.closeFreqDialog}
-						/>
-					)}
+					<label>Unit</label>
+					<input
+						type="text"
+						placeholder="e.g. miles"
+						onChange={props.handleFormChange}
+						name="unit"
+						value={props.formData.unit}
+					/>
 				</div>
+
+				<div className="form-input-column">
+					<div className="input-group">
+						<label>Target</label>
+						<input
+							type="text"
+							placeholder="e.g. 15"
+							onChange={props.handleFormChange}
+							name="target"
+							value={props.formData.target}
+						/>
+					</div>
+					<div className="input-group">
+						<label>Frequency</label>
+						<button
+							type="button"
+							title="frequencyButtonMeasurable"
+							onClick={props.handleOpenFreqDialog}
+						>
+							{props.formData.frequency
+								? props.formData.frequency
+								: "Everyday"}
+						</button>
+						{props.openFreqDialog && (
+							<FrequencyDialog
+								formData={props.formData}
+								freqChange={props.freqChange}
+								tempFreqValue={props.tempFreqValue}
+								isOpen={props.openFreqDialog}
+								requestClose={props.closeFreqDialog}
+							/>
+						)}
+					</div>
+				</div>
+
 				<div className="input-group">
 					<label>Reminder</label>
 					<button
 						type="button"
+						title="reminderButtonMeasurable"
 						onClick={props.handleOpenReminderDialog}
 					>
 						{props.formData.reminder === ""
@@ -174,6 +198,7 @@ const HabitFormYesNo = (props) => {
 				<div className="form-button-group">
 					<button
 						type="submit"
+						title="measurableFormSubmit"
 						onClick={props.handleFormSubmit}
 						className="form-buttons form-button-submit"
 					>
@@ -181,14 +206,15 @@ const HabitFormYesNo = (props) => {
 					</button>
 					<button
 						className="form-buttons form-button-cancel"
+						title="measurableFormCancel"
 						onClick={props.handleFormClose}
 					>
 						CANCEL
 					</button>
 				</div>
 			</form>
-		</Modal>
+		</>
 	);
-};
+}
 
-export default HabitFormYesNo;
+export default FormMeasurable;

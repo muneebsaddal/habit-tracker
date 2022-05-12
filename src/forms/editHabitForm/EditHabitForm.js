@@ -6,8 +6,8 @@ import React, { useState } from "react";
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
-import FrequencyDialog from "../../habitForms/formComponents/FrequencyDialog";
-import FormHeader from "../../habitForms/formComponents/FormHeader";
+import FrequencyDialog from "../formComponents/frequencyDialog/FrequencyDialog";
+import FormHeader from "../formComponents/formHeader/FormHeader";
 
 const EditHabitForm = (props) => {
 	const [colorState, setColorState] = useState({

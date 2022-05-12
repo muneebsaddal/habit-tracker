@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Pie from "../../Pie";
+import Pie from "../../../Pie";
 
 const HabitEditorOverview = ({ color, getDaysInMonth, habitCheckList }) => {
 	const totalChecked = habitCheckList.length;

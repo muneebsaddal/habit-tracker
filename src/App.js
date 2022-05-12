@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "./components/Header";
-import DayColumns from "./components/DayColumns";
-import Habit from "./components/Habit";
-import AddHabitDialogue from "./components/AddHabitDialogue";
-import HabitFormYesNo from "./components/habitForms/HabitFormYesNo";
-import HabitFormMeasurable from "./components/habitForms/HabitFormMeasurable";
+import Header from "./components/header/Header";
+import HabitListHeader from "./components/header/HabitListHeader";
+import Habit from "./components/habit/Habit"
+import AddHabitDialogue from "./components/addHabitDialogue/AddHabitDialogue";
+import AddHabitFormModal from "./forms/AddHabitFormModal";
 import HabitEditor from "./components/habitEditor/HabitEditor";
 
 function getHabitArray() {
@@ -249,7 +248,7 @@ function App() {
 	return (
 		<>
 			<Header pageTitle={"Habit"} handleOpen={handleAddDialogueOpen} />
-			<DayColumns />
+			<HabitListHeader />
 			{habits}
 			<AddHabitDialogue
 				open={addDialogueOpen}
@@ -258,7 +257,7 @@ function App() {
 				openFormB={handleAddFormOpen_B}
 			/>
 			{addFormOpen_A ? (
-				<HabitFormYesNo
+				<AddHabitFormModal
 					openFormA={addFormOpen_A}
 					handleFormClose={handleAddFormClose_A}
 					handleOpenFreqDialog={handleFreqDialogOpenA}
@@ -278,7 +277,7 @@ function App() {
 					tempFreqValue={handleTempFreqValue}
 				/>
 			) : addFormOpen_B ? (
-				<HabitFormMeasurable
+				<AddHabitFormModal
 					openFormB={addFormOpen_B}
 					handleFormClose={handleAddFormClose_B}
 					handleOpenFreqDialog={handleFreqDialogOpenB}

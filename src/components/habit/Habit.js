@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Pie from "./Pie";
+import Pie from "../../Pie";
 
 const Habit = (props) => {
 	HabitName = styled.button`

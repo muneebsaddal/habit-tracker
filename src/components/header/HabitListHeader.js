@@ -6,7 +6,7 @@ const getPrevDate = (prevDays) => {
 	return date;
 };
 
-const DayColumns = () => {
+const HabitListHeader = () => {
 	const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 	return (
@@ -62,4 +62,4 @@ const StartingElement = styled.div`
 	grid-column-start: 5;
 `;
 
-export default DayColumns;
+export default HabitListHeader;
