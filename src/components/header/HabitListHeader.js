@@ -11,7 +11,7 @@ const HabitListHeader = () => {
 
 	return (
 		<Columns>
-			<StartingElement>
+			<StartingElement title="today">
 				{days[getPrevDate(0).getDay()]}
 				<br />
 				{getPrevDate(0).getDate()}
