@@ -1,13 +1,16 @@
 import styled from "styled-components";
+import { FaBell, FaCalendarAlt } from "react-icons/fa";
 
 const HabitEditorReminder = ({ question, frequency, reminder }) => {
 	return (
 		<ReminderContainer>
 			{question && <Question>{question}</Question>}
 			<Reminder>
+				<FaCalendarAlt />
 				<ReminderFrequency>
 					{frequency === "" ? "Everyday" : frequency}
 				</ReminderFrequency>
+				<FaBell />
 				<ReminderTime>
 					{reminder === "" ? "off" : reminder}
 				</ReminderTime>
@@ -35,11 +38,12 @@ const Question = styled.h1`
 
 const Reminder = styled.div`
 	display: flex;
-	gap: 30px;
+	gap: 10px;
+	padding-left: 15px;
 `;
 
 const ReminderFrequency = styled.p`
-	margin: 0px;
+	margin: 0px 30px 0px 0px;
 `;
 
 const ReminderTime = styled.p`
