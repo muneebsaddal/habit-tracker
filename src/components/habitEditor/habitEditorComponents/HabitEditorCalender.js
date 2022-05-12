@@ -5,15 +5,14 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 	const arrayLen = 210;
 	const columnLength = 7;
 	const rowLength = arrayLen / columnLength;
-	let color = "#ddd";
-	let colorFlag = "";
+	let color = "#eee";
+	let colorFlag = "g";
 
 	for (let i = 0; i < arrayLen; i++) {
-		if (
-			habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
-		) {
-			colorFlag = "b";
-		}
+		habitCheckList.find((dateChecked) => dateChecked === getPrevDate(i))
+			? (colorFlag = "b")
+			: (colorFlag = "g");
+
 		dateArr1D.push(getPrevDate(i) + colorFlag);
 	}
 
@@ -27,7 +26,7 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 			for (let j = 0; j < rowLength; j++) {
 				dateArr2D[i][j][dateArr2D[i][j].length - 1] === "b"
 					? (color = "#585FFF")
-					: (color = "#ddd");
+					: (color = "#e5e5f3");
 				children.push(
 					<Td theme={{ main: color }}>
 						{dateArr2D[i][j]
@@ -77,13 +76,12 @@ const CalenderTable = styled.table`
 const Tr = styled.tr``;
 
 const Td = styled.td`
-	font-size: 18px;
-	background: #ddd;
+	font-size: 15px;
 	border: none;
 	border-radius: 3px;
 	min-width: 15px;
 	text-align: center;
-	color: #444444;
+	color: #111;
 	background: ${(props) => props.theme.main};
 `;
 

@@ -27,7 +27,7 @@ const ReminderContainer = styled.div`
 	flex-direction: column;
 	align-items: left;
 	justify-content: center;
-	background: #f1f1f1;
+	background: rgb(245 245 250);
 `;
 
 const Question = styled.h1`

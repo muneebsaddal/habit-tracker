@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import HabitEditorHeader from "./habitEditorComponents/HabitEditorHeader";
-import EditHabitForm from "../../forms/editHabitForm/EditHabitForm"
+import EditHabitForm from "../../forms/editHabitForm/EditHabitForm";
 import HabitEditorReminder from "./habitEditorComponents/HabitEditorReminder";
 import HabitEditorNotes from "./habitEditorComponents/HabitEditorNotes";
 import HabitEditorOverview from "./habitEditorComponents/HabitEditorOverview";
@@ -37,9 +37,7 @@ const HabitEditor = (props) => {
 				<HabitEditorHeader
 					habitName={props.habit.name}
 					habitEditorClose={props.habitEditorClose}
-
 					handleHabitEditorClose={props.handleHabitEditorClose}
-					
 					handleEditHabitForm={props.handleEditHabitForm}
 				/>
 				<HabitEditorReminder
@@ -91,7 +89,7 @@ const HabitEditor = (props) => {
 
 const modalStyles = {
 	content: {
-		background: "#f1f1f1",
+		background: "rgb(245 245 250)",
 		height: "100%",
 		inset: "0px",
 		border: "none",
