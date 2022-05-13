@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HabitEditorFrequency = ({
+const HabitFrequency = ({
 	getPrevDate,
 	habitCheckList,
 	getPrevMonth,
@@ -100,4 +100,4 @@ const Th = styled.th`
 	font-size: 13px;
 `;
 
-export default HabitEditorFrequency;
+export default HabitFrequency;

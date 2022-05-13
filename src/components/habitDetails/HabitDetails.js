@@ -1,15 +1,15 @@
 import Modal from "react-modal";
-import HabitEditorHeader from "./habitEditorComponents/HabitEditorHeader";
+import HabitHeader from "./habitComponents/HabitHeader";
 import EditHabitForm from "../../forms/editHabitForm/EditHabitForm";
-import HabitEditorReminder from "./habitEditorComponents/HabitEditorReminder";
-import HabitEditorNotes from "./habitEditorComponents/HabitEditorNotes";
-import HabitEditorOverview from "./habitEditorComponents/HabitEditorOverview";
-import HabitEditorScore from "./habitEditorComponents/HabitEditorScore";
-import HabitEditorHistory from "./habitEditorComponents/HabitEditorHistory";
-import HabitEditorCalender from "./habitEditorComponents/HabitEditorCalender";
-import HabitEditorStreaks from "./habitEditorComponents/HabitEditorStreaks";
+import HabitReminder from "./habitComponents/HabitReminder";
+import HabitNotes from "./habitComponents/HabitNotes";
+import HabitOverview from "./habitComponents/HabitOverview";
+import HabitScore from "./habitComponents/HabitScore";
+import HabitHistory from "./habitComponents/HabitHistory";
+import HabitCalender from "./habitComponents/HabitCalender";
+import HabitStreaks from "./habitComponents/HabitStreaks";
 
-const HabitEditor = (props) => {
+const HabitDetails = (props) => {
 	const daysInMonth = (month, year) => {
 		return new Date(year, month, 0).getDate();
 	};
@@ -34,39 +34,37 @@ const HabitEditor = (props) => {
 				style={modalStyles}
 				ariaHideApp={false}
 			>
-				<HabitEditorHeader
+				<HabitHeader
 					habitName={props.habit.name}
 					habitEditorClose={props.habitEditorClose}
 					handleHabitEditorClose={props.handleHabitEditorClose}
 					handleEditHabitForm={props.handleEditHabitForm}
 				/>
-				<HabitEditorReminder
+				<HabitReminder
 					question={props.habit.question}
 					frequency={props.habit.frequency}
 					reminder={props.habit.reminder}
 				/>
-				{props.habit.notes && (
-					<HabitEditorNotes notes={props.habit.notes} />
-				)}
-				<HabitEditorOverview
+				{props.habit.notes && <HabitNotes notes={props.habit.notes} />}
+				<HabitOverview
 					color={props.habit.color}
 					habitCheckList={habitCheckList}
 					getDaysInMonth={daysInMonth}
 				/>
-				<HabitEditorScore
+				<HabitScore
 					name={props.habit.name}
 					habitCheckList={habitCheckList}
 					getPrevDate={props.getPrevDate}
 				/>
-				<HabitEditorHistory
+				<HabitHistory
 					habitCheckList={habitCheckList}
 					getPrevDate={props.getPrevDate}
 				/>
-				<HabitEditorCalender
+				<HabitCalender
 					habitCheckList={habitCheckList}
 					getPrevDate={props.getPrevDate}
 				/>
-				<HabitEditorStreaks
+				<HabitStreaks
 					habitCheckList={habitCheckList}
 					daysIntoYear={daysIntoYear}
 				/>
@@ -102,4 +100,4 @@ const modalStyles = {
 	},
 };
 
-export default HabitEditor;
+export default HabitDetails;

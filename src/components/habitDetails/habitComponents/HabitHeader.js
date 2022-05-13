@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
 import { MdOutlineMoreVert } from "react-icons/md";
 import { FiEdit3 } from "react-icons/fi";
-const HabitEditorHeader = (props) => {
+const HabitHeader = (props) => {
 	return (
 		<Header>
 			<HeaderLeftSideContainer>
@@ -72,4 +72,4 @@ const EditButton = styled(Button)``;
 
 const MoreSettingsButton = styled(Button)``;
 
-export default HabitEditorHeader;
+export default HabitHeader;

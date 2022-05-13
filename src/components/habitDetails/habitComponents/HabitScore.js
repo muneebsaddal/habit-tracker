@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import ScoreLineChart from "./charts/ScoreLineChart";
+import ScoreLineChart from "../../charts/ScoreLineChart";
 
 const getGraphInterval = (type) => {
 	return {
@@ -13,7 +13,7 @@ const getGraphInterval = (type) => {
 	}[type];
 };
 
-const HabitEditorScore = ({ habitCheckList, getPrevDate }) => {
+const HabitScore = ({ habitCheckList, getPrevDate }) => {
 	const [graphState, setGraphState] = useState(1);
 	const handleGraphChange = (e) => {
 		setGraphState(getGraphInterval(e.target.value));
@@ -91,4 +91,4 @@ const Select = styled.select`
 
 const Option = styled.option``;
 
-export default HabitEditorScore;
+export default HabitScore;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaBell, FaCalendarAlt } from "react-icons/fa";
 
-const HabitEditorReminder = ({ question, frequency, reminder }) => {
+const HabitReminder = ({ question, frequency, reminder }) => {
 	return (
 		<ReminderContainer>
 			{question && <Question>{question}</Question>}
@@ -50,4 +50,4 @@ const ReminderTime = styled.p`
 	margin: 0px;
 `;
 
-export default HabitEditorReminder;
+export default HabitReminder;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Pie from "../../../Pie";
 
-const HabitEditorOverview = ({ color, getDaysInMonth, habitCheckList }) => {
+const HabitOverview = ({ color, getDaysInMonth, habitCheckList }) => {
 	const totalChecked = habitCheckList.length;
 	const latestDate = habitCheckList[0];
 	const latestMonth = latestDate
@@ -17,11 +17,13 @@ const HabitEditorOverview = ({ color, getDaysInMonth, habitCheckList }) => {
 			<Details>
 				<Pie percentage={(totalChecked / 40) * 100} color={color} />
 				<container>
-					<h4>{Math.round((totalChecked / 40) * 100)}%</h4>
+					<h4 title="score">
+						{Math.round((totalChecked / 40) * 100)}%
+					</h4>
 					<p>Score</p>
 				</container>
 				<container>
-					<h4>
+					<h4 title="month">
 						+
 						{Math.round(
 							(totalChecked /
@@ -33,11 +35,13 @@ const HabitEditorOverview = ({ color, getDaysInMonth, habitCheckList }) => {
 					<p>Month</p>
 				</container>
 				<container>
-					<h4>+{Math.round((totalChecked / 365) * 100)}%</h4>
+					<h4 title="year">
+						+{Math.round((totalChecked / 365) * 100)}%
+					</h4>
 					<p>Year</p>
 				</container>
 				<container>
-					<h4>{totalChecked}</h4>
+					<h4 title="total">{totalChecked}</h4>
 					<p>Total</p>
 				</container>
 			</Details>
@@ -79,4 +83,4 @@ const Details = styled.div`
 	width: 80%;
 `;
 
-export default HabitEditorOverview;
+export default HabitOverview;

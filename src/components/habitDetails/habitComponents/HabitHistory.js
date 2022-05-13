@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import HistoryBarChart from "./charts/HistoryBarChart";
+import HistoryBarChart from "../../charts/HistoryBarChart";
 
 const getGraphInterval = (type) => {
 	return {
@@ -12,7 +12,7 @@ const getGraphInterval = (type) => {
 	}[type];
 };
 
-const HabitEditorHistory = ({ getPrevDate, habitCheckList }) => {
+const HabitHistory = ({ getPrevDate, habitCheckList }) => {
 	const [graphState, setGraphState] = useState(7);
 	const handleGraphChange = (e) => {
 		setGraphState(getGraphInterval(e.target.value));
@@ -89,4 +89,4 @@ const Select = styled.select`
 
 const Option = styled.option``;
 
-export default HabitEditorHistory;
+export default HabitHistory;

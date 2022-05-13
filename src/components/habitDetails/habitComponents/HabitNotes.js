@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HabitEditorNotes = ({ notes }) => {
+const HabitNotes = ({ notes }) => {
 	return <Notes>{notes}</Notes>;
 };
 
@@ -15,4 +15,4 @@ const Notes = styled.p`
 	align-items: center;
 `;
 
-export default HabitEditorNotes;
+export default HabitNotes;

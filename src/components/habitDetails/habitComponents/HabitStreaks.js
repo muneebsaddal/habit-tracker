@@ -17,7 +17,8 @@ const findLongestConseqSubseq = (arr) => {
 	return [ans, lastValueOfStreak];
 };
 
-const HabitEditorStreaks = ({ habitCheckList, daysIntoYear }) => {
+const HabitStreaks
+ = ({ habitCheckList, daysIntoYear }) => {
 	habitCheckList.sort(function (a, b) {
 		return a.toString().localeCompare(b);
 	});
@@ -75,4 +76,5 @@ const StreakBar = styled.div`
 	border-radius: 5px;
 `;
 
-export default HabitEditorStreaks;
+export default HabitStreaks
+;

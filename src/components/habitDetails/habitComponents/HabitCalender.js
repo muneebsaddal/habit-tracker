@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import uuid from "react-uuid";
 
-const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
+const HabitCalender = ({ habitCheckList, getPrevDate }) => {
 	const dateArr1D = [];
 	const arrayLen = 210;
 	const columnLength = 7;
@@ -28,7 +29,7 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 					? (color = "#585FFF")
 					: (color = "#e5e5f3");
 				children.push(
-					<Td theme={{ main: color }}>
+					<Td theme={{ main: color }} key={uuid()}>
 						{dateArr2D[i][j]
 							.slice(
 								dateArr2D[i][j].indexOf("/") + 1,
@@ -38,7 +39,7 @@ const HabitEditorCalender = ({ habitCheckList, getPrevDate }) => {
 					</Td>
 				);
 			}
-			table.push(<Tr>{children}</Tr>);
+			table.push(<Tr key={uuid()}>{children}</Tr>);
 		}
 		return table;
 	};
@@ -85,4 +86,4 @@ const Td = styled.td`
 	background: ${(props) => props.theme.main};
 `;
 
-export default HabitEditorCalender;
+export default HabitCalender;

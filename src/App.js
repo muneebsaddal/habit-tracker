@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/header/Header";
 import HabitListHeader from "./components/header/HabitListHeader";
-import Habit from "./components/habit/Habit"
+import Habit from "./components/habit/Habit";
 import AddHabitDialogue from "./components/addHabitDialogue/AddHabitDialogue";
 import AddHabitFormModal from "./forms/AddHabitFormModal";
-import HabitEditor from "./components/habitEditor/HabitEditor";
+import HabitDetails from "./components/habitDetails/HabitDetails";
 
 function getHabitArray() {
 	const storedData = localStorage.getItem("habitArrayData");
@@ -300,7 +300,7 @@ function App() {
 				<></>
 			)}
 			{openHabitEditor && (
-				<HabitEditor
+				<HabitDetails
 					habit={!updateFlag ? currentHabit : updatedFormData}
 					getCheckedList={getCheckedList}
 					habitEditorState={openHabitEditor}
