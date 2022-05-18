@@ -65,7 +65,7 @@ const Habit = (props) => {
 						color={props.habit.color}
 					/>
 				</HabitProgress>
-				<HabitName onDoubleClick={props.habitEditorOpen}>
+				<HabitName onDoubleClick={props.habitEditorOpen} title="habitName">
 					{props.habit.name}
 				</HabitName>
 				<CheckboxContainer>

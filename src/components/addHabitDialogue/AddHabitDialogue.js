@@ -27,16 +27,16 @@ function AddHabitDialogue(props) {
 				style={modalStyles}
 				ariaHideApp={false}
 			>
-				<Option onClick={props.openFormA} name="YesOrNo">
-					<Heading>Yes or No</Heading>
+				<Option onClick={props.openFormA} title="yesOrNo">
+					<Heading name="yesOrNo">Yes or No</Heading>
 					<br />
 					<Content>
 						e.g. Did you wake up early today? Did you exercise? Did
 						you play chess?
 					</Content>
 				</Option>
-				<Option onClick={props.openFormB} name="measurable">
-					<Heading>Measurable</Heading>
+				<Option onClick={props.openFormB} title="measurable">
+					<Heading name="measurable">Measurable</Heading>
 					<br />
 					<Content>
 						e.g. How many miles did you run today? How many pages

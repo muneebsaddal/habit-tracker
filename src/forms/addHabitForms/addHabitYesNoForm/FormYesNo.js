@@ -74,6 +74,7 @@ const FormYesNo = (props) => {
 						placeholder="e.g. Exercise"
 						onChange={props.handleFormChange}
 						name="name"
+						id="name"
 						value={props.formData.name}
 					/>
 					<div className="input-group input-group-color">

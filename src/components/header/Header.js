@@ -8,7 +8,7 @@ const Header = (props) => {
 		<HeaderContainer>
 			<HeaderTitle>{props.pageTitle}</HeaderTitle>
 			<HeaderButtonContainer>
-				<AddButton onClick={props.handleOpen}>
+				<AddButton onClick={props.handleOpen} title="add">
 					<IoMdAdd size={26} />
 				</AddButton>
 				<FilterButton>

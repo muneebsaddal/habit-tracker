@@ -16,6 +16,7 @@
     "enzyme-to-json": "^3.6.2",
     "final-form": "^4.20.6",
     "patch-package": "^6.4.7",
+    "puppeteer": "^14.1.0",
     "react": "^17.0.2",
     "react-bar-chart": "^0.1.2",
     "react-color": "^2.19.3",
@@ -63,6 +64,7 @@
   },
   "devDependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
+    "cypress": "^9.6.1",
     "jest": "^28.1.0"
   }
 }
