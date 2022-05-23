@@ -6,6 +6,7 @@ import FrequencyDialog from "../../formComponents/frequencyDialog/FrequencyDialo
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
+import NameError from "../../formComponents/NameError";
 
 function FormMeasurable(props) {
 	const [colorState, setColorState] = useState({
@@ -73,9 +74,13 @@ function FormMeasurable(props) {
 						type="text"
 						placeholder="e.g. Run"
 						onChange={props.handleFormChange}
+						onClick={props.handleNameFlag}
 						name="name"
 						value={props.formData.name}
+						required
 					/>
+					{props.nameFlag && <NameError />}
+
 					<div className="input-group input-group-color">
 						<label>Color</label>
 						<div>
@@ -127,7 +132,8 @@ function FormMeasurable(props) {
 					<div className="input-group">
 						<label>Target</label>
 						<input
-							type="text"
+							type="number"
+							min="1"
 							placeholder="e.g. 15"
 							onChange={props.handleFormChange}
 							name="target"

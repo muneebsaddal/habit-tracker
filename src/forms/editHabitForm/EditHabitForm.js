@@ -98,14 +98,11 @@ const EditHabitForm = (props) => {
 	};
 
 	const load = async () => {
-		console.info("Loading...");
 		await sleep(1500);
-		console.info("Loaded...");
 		return record;
 	};
 
 	const save = async (values) => {
-		console.info("Saving", values);
 		await sleep(1500);
 
 		record = values;

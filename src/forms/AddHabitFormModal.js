@@ -33,6 +33,8 @@ function AddHabitFormModal(props) {
 						handleFormSubmit={props.handleFormSubmit}
 						freqChange={props.freqChange}
 						tempFreqValue={props.tempFreqValue}
+						nameFlag={props.nameFlag}
+						handleNameFlag={props.handleNameFlag}
 					/>
 				</Modal>
 			) : props.openFormA ? (
@@ -62,6 +64,8 @@ function AddHabitFormModal(props) {
 						handleFormSubmit={props.handleFormSubmit}
 						freqChange={props.freqChange}
 						tempFreqValue={props.tempFreqValue}
+						nameFlag={props.nameFlag}
+						handleNameFlag={props.handleNameFlag}
 					/>
 				</Modal>
 			) : (

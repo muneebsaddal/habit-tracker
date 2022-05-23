@@ -132,7 +132,6 @@ function App() {
 	const [dataForm, setDataForm] = useState(formInitialState);
 
 	const handleChangeForm = (e) => {
-		console.log("clicked");
 		const { name, value, type, checked } = e.target;
 		setDataForm((prevData) => {
 			return {
@@ -168,13 +167,24 @@ function App() {
 
 	const [habitArray, setHabitArray] = useState(getHabitArray);
 
-	const handleSubmitForm = (e) => {
-		e.preventDefault();
-		handleAddFormClose_A();
-		handleAddFormClose_B();
+	const [nameFlag, setNameFlag] = useState(false);
+	const handleNameFlag = () => {
+		setNameFlag(false);
+	};
 
-		setHabitArray((prevState) => [...prevState, dataForm]);
-		setDataForm(formInitialState);
+	const handleSubmitForm = (e) => {
+		if (dataForm.name === "") {
+			e.preventDefault();
+			setNameFlag(true);
+		} else {
+			e.preventDefault();
+			setNameFlag(false);
+			handleAddFormClose_A();
+			handleAddFormClose_B();
+
+			setHabitArray((prevState) => [...prevState, dataForm]);
+			setDataForm(formInitialState);
+		}
 	};
 
 	useEffect(() => {
@@ -224,7 +234,6 @@ function App() {
 	};
 
 	const handleUpdateFormSubmit = (record) => {
-		console.log(record.name);
 		const filteredArray = habitArray.filter(
 			(element) => element.name !== record.name
 		);
@@ -275,6 +284,8 @@ function App() {
 					handleFormSubmit={handleSubmitForm}
 					freqChange={handleFrequencyChange}
 					tempFreqValue={handleTempFreqValue}
+					nameFlag={nameFlag}
+					handleNameFlag={handleNameFlag}
 				/>
 			) : addFormOpen_B ? (
 				<AddHabitFormModal
@@ -295,6 +306,8 @@ function App() {
 					handleFormSubmit={handleSubmitForm}
 					freqChange={handleFrequencyChange}
 					tempFreqValue={handleTempFreqValue}
+					nameFlag={nameFlag}
+					handleNameFlag={handleNameFlag}
 				/>
 			) : (
 				<></>

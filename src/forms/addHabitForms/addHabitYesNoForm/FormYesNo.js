@@ -6,6 +6,7 @@ import FrequencyDialog from "../../formComponents/frequencyDialog/FrequencyDialo
 import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
+import NameError from "../../formComponents/NameError";
 
 const FormYesNo = (props) => {
 	const [colorState, setColorState] = useState({
@@ -73,10 +74,13 @@ const FormYesNo = (props) => {
 						type="text"
 						placeholder="e.g. Exercise"
 						onChange={props.handleFormChange}
+						onClick={props.handleNameFlag}
 						name="name"
 						id="name"
 						value={props.formData.name}
+						required
 					/>
+					{props.nameFlag && <NameError />}
 					<div className="input-group input-group-color">
 						<label>Color</label>
 						<div>
