@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("Add new habit", () => {
 	it("checks if habit is added after submitting form", () => {
 		// Adding new habit
