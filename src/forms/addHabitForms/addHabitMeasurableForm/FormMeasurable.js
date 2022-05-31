@@ -76,6 +76,7 @@ function FormMeasurable(props) {
 						onChange={props.handleFormChange}
 						onClick={props.handleNameFlag}
 						name="name"
+						id="name"
 						value={props.formData.name}
 						required
 					/>

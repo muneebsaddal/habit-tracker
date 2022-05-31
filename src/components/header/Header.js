@@ -6,7 +6,7 @@ import { BiSearch } from "react-icons/bi";
 const Header = (props) => {
 	return (
 		<HeaderContainer>
-			<HeaderTitle>{props.pageTitle}</HeaderTitle>
+			<HeaderTitle id="habitTitle">{props.pageTitle}</HeaderTitle>
 			<HeaderButtonContainer>
 				<AddButton onClick={props.handleOpen} title="add">
 					<IoMdAdd size={26} />
@@ -17,6 +17,8 @@ const Header = (props) => {
 							<Input
 								placeholder="Type Habit Name"
 								type="text"
+								name="search"
+								id="search"
 								onChange={props.handleSearchString}
 							/>
 						)}

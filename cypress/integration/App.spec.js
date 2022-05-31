@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 describe("Add new habit", () => {
 	it("checks if habit is added after submitting form", () => {
+		
 		// Adding new habit
 		cy.visit("http://localhost:3000/");
 		cy.get("button").get('[title="add"]').click();
