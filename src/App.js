@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Header from "./components/header/Header";
 import HabitListHeader from "./components/header/HabitListHeader";
 import Habit from "./components/habit/Habit";
 import AddHabitDialogue from "./components/addHabitDialogue/AddHabitDialogue";
-import AddHabitFormModal from "./forms/AddHabitFormModal";
 import HabitDetails from "./components/habitDetails/HabitDetails";
 
 function getHabitArray() {
@@ -97,11 +96,11 @@ function App() {
 		return date.toLocaleDateString();
 	};
 
-	// const getPrevMonth = (value) => {
-	// 	let date = new Date();
-	// 	date.setMonth(date.getMonth() - value);
-	// 	return date.toLocaleString("default", { month: "long" });
-	// };
+	const getPrevMonth = (value) => {
+		let date = new Date();
+		date.setMonth(date.getMonth() - value);
+		return date.toLocaleString("default", { month: "long" });
+	};
 
 	const [time, setTime] = useState("0:00am");
 
@@ -179,8 +178,8 @@ function App() {
 		} else {
 			e.preventDefault();
 			setNameFlag(false);
-			handleAddFormClose_A();
-			handleAddFormClose_B();
+			// handleAddFormClose_A();
+			// handleAddFormClose_B();
 
 			setHabitArray((prevState) => [...prevState, dataForm]);
 			setDataForm(formInitialState);
@@ -277,15 +276,14 @@ function App() {
 				showSearchField={showSearchField}
 				handleSearchButton={handleSearchButton}
 			/>
+
 			<HabitListHeader />
 			{!showSearchField ? habits : searchedHabits}
 			<AddHabitDialogue
 				open={addDialogueOpen}
 				handleClose={handleAddDialogueOpen}
-				openFormA={handleAddFormOpen_A}
-				openFormB={handleAddFormOpen_B}
 			/>
-			{addFormOpen_A ? (
+			{/* {addFormOpen_A ? (
 				<AddHabitFormModal
 					openFormA={addFormOpen_A}
 					handleFormClose={handleAddFormClose_A}
@@ -331,7 +329,7 @@ function App() {
 				/>
 			) : (
 				<></>
-			)}
+			)} */}
 			{openHabitEditor && (
 				<HabitDetails
 					habit={!updateFlag ? currentHabit : updatedFormData}
