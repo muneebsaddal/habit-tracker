@@ -1,5 +1,6 @@
 import Modal from "react-modal";
 import styled from "styled-components";
+import { Outlet, Link } from "react-router-dom";
 
 const modalStyles = {
 	content: {
@@ -27,22 +28,33 @@ function AddHabitDialogue(props) {
 				style={modalStyles}
 				ariaHideApp={false}
 			>
-				<Option onClick={props.openFormA} title="yesOrNo">
-					<Heading name="yesOrNo">Yes or No</Heading>
-					<br />
-					<Content>
-						e.g. Did you wake up early today? Did you exercise? Did
-						you play chess?
-					</Content>
+				<Option title="yesOrNo">
+					<Link
+						to="/formYesNo"
+						style={{ textDecoration: "none", color: "black" }}
+					>
+						<Heading name="yesOrNo">Yes or No</Heading>
+						<br />
+						<Content>
+							e.g. Did you wake up early today? Did you exercise?
+							Did you play chess?
+						</Content>
+					</Link>
 				</Option>
-				<Option onClick={props.openFormB} title="measurable">
-					<Heading name="measurable">Measurable</Heading>
-					<br />
-					<Content>
-						e.g. How many miles did you run today? How many pages
-						did you read?
-					</Content>
+				<Option title="measurable">
+					<Link
+						to="/formMeasurable"
+						style={{ textDecoration: "none", color: "black" }}
+					>
+						<Heading name="measurable">Measurable</Heading>
+						<br />
+						<Content>
+							e.g. How many miles did you run today? How many
+							pages did you read?
+						</Content>
+					</Link>
 				</Option>
+				<Outlet />
 			</Modal>
 		</ModalContainer>
 	);
