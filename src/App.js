@@ -254,11 +254,31 @@ function App() {
 		);
 	});
 
+	const [showSearchField, setShowSearchField] = useState(false);
+	const handleSearchButton = () => {
+		setShowSearchField((prevState) => !prevState);
+	};
+
+	const [searchString, setSearchString] = useState("");
+	const handleSearchString = (e) => {
+		setSearchString(e.target.value);
+	};
+
+	const searchedHabits = habits.filter(
+		(h) => h.props.habit.name === searchString
+	);
+
 	return (
 		<>
-			<Header pageTitle={"Habit"} handleOpen={handleAddDialogueOpen} />
+			<Header
+				pageTitle={"Habit"}
+				handleOpen={handleAddDialogueOpen}
+				handleSearchString={(e) => handleSearchString(e)}
+				showSearchField={showSearchField}
+				handleSearchButton={handleSearchButton}
+			/>
 			<HabitListHeader />
-			{habits}
+			{!showSearchField ? habits : searchedHabits}
 			<AddHabitDialogue
 				open={addDialogueOpen}
 				handleClose={handleAddDialogueOpen}

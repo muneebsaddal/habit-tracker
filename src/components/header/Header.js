@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoMdAdd } from "react-icons/io";
-import { BiFilterAlt } from "react-icons/bi";
 import { MdOutlineMoreVert } from "react-icons/md";
+import { BiSearch } from "react-icons/bi";
 
 const Header = (props) => {
 	return (
@@ -11,9 +11,21 @@ const Header = (props) => {
 				<AddButton onClick={props.handleOpen} title="add">
 					<IoMdAdd size={26} />
 				</AddButton>
-				<FilterButton>
-					<BiFilterAlt size={25} />
-				</FilterButton>
+				<SearchButton title="search">
+					<Container>
+						{props.showSearchField && (
+							<Input
+								placeholder="Type Habit Name"
+								type="text"
+								onChange={props.handleSearchString}
+							/>
+						)}
+						<BiSearch
+							size={25}
+							onClick={props.handleSearchButton}
+						/>
+					</Container>
+				</SearchButton>
 				<SettingsButton>
 					<MdOutlineMoreVert size={30} />
 				</SettingsButton>
@@ -54,9 +66,30 @@ const Button = styled.button`
 	padding: 0;
 	color: white;
 `;
+const Container = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const Input = styled.input`
+	position: relative;
+	padding: 9px 40px 9px 20px;
+	width: 300px;
+	color: #525252;
+	font-size: 16px;
+	font-weight: 100;
+	letter-spacing: 2px;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	margin-right: 20px;
+`;
 
 const AddButton = styled(Button)``;
-const FilterButton = styled(Button)``;
+const SearchButton = styled(Button)``;
 const SettingsButton = styled(Button)``;
 
 export default Header;
