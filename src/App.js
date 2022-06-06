@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/header/Header";
 import HabitListHeader from "./components/header/HabitListHeader";
 import Habit from "./components/habit/Habit";
@@ -17,60 +17,60 @@ function App() {
 		setAddDialogueOpen((prevState) => !prevState);
 	};
 
-	const [addFormOpen_A, setAddFormOpen_A] = useState(false);
-	const [addFormOpen_B, setAddFormOpen_B] = useState(false);
-	const handleAddFormOpen_A = () => {
-		setAddFormOpen_A(true);
-		handleAddDialogueOpen();
-		handleAddFormClose_B();
-	};
-	const handleAddFormOpen_B = () => {
-		setAddFormOpen_B(true);
-		handleAddDialogueOpen();
-		handleAddFormClose_A();
-	};
-	const handleAddFormClose_A = () => {
-		setAddFormOpen_A(false);
-	};
-	const handleAddFormClose_B = () => {
-		setAddFormOpen_B(false);
-	};
+	// const [addFormOpen_A, setAddFormOpen_A] = useState(false);
+	// const [addFormOpen_B, setAddFormOpen_B] = useState(false);
+	// const handleAddFormOpen_A = () => {
+	// 	setAddFormOpen_A(true);
+	// 	handleAddDialogueOpen();
+	// 	handleAddFormClose_B();
+	// };
+	// const handleAddFormOpen_B = () => {
+	// 	setAddFormOpen_B(true);
+	// 	handleAddDialogueOpen();
+	// 	handleAddFormClose_A();
+	// };
+	// const handleAddFormClose_A = () => {
+	// 	setAddFormOpen_A(false);
+	// };
+	// const handleAddFormClose_B = () => {
+	// 	setAddFormOpen_B(false);
+	// };
 
-	const [dialogsFormA, setDialogsFormA] = useState({
-		freqDialog: false,
-		reminderDialog: false,
-	});
+	// const [dialogsFormYesNo, setDialogsFormYesNo] = useState({
+	// 	freqDialog: false,
+	// 	reminderDialog: false,
+	// });
 
-	const handleFreqDialogOpenA = () => {
-		setDialogsFormA({ ...dialogsFormA, freqDialog: true });
-	};
-	const handleReminderDialogOpenA = () => {
-		setDialogsFormA({ ...dialogsFormA, reminderDialog: true });
-	};
-	const handleFreqDialogCloseA = () => {
-		setDialogsFormA({ ...dialogsFormA, freqDialog: false });
-	};
-	const handleReminderDialogCloseA = () => {
-		setDialogsFormA({ ...dialogsFormA, reminderDialog: false });
-	};
+	// const handleFreqDialogOpenA = () => {
+	// 	setDialogsFormYesNo({ ...dialogsFormYesNo, freqDialog: true });
+	// };
+	// const handleReminderDialogOpenA = () => {
+	// 	setDialogsFormYesNo({ ...dialogsFormYesNo, reminderDialog: true });
+	// };
+	// const handleFreqDialogCloseA = () => {
+	// 	setDialogsFormYesNo({ ...dialogsFormYesNo, freqDialog: false });
+	// };
+	// const handleReminderDialogCloseA = () => {
+	// 	setDialogsFormYesNo({ ...dialogsFormYesNo, reminderDialog: false });
+	// };
 
-	const [dialogsFormB, setDialogsFormB] = useState({
-		freqDialog: false,
-		reminderDialog: false,
-	});
+	// const [dialogsFormMeasurable, setDialogsFormMeasurable] = useState({
+	// 	freqDialog: false,
+	// 	reminderDialog: false,
+	// });
 
-	const handleFreqDialogOpenB = () => {
-		setDialogsFormB({ ...dialogsFormB, freqDialog: true });
-	};
-	const handleReminderDialogOpenB = () => {
-		setDialogsFormB({ ...dialogsFormB, reminderDialog: true });
-	};
-	const handleFreqDialogCloseB = () => {
-		setDialogsFormB({ ...dialogsFormB, freqDialog: false });
-	};
-	const handleReminderDialogCloseB = () => {
-		setDialogsFormB({ ...dialogsFormB, reminderDialog: false });
-	};
+	// const handleFreqDialogOpenB = () => {
+	// 	setDialogsFormMeasurable({ ...dialogsFormMeasurable, freqDialog: true });
+	// };
+	// const handleReminderDialogOpenB = () => {
+	// 	setDialogsFormMeasurable({ ...dialogsFormMeasurable, reminderDialog: true });
+	// };
+	// const handleFreqDialogCloseB = () => {
+	// 	setDialogsFormMeasurable({ ...dialogsFormMeasurable, freqDialog: false });
+	// };
+	// const handleReminderDialogCloseB = () => {
+	// 	setDialogsFormMeasurable({ ...dialogsFormMeasurable, reminderDialog: false });
+	// };
 
 	const [dialogsFormUpdate, setDialogsFormUpdate] = useState({
 		freqDialog: false,
@@ -96,26 +96,26 @@ function App() {
 		return date.toLocaleDateString();
 	};
 
-	const getPrevMonth = (value) => {
-		let date = new Date();
-		date.setMonth(date.getMonth() - value);
-		return date.toLocaleString("default", { month: "long" });
-	};
+	// const getPrevMonth = (value) => {
+	// 	let date = new Date();
+	// 	date.setMonth(date.getMonth() - value);
+	// 	return date.toLocaleString("default", { month: "long" });
+	// };
 
-	const [time, setTime] = useState("0:00am");
+	// const [time, setTime] = useState("0:00am");
 
-	const handleTimeChange = (data) => {
-		setTime(data);
-	};
+	// const handleTimeChange = (data) => {
+	// 	setTime(data);
+	// };
 
-	const handleTimeSubmit = (data) => {
-		setDataForm((prevData) => {
-			return {
-				...prevData,
-				reminder: data,
-			};
-		});
-	};
+	// const handleTimeSubmit = (data) => {
+	// 	setDataForm((prevData) => {
+	// 		return {
+	// 			...prevData,
+	// 			reminder: data,
+	// 		};
+	// 	});
+	// };
 
 	const formInitialState = {
 		name: "",
@@ -128,63 +128,63 @@ function App() {
 		notes: "",
 	};
 
-	const [dataForm, setDataForm] = useState(formInitialState);
+	// const [dataForm, setDataForm] = useState(formInitialState);
 
-	const handleChangeForm = (e) => {
-		const { name, value, type, checked } = e.target;
-		setDataForm((prevData) => {
-			return {
-				...prevData,
-				[name]: type === "checkbox" ? checked : value,
-			};
-		});
-	};
+	// const handleChangeForm = (e) => {
+	// 	const { name, value, type, checked } = e.target;
+	// 	setDataForm((prevData) => {
+	// 		return {
+	// 			...prevData,
+	// 			[name]: type === "checkbox" ? checked : value,
+	// 		};
+	// 	});
+	// };
 
-	const handleColorChanges = (color) => {
-		setDataForm((prevData) => {
-			return {
-				...prevData,
-				color: color,
-			};
-		});
-	};
+	// const handleColorChanges = (color) => {
+	// 	setDataForm((prevData) => {
+	// 		return {
+	// 			...prevData,
+	// 			color: color,
+	// 		};
+	// 	});
+	// };
 
-	const [tempFreqValue, setTempFreqValue] = useState("");
+	// const [tempFreqValue, setTempFreqValue] = useState("");
 
-	const handleTempFreqValue = (e) => {
-		setTempFreqValue(e.target.value);
-	};
+	// const handleTempFreqValue = (e) => {
+	// 	setTempFreqValue(e.target.value);
+	// };
 
-	const handleFrequencyChange = (freq) => {
-		setDataForm((prevData) => {
-			return {
-				...prevData,
-				frequency: freq.target.value.replace("_", tempFreqValue),
-			};
-		});
-	};
+	// const handleFrequencyChange = (freq) => {
+	// 	setDataForm((prevData) => {
+	// 		return {
+	// 			...prevData,
+	// 			frequency: freq.target.value.replace("_", tempFreqValue),
+	// 		};
+	// 	});
+	// };
 
 	const [habitArray, setHabitArray] = useState(getHabitArray);
 
-	const [nameFlag, setNameFlag] = useState(false);
-	const handleNameFlag = () => {
-		setNameFlag(false);
-	};
+	// const [nameFlag, setNameFlag] = useState(false);
+	// const handleNameFlag = () => {
+	// 	setNameFlag(false);
+	// };
 
-	const handleSubmitForm = (e) => {
-		if (dataForm.name === "") {
-			e.preventDefault();
-			setNameFlag(true);
-		} else {
-			e.preventDefault();
-			setNameFlag(false);
-			// handleAddFormClose_A();
-			// handleAddFormClose_B();
+	// const handleSubmitForm = (e) => {
+	// 	if (dataForm.name === "") {
+	// 		e.preventDefault();
+	// 		setNameFlag(true);
+	// 	} else {
+	// 		e.preventDefault();
+	// 		setNameFlag(false);
+	// 		// handleAddFormClose_A();
+	// 		// handleAddFormClose_B();
 
-			setHabitArray((prevState) => [...prevState, dataForm]);
-			setDataForm(formInitialState);
-		}
-	};
+	// 		setHabitArray((prevState) => [...prevState, dataForm]);
+	// 		setDataForm(formInitialState);
+	// 	}
+	// };
 
 	useEffect(() => {
 		localStorage.setItem("habitArrayData", JSON.stringify(habitArray));
@@ -260,11 +260,12 @@ function App() {
 
 	const [searchString, setSearchString] = useState("");
 	const handleSearchString = (e) => {
-		setSearchString(e.target.value);
+		setSearchString(e.target.value.toString().toLowerCase());
 	};
 
 	const searchedHabits = habits.filter(
-		(h) => h.props.habit.name === searchString
+		(h) =>
+			!h.props.habit.name.toString().toLowerCase().indexOf(searchString)
 	);
 
 	return (
@@ -285,12 +286,12 @@ function App() {
 			/>
 			{/* {addFormOpen_A ? (
 				<AddHabitFormModal
-					openFormA={addFormOpen_A}
+					openFormYesNo={addFormOpen_A}
 					handleFormClose={handleAddFormClose_A}
 					handleOpenFreqDialog={handleFreqDialogOpenA}
 					handleOpenReminderDialog={handleReminderDialogOpenA}
-					openFreqDialog={dialogsFormA.freqDialog}
-					openReminderDialog={dialogsFormA.reminderDialog}
+					openFreqDialog={dialogsFormYesNo.freqDialog}
+					openReminderDialog={dialogsFormYesNo.reminderDialog}
 					closeFreqDialog={handleFreqDialogCloseA}
 					closeReminderDialog={handleReminderDialogCloseA}
 					getTime={time}
@@ -307,12 +308,12 @@ function App() {
 				/>
 			) : addFormOpen_B ? (
 				<AddHabitFormModal
-					openFormB={addFormOpen_B}
+					openFormMeasurable={addFormOpen_B}
 					handleFormClose={handleAddFormClose_B}
 					handleOpenFreqDialog={handleFreqDialogOpenB}
 					handleOpenReminderDialog={handleReminderDialogOpenB}
-					openFreqDialog={dialogsFormB.freqDialog}
-					openReminderDialog={dialogsFormB.reminderDialog}
+					openFreqDialog={dialogsFormMeasurable.freqDialog}
+					openReminderDialog={dialogsFormMeasurable.reminderDialog}
 					closeFreqDialog={handleFreqDialogCloseB}
 					closeReminderDialog={handleReminderDialogCloseB}
 					getTime={time}
