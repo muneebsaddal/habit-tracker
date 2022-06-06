@@ -221,33 +221,33 @@ const FormMeasurableR = () => {
 					/>
 				</div>
 				<div className="form-button-group">
-					<button
-						type="submit"
-						title="measurableFormSubmit"
-						onClick={handleSubmitForm}
-						className="form-buttons form-button-submit"
+					<Link
+						to="/"
+						style={{
+							textDecoration: "none",
+							color: "rgb(242, 250, 255)",
+						}}
 					>
-						<Link
-							to="/"
-							style={{
-								textDecoration: "none",
-								color: "rgb(242, 250, 255)",
-							}}
+						<button
+							type="submit"
+							title="measurableFormSubmit"
+							onClick={handleSubmitForm}
+							className="form-buttons form-button-submit"
 						>
 							SAVE
-						</Link>
-					</button>
-					<button
-						className="form-buttons form-button-cancel"
-						title="measurableFormCancel"
+						</button>
+					</Link>
+					<Link
+						to="/"
+						style={{ textDecoration: "none", color: "#444" }}
 					>
-						<Link
-							to="/"
-							style={{ textDecoration: "none", color: "#444" }}
+						<button
+							className="form-buttons form-button-cancel"
+							title="measurableFormCancel"
 						>
 							CANCEL
-						</Link>
-					</button>
+						</button>
+					</Link>
 				</div>
 			</form>
 		</>
