@@ -194,25 +194,50 @@ const FormMeasurableR = () => {
 					/>
 				</div>
 				<div className="form-button-group">
+					<button
+						type="submit"
+						title="YesNoFormSubmit"
+						onClick={handleSubmitForm}
+						className="form-buttons form-button-submit"
+					>
+						<Link
+							to="/"
+							style={{
+								textDecoration: "none",
+								color: "rgb(242, 250, 255)",
+								padding: "10px 40px 10px 40px",
+								height: "40px;",
+								background: "#006eff",
+								boxSizing: "border-box",
+								borderRadius: "5px",
+								fontFamily: "Karla",
+								fontWeight: "600",
+								fontSize: "20px",
+								letterSpacing: "0.06em",
+								cursor: "pointer",
+							}}
+						>
+							SAVE
+						</Link>
+					</button>
+
 					<Link
 						to="/"
 						style={{
 							textDecoration: "none",
-							color: "rgb(242, 250, 255)",
+							color: "#444",
+							padding: "10px 25px 10px 25px",
+							height: "40px;",
+							background: "none",
+							boxSizing: "border-box",
+							borderRadius: "5px",
+							border: "2px solid #888",
+							fontFamily: "Karla",
+							fontWeight: "600",
+							fontSize: "18px",
+							letterSpacing: "0.06em",
+							cursor: "pointer",
 						}}
-					>
-						<button
-							type="submit"
-							title="YesNoFormSubmit"
-							onClick={handleSubmitForm}
-							className="form-buttons form-button-submit"
-						>
-							SAVE
-						</button>
-					</Link>
-					<Link
-						to="/"
-						style={{ textDecoration: "none", color: "#444" }}
 					>
 						<button
 							className="form-buttons form-button-cancel"
