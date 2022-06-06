@@ -34,7 +34,7 @@ function AddHabitDialogue(props) {
 						style={{ textDecoration: "none", color: "black" }}
 					>
 						<Heading name="yesOrNo">Yes or No</Heading>
-						<br />
+
 						<Content>
 							e.g. Did you wake up early today? Did you exercise?
 							Did you play chess?
@@ -47,7 +47,7 @@ function AddHabitDialogue(props) {
 						style={{ textDecoration: "none", color: "black" }}
 					>
 						<Heading name="measurable">Measurable</Heading>
-						<br />
+
 						<Content>
 							e.g. How many miles did you run today? How many
 							pages did you read?
@@ -70,11 +70,12 @@ const Option = styled.button`
 	border: none;
 	border-radius: 5px;
 	text-align: left;
-	padding: 20px 20px 20px 20px;
+	padding: 0px;
 	cursor: pointer;
 `;
 const Heading = styled.h1`
 	margin: 0px;
+	padding: 20px 20px 0px 20px;
 	font-family: "Inter";
 	font-size: 30px;
 	font-weight: 500;
@@ -84,6 +85,7 @@ const Heading = styled.h1`
 
 const Content = styled.p`
 	margin: 0px;
+	padding: 20px;
 	font-family: "Inter";
 	font-size: 16px;
 `;
