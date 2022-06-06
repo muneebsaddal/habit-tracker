@@ -16,7 +16,7 @@ const Header = (props) => {
 				</FilterButton>
 				<SettingsButton>
 					<MdOutlineMoreVert size={30} />
-					settings utton
+					settings uttoniuni
 				</SettingsButton>
 			</HeaderButtonContainer>
 		</HeaderContainer>
