@@ -136,3 +136,20 @@ input:focus {
 	border: none;
 	font-size: 18px;
 }
+
+.form-edit-button-submit {
+	width: 120px;
+	height: 45px;
+	background: #006eff;
+	color: rgb(242, 250, 255);
+	border: none;
+	font-weight: 700;
+}
+
+.form-edit-button-cancel {
+	width: 120px;
+	height: 45px;
+	color: #444;
+	border: 1px solid #444;
+	font-size: 18px;
+}

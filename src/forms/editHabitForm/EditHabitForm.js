@@ -290,14 +290,14 @@ const EditHabitForm = (props) => {
 						<div className="form-button-group">
 							<button
 								name="submit"
-								className="form-buttons form-button-submit"
+								className="form-buttons form-edit-button-submit"
 								type="submit"
 								disabled={submitting}
 							>
 								Submit
 							</button>
 							<button
-								className="form-buttons form-button-cancel"
+								className="form-buttons form-edit-button-cancel"
 								type="button"
 								onClick={props.closeEditForm}
 								disabled={submitting}
