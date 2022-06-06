@@ -22,7 +22,7 @@ name: run my vanilla Cypress tests
 on:
     push:
         branches:
-            - "main"
+            - "automated-testing"
     workflow_dispatch:
 
 jobs:
