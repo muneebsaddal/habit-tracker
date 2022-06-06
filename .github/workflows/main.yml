@@ -1,19 +1,41 @@
-name: Cypress Tests using Cypress Docker Image
+# name: Cypress Tests using Cypress Docker Image
 
-on: [push]
+# on: [push]
+
+# jobs:
+#     cypress-run:
+#         runs-on: ubuntu-latest
+#         container: cypress/browsers:node12.18.3-chrome87-ff82
+#         steps:
+#             - name: Checkout
+#               uses: actions/checkout@v2
+
+#             # Install NPM dependencies, cache them correctly
+#             # and run all Cypress tests
+#             - name: Cypress run
+#               uses: cypress-io/github-action@v2
+#               with:
+#                   # Specify Browser since container image is compile with Firefox
+#                   browser: firefox
+
+name: run my vanilla Cypress tests
+on:
+    push:
+        branches:
+            - "main"
+    workflow_dispatch:
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    container: cypress/browsers:node12.18.3-chrome87-ff82
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    checkout-and-test:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
 
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          # Specify Browser since container image is compile with Firefox
-          browser: firefox
+            - name: Check out repository code
+              uses: actions/checkout@v2
+
+            - name: run cypress tests with firefox
+              uses: cypress-io/github-action@v2
+              timeout-minutes: 10
+              with:
+                  browser: firefox
