@@ -347,8 +347,8 @@ function App() {
 					openReminderDialog={dialogsFormUpdate.reminderDialog}
 					closeFreqDialog={handleFreqDialogCloseUpdate}
 					closeReminderDialog={handleReminderDialogCloseUpdate}
-					handleUpdateFormSubmit={handleUpdateFormSubmit}
 					handleUpdateForm={handleUpdateForm}
+					handleUpdateFormSubmit={handleUpdateFormSubmit}
 				/>
 			)}
 		</>

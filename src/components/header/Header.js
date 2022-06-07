@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineMoreVert } from "react-icons/md";
+
 import Search from "../search/Search";
 
 const Header = (props) => {
 	return (
 		<HeaderContainer>
-			<HeaderTitle id="habitTitle">{props.pageTitle}</HeaderTitle>
+			<Link to="/" style={{ textDecoration: "none", color: "white" }}>
+				<HeaderTitle id="habitTitle">{props.pageTitle}</HeaderTitle>
+			</Link>
 			<HeaderButtonContainer>
 				<AddButton onClick={props.handleOpen} title="add">
 					<IoMdAdd size={26} />
