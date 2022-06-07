@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
 describe("Add new habit", () => {
 	it("checks if habit is added after submitting form", () => {
-		
 		// Adding new habit
-		cy.visit("http://localhost:3000/");
+		// cy.visit("http://localhost:3000/");
+		cy.visit("http://localhost:3000/", {
+			headers: { "Accept-Encoding": "gzip, deflate" },
+		});
 		cy.get("button").get('[title="add"]').click();
 		cy.get("h1").get('[title="yesOrNo"]').click();
 		cy.get("input#name").type("Wake up early");

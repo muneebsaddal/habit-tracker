@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
 describe("Search Habit by name", () => {
 	it("search a habit and check if result is shown on screen", () => {
-		cy.visit("http://localhost:3000/");
+		// cy.visit("http://localhost:3000/");
+		cy.visit("http://localhost:3000/", {
+			headers: { "Accept-Encoding": "gzip, deflate" },
+		});
 
 		// add habit
 		cy.get("button").get('[title="add"]').click();
