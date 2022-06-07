@@ -1,7 +1,7 @@
-name: GitHub Actions Demo
+name: Unit Tests
 on: [push]
 jobs:
-    Explore-GitHub-Actions:
+    Project Unit tests:
         runs-on: ubuntu-latest
         steps:
             - name: Check out repository code
