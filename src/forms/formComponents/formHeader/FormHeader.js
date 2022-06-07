@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { IoArrowBackSharp } from "react-icons/io5";
 
 function FormHeader({ title, closeEditForm }) {
 	return (
 		<Header>
-			<Link
+			{/* <Link
 				to="/"
 				style={{
 					textDecoration: "none",
@@ -15,9 +15,9 @@ function FormHeader({ title, closeEditForm }) {
 					alignItems: "center",
 				}}
 				onClick={closeEditForm}
-			>
-				<IoArrowBackSharp size={26} style={{ alignSelf: "center" }} />
-			</Link>
+			> */}
+			<IoArrowBackSharp size={26} style={{ alignSelf: "center" }} />
+			{/* </Link> */}
 			<Title>{title}</Title>
 		</Header>
 	);
