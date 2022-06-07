@@ -348,6 +348,7 @@ function App() {
 					closeFreqDialog={handleFreqDialogCloseUpdate}
 					closeReminderDialog={handleReminderDialogCloseUpdate}
 					handleUpdateFormSubmit={handleUpdateFormSubmit}
+					handleUpdateForm={handleUpdateForm}
 				/>
 			)}
 		</>
