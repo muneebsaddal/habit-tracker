@@ -168,7 +168,10 @@ const EditHabitForm = (props) => {
 
 	return (
 		<Modal isOpen={props.isOpen} style={modalStyles} ariaHideApp={false}>
-			<FormHeader title="Edit Habit" />
+			<FormHeader
+				title="Edit Habit"
+				closeEditForm={props.closeEditForm}
+			/>
 			<LoadSaveReinitializeForm
 				load={load}
 				loading={loading}
