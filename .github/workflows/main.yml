@@ -1,7 +1,7 @@
-name: Unit tests
+name: Unit and Cypress tests
 on: [push]
 jobs:
-    Project-Unit-Tests:
+    Unit-and-Cypress-Run:
         runs-on: ubuntu-latest
         steps:
             - name: Check out repository code
