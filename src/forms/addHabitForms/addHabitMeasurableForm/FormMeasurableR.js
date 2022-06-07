@@ -221,7 +221,7 @@ const FormMeasurableR = () => {
 					/>
 				</div>
 				<div className="form-button-group">
-				<button
+					<button
 						type="submit"
 						title="YesNoFormSubmit"
 						onClick={handleSubmitForm}
@@ -233,7 +233,7 @@ const FormMeasurableR = () => {
 								textDecoration: "none",
 								color: "rgb(242, 250, 255)",
 								padding: "10px 40px 10px 40px",
-								height: "40px;",
+								height: "40px",
 								background: "#006eff",
 								boxSizing: "border-box",
 								borderRadius: "5px",
@@ -254,7 +254,7 @@ const FormMeasurableR = () => {
 							textDecoration: "none",
 							color: "#444",
 							padding: "10px 25px 10px 25px",
-							height: "40px;",
+							height: "40px",
 							background: "none",
 							boxSizing: "border-box",
 							borderRadius: "5px",

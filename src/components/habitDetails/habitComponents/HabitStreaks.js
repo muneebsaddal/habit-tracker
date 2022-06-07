@@ -48,7 +48,7 @@ const HabitStreaks
 	);
 };
 
-const Streaks = styled.p`
+const Streaks = styled.div`
 	border: 1px solid #ccc;
 	margin: auto;
 	background: white;

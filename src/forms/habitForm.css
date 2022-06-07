@@ -111,8 +111,6 @@ input:focus {
 }
 
 .form-buttons {
-	/* width: 120px; */
-	/* height: 45px; */
 	background: none;
 	box-sizing: border-box;
 	border-radius: 5px;
