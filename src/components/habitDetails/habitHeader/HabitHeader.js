@@ -72,6 +72,4 @@ const HeaderRightSideContainer = styled.div`
 
 const EditButton = styled(Button)``;
 
-const MoreSettingsButton = styled(Button)``;
-
 export default HabitHeader;
