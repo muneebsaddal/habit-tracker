@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { IoArrowBackSharp } from "react-icons/io5";
-import { MdOutlineMoreVert } from "react-icons/md";
 import { FiEdit3 } from "react-icons/fi";
+import SettingMenu from "./SettingMenu";
+
 const HabitHeader = (props) => {
 	return (
 		<Header>
@@ -18,9 +19,7 @@ const HabitHeader = (props) => {
 				<EditButton onClick={props.handleEditHabitForm} type="button">
 					<FiEdit3 size={24} />
 				</EditButton>
-				<MoreSettingsButton type="button">
-					<MdOutlineMoreVert size={30} />
-				</MoreSettingsButton>
+				<SettingMenu habitDelete={props.habitDelete}/>
 			</HeaderRightSideContainer>
 		</Header>
 	);
@@ -72,7 +71,5 @@ const HeaderRightSideContainer = styled.div`
 `;
 
 const EditButton = styled(Button)``;
-
-const MoreSettingsButton = styled(Button)``;
 
 export default HabitHeader;

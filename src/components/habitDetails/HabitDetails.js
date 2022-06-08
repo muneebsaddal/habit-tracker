@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import HabitHeader from "./habitComponents/HabitHeader";
+import HabitHeader from "./habitHeader/HabitHeader";
 import EditHabitForm from "../../forms/editHabitForm/EditHabitForm";
 import HabitReminder from "./habitComponents/HabitReminder";
 import HabitNotes from "./habitComponents/HabitNotes";
@@ -27,6 +27,10 @@ const HabitDetails = (props) => {
 
 	const habitCheckList = props.getCheckedList(props.habit.name);
 
+	const habitDelete = () => {
+		props.handleHabitDelete(props.habit.name)
+	}
+
 	return (
 		<>
 			<Modal
@@ -39,6 +43,7 @@ const HabitDetails = (props) => {
 					habitEditorClose={props.habitEditorClose}
 					handleHabitEditorClose={props.handleHabitEditorClose}
 					handleEditHabitForm={props.handleEditHabitForm}
+					habitDelete={habitDelete}
 				/>
 				<HabitReminder
 					question={props.habit.question}
