@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { FormContext } from "../../../FormProvider";
 import "../../habitForm.css";
 import Modal from "react-modal";
 import FormHeader from "../../formComponents/formHeader/FormHeader";
@@ -7,8 +8,28 @@ import Timekeeper from "react-timekeeper";
 import { CirclePicker } from "react-color";
 import reactCSS from "reactcss";
 import NameError from "../../formComponents/NameError";
+import { Link } from "react-router-dom";
 
-function FormMeasurable(props) {
+const FormMeasurableR = () => {
+	const {
+		handleFreqDialogOpenA,
+		handleReminderDialogOpenA,
+		dialogsFormA,
+		handleFreqDialogCloseA,
+		handleReminderDialogCloseA,
+		time,
+		handleTimeChange,
+		handleColorChanges,
+		handleTimeSubmit,
+		dataForm,
+		handleChangeForm,
+		handleSubmitForm,
+		handleFrequencyChange,
+		handleTempFreqValue,
+		nameFlag,
+		handleNameFlag,
+	} = useContext(FormContext);
+
 	const [colorState, setColorState] = useState({
 		displayColorPicker: false,
 		color: "#267E92",
@@ -23,7 +44,7 @@ function FormMeasurable(props) {
 	};
 
 	const handleColorChange = (color) => {
-		props.colorChange(color.hex);
+		handleColorChanges(color.hex);
 		setColorState({ displayColorPicker: false });
 	};
 
@@ -33,7 +54,7 @@ function FormMeasurable(props) {
 				width: "36px",
 				height: "22px",
 				borderRadius: "2px",
-				background: `${props.formData.color}`,
+				background: `${dataForm.color}`,
 			},
 			swatch: {
 				margin: "0px 8px",
@@ -72,16 +93,15 @@ function FormMeasurable(props) {
 					<label>Name</label>
 					<input
 						type="text"
-						placeholder="e.g. Run"
-						onChange={props.handleFormChange}
-						onClick={props.handleNameFlag}
+						placeholder="e.g. Exercise"
+						onChange={handleChangeForm}
+						onClick={handleNameFlag}
 						name="name"
 						id="name"
-						value={props.formData.name}
+						value={dataForm.name}
 						required
 					/>
-					{props.nameFlag && <NameError />}
-
+					{nameFlag && <NameError />}
 					<div className="input-group input-group-color">
 						<label>Color</label>
 						<div>
@@ -112,83 +132,54 @@ function FormMeasurable(props) {
 					<label>Question</label>
 					<input
 						type="text"
-						placeholder="e.g. How many miles did you run?"
-						onChange={props.handleFormChange}
+						placeholder="e.g. Did you exercise today?"
+						onChange={handleChangeForm}
 						name="question"
-						value={props.formData.question}
+						value={dataForm.question}
 					/>
 				</div>
 				<div className="input-group">
-					<label>Unit</label>
-					<input
-						type="text"
-						placeholder="e.g. miles"
-						onChange={props.handleFormChange}
-						name="unit"
-						value={props.formData.unit}
-					/>
-				</div>
-
-				<div className="form-input-column">
-					<div className="input-group">
-						<label>Target</label>
-						<input
-							type="number"
-							min="1"
-							placeholder="e.g. 15"
-							onChange={props.handleFormChange}
-							name="target"
-							value={props.formData.target}
+					<label>Frequency</label>
+					<button
+						type="button"
+						title="frequencyButtonYesNo"
+						onClick={handleFreqDialogOpenA}
+					>
+						{dataForm.frequency ? dataForm.frequency : "Everyday"}
+					</button>
+					{dialogsFormA.freqDialog && (
+						<FrequencyDialog
+							formData={dataForm}
+							freqChange={handleFrequencyChange}
+							tempFreqValue={handleTempFreqValue}
+							isOpen={dialogsFormA.freqDialog}
+							requestClose={handleFreqDialogCloseA}
 						/>
-					</div>
-					<div className="input-group">
-						<label>Frequency</label>
-						<button
-							type="button"
-							title="frequencyButtonMeasurable"
-							onClick={props.handleOpenFreqDialog}
-						>
-							{props.formData.frequency
-								? props.formData.frequency
-								: "Everyday"}
-						</button>
-						{props.openFreqDialog && (
-							<FrequencyDialog
-								formData={props.formData}
-								freqChange={props.freqChange}
-								tempFreqValue={props.tempFreqValue}
-								isOpen={props.openFreqDialog}
-								requestClose={props.closeFreqDialog}
-							/>
-						)}
-					</div>
+					)}
 				</div>
-
 				<div className="input-group">
 					<label>Reminder</label>
 					<button
 						type="button"
-						title="reminderButtonMeasurable"
-						onClick={props.handleOpenReminderDialog}
+						title="reminderButtonYesNo"
+						onClick={handleReminderDialogOpenA}
 					>
-						{props.formData.reminder === ""
-							? "off"
-							: props.formData.reminder}
+						{dataForm.reminder === "" ? "off" : dataForm.reminder}
 					</button>
 					<Modal
-						isOpen={props.openReminderDialog}
-						onRequestClose={props.closeReminderDialog}
+						isOpen={dialogsFormA.reminderDialog}
+						onRequestClose={handleReminderDialogCloseA}
 						className="form-reminder-dialog"
 						ariaHideApp={false}
 					>
 						<Timekeeper
 							className="form-reminder-dialog"
-							onRequestClose={props.closeReminderDialog}
-							time={props.getTime}
+							onRequestClose={handleReminderDialogCloseA}
+							time={time}
 							onChange={(data) =>
-								props.timeSubmit(data.formatted12)
+								handleTimeSubmit(data.formatted12)
 							}
-							onDoneClick={props.changeTime(props.getTime)}
+							onDoneClick={handleTimeChange(time)}
 						/>
 					</Modal>
 				</div>
@@ -197,31 +188,68 @@ function FormMeasurable(props) {
 					<input
 						type="text"
 						placeholder="(Optional)"
-						onChange={props.handleFormChange}
+						onChange={handleChangeForm}
 						name="notes"
-						value={props.formData.notes}
+						value={dataForm.notes}
 					/>
 				</div>
 				<div className="form-button-group">
 					<button
 						type="submit"
-						title="measurableFormSubmit"
-						onClick={props.handleFormSubmit}
+						title="YesNoFormSubmit"
+						onClick={handleSubmitForm}
 						className="form-buttons form-button-submit"
 					>
-						SAVE
+						<Link
+							to="/"
+							style={{
+								textDecoration: "none",
+								color: "rgb(242, 250, 255)",
+								padding: "10px 40px 10px 40px",
+								height: "40px",
+								background: "#006eff",
+								boxSizing: "border-box",
+								borderRadius: "5px",
+								fontFamily: "Karla",
+								fontWeight: "600",
+								fontSize: "20px",
+								letterSpacing: "0.06em",
+								cursor: "pointer",
+							}}
+						>
+							SAVE
+						</Link>
 					</button>
-					<button
-						className="form-buttons form-button-cancel"
-						title="measurableFormCancel"
-						onClick={props.handleFormClose}
+
+					<Link
+						to="/"
+						style={{
+							textDecoration: "none",
+							color: "#444",
+							padding: "10px 25px 31px 25px",
+							height: "40px",
+							background: "none",
+							boxSizing: "border-box",
+							borderRadius: "5px",
+							border: "2px solid #888",
+							fontFamily: "Karla",
+							fontWeight: "600",
+							fontSize: "18px",
+							letterSpacing: "0.06em",
+							cursor: "pointer",
+						}}
 					>
-						CANCEL
-					</button>
+						<button
+							className="form-buttons form-button-cancel"
+							title="YesNoFormCancel"
+						>
+							CANCEL
+						</button>
+					</Link>
 				</div>
 			</form>
 		</>
 	);
-}
+};
 
-export default FormMeasurable;
+export default FormMeasurableR;

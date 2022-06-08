@@ -168,7 +168,10 @@ const EditHabitForm = (props) => {
 
 	return (
 		<Modal isOpen={props.isOpen} style={modalStyles} ariaHideApp={false}>
-			<FormHeader title="Edit Habit" />
+			<FormHeader
+				title="Edit Habit"
+				closeEditForm={props.closeEditForm}
+			/>
 			<LoadSaveReinitializeForm
 				load={load}
 				loading={loading}
@@ -290,14 +293,14 @@ const EditHabitForm = (props) => {
 						<div className="form-button-group">
 							<button
 								name="submit"
-								className="form-buttons form-button-submit"
+								className="form-buttons form-edit-button-submit"
 								type="submit"
 								disabled={submitting}
 							>
 								Submit
 							</button>
 							<button
-								className="form-buttons form-button-cancel"
+								className="form-buttons form-edit-button-cancel"
 								type="button"
 								onClick={props.closeEditForm}
 								disabled={submitting}

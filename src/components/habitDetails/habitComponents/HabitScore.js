@@ -47,9 +47,9 @@ const HabitScore = ({ habitCheckList, getPrevDate }) => {
 					<Option value="year">Year</Option>
 				</Select>
 			</div>
-			<span>
+			<section>
 				<ScoreLineChart data={dataPoints} />
-			</span>
+			</section>
 		</Score>
 	);
 };
@@ -71,7 +71,7 @@ const Score = styled.div`
 		justify-content: space-between;
 	}
 
-	span {
+	section {
 		display: flex;
 		justify-content: center;
 	}
@@ -85,8 +85,10 @@ const Heading = styled.h1`
 const Select = styled.select`
 	font-family: "Karla";
 	font-size: 18px;
-	color: #999;
-	border: none;
+	color: #4e4e4e;
+	border: 1px solid #999;
+	border-radius: 5px;
+	padding: 5px 0px 8px 5px;
 `;
 
 const Option = styled.option``;

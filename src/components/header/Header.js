@@ -1,19 +1,25 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
-import { BiFilterAlt } from "react-icons/bi";
 import { MdOutlineMoreVert } from "react-icons/md";
+
+import Search from "../search/Search";
 
 const Header = (props) => {
 	return (
 		<HeaderContainer>
-			<HeaderTitle>{props.pageTitle}</HeaderTitle>
+			<Link to="/" style={{ textDecoration: "none", color: "white" }}>
+				<HeaderTitle id="habitTitle">{props.pageTitle}</HeaderTitle>
+			</Link>
 			<HeaderButtonContainer>
 				<AddButton onClick={props.handleOpen} title="add">
 					<IoMdAdd size={26} />
 				</AddButton>
-				<FilterButton>
-					<BiFilterAlt size={25} />
-				</FilterButton>
+				<Search
+					showSearchField={props.showSearchField}
+					handleSearchString={props.handleSearchString}
+					handleSearchButton={props.handleSearchButton}
+				/>
 				<SettingsButton>
 					<MdOutlineMoreVert size={30} />
 				</SettingsButton>
@@ -56,7 +62,6 @@ const Button = styled.button`
 `;
 
 const AddButton = styled(Button)``;
-const FilterButton = styled(Button)``;
 const SettingsButton = styled(Button)``;
 
 export default Header;

@@ -16,13 +16,13 @@ const HabitOverview = ({ color, getDaysInMonth, habitCheckList }) => {
 			<Heading>Overview</Heading>
 			<Details>
 				<Pie percentage={(totalChecked / 40) * 100} color={color} />
-				<container>
+				<div>
 					<h4 title="score">
 						{Math.round((totalChecked / 40) * 100)}%
 					</h4>
 					<p>Score</p>
-				</container>
-				<container>
+				</div>
+				<div>
 					<h4 title="month">
 						+
 						{Math.round(
@@ -33,23 +33,23 @@ const HabitOverview = ({ color, getDaysInMonth, habitCheckList }) => {
 						%
 					</h4>
 					<p>Month</p>
-				</container>
-				<container>
+				</div>
+				<div>
 					<h4 title="year">
 						+{Math.round((totalChecked / 365) * 100)}%
 					</h4>
 					<p>Year</p>
-				</container>
-				<container>
+				</div>
+				<div>
 					<h4 title="total">{totalChecked}</h4>
 					<p>Total</p>
-				</container>
+				</div>
 			</Details>
 		</Overview>
 	);
 };
 
-const Overview = styled.p`
+const Overview = styled.div`
 	border: 1px solid #ccc;
 	margin: auto;
 	background: white;
@@ -67,7 +67,7 @@ const Heading = styled.h1`
 `;
 
 const Details = styled.div`
-	container {
+	div {
 		padding-top: 5px;
 	}
 	p {
