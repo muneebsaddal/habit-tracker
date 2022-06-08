@@ -268,6 +268,15 @@ function App() {
 			!h.props.habit.name.toString().toLowerCase().indexOf(searchString)
 	);
 
+	const handleHabitDelete = (e) => {
+		const filteredArray = habitArray.filter(
+			(element) => element.name !== e
+		);
+		setHabitArray(filteredArray);
+		localStorage.removeItem(`checkedList_${e}`);
+		handleHabitEditorClose();
+	};
+
 	return (
 		<>
 			<Header
@@ -349,6 +358,7 @@ function App() {
 					closeReminderDialog={handleReminderDialogCloseUpdate}
 					handleUpdateForm={handleUpdateForm}
 					handleUpdateFormSubmit={handleUpdateFormSubmit}
+					handleHabitDelete={handleHabitDelete}
 				/>
 			)}
 		</>
